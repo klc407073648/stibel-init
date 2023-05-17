@@ -8,7 +8,7 @@ class HttpTest
 {
 public:
 	HttpTest(const std::string &host, Poco::UInt16 port, const std::string &method, const std::string &uri,
-			 const std::string &version, const std::string &contentType, const std::string &rootPath,
+			 const std::string &version, const std::string &contentType, 
 			 const std::string &reqJsonFile, const std::string &respJsonFile);
 	~HttpTest();
 
@@ -19,23 +19,6 @@ public:
 	std::string sendPostRequest();
 	std::string sendGetRequest();
 
-	// 不能这样写
-	/*
-	const std::string &getRespFullPath()
-	{
-		return _rootPath + _respJsonFile;
-	}
-	*/
-
-	std::string getRespFullPath()
-	{
-		return _rootPath + _respJsonFile;
-	}
-
-	const std::string &getRootPath() const
-	{
-		return _rootPath;
-	}
 	const std::string &getReqJsonFile() const
 	{
 		return _reqJsonFile;
@@ -57,7 +40,6 @@ private:
 	std::string _contentType;
 
 	// json
-	std::string _rootPath;
 	std::string _reqJsonFile;
 	std::string _respJsonFile;
 };

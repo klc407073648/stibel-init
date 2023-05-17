@@ -18,9 +18,9 @@ using namespace Poco;
 using namespace Poco::Net;
 
 HttpTest::HttpTest(const std::string &host, Poco::UInt16 port, const std::string &method, const std::string &uri,
-				   const std::string &version, const std::string &contentType, const std::string &rootPath,
+				   const std::string &version, const std::string &contentType,
 				   const std::string &reqJsonFile, const std::string &respJsonFile) : _host(host), _port(port), _method(method),
-																					  _uri(uri), _version(version), _contentType(contentType), _rootPath(rootPath), _reqJsonFile(reqJsonFile), _respJsonFile(respJsonFile)
+																					  _uri(uri), _version(version), _contentType(contentType), _reqJsonFile(reqJsonFile), _respJsonFile(respJsonFile)
 {
 }
 
@@ -128,7 +128,7 @@ std::string HttpTest::sendPostRequest()
 		}
 		else
 		{
-			std::string strBody = readStringFromJson(_rootPath + _reqJsonFile); // json格式的字符串
+			std::string strBody = readStringFromJson(_reqJsonFile); // json格式的字符串
 			request.setContentLength((int)strBody.length());
 			session.sendRequest(request) << strBody; // 发送数据
 		}
