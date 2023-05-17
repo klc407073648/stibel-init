@@ -7,9 +7,6 @@
 using namespace Poco;
 using namespace Poco::Net;
 
-const std::string BACKEND_IP = "81.68.132.31";
-const int BACKEND_PORT = 8082;
-
 /*  用户注册  */
 
 // 非空校验
