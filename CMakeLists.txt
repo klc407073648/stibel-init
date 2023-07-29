@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(cmdterminal CXX)
+project(stibel-init CXX)
 
 # drogon的find_package特殊处理
 set(CMAKE_PREFIX_PATH   "${PROJECT_SOURCE_DIR}/lib/3partlib/lib64/cmake")
@@ -11,7 +11,10 @@ include(${PROJECT_SOURCE_DIR}/cmake/SpecialDeal.cmake)
 include(${PROJECT_SOURCE_DIR}/cmake/options.cmake)
 
 ## 3partlib和comlib
+SET(3PART_PATH  ${PROJECT_SOURCE_DIR}/include/3partlib)
 include(${PROJECT_SOURCE_DIR}/cmake/3partlib.cmake)
+
+SET(COMM_PATH   ${PROJECT_SOURCE_DIR}/include/comlib)
 include(${PROJECT_SOURCE_DIR}/cmake/comlib.cmake)
 
 ## 链接头文件和库

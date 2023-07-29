@@ -1,12 +1,18 @@
-#pragma once
+/**
+ * @file ResultUtils.h
+ * @brief 结果工具类，对基础响应进行封装
+ * @author klc
+ * @date 2023-07-29
+ * @copyright Copyright (c) 2023年 klc
+ */
+
+#ifndef __STIBEL_RESULT_UTILS_H__
+#define __STIBEL_RESULT_UTILS_H__
 
 #include <common/BaseResponse.h>
 #include <string>
 #include <vector>
 
-/**
- * 返回工具类
- */
 template <class T>
 class ResultUtils
 {
@@ -17,7 +23,7 @@ public:
      * @return
      * @param <T>
      */
-    static BaseResponse<T> susscess(T data)
+    static BaseResponse<T> success(T data)
     {
         return BaseResponse<T>(0, data, "ok");
     }
@@ -62,3 +68,5 @@ public:
         return BaseResponse<T>(errorCode.getCode(), NULL, errorCode.getMessage(), description);
     }
 };
+
+#endif // __STIBEL_RESULT_UTILS_H__

@@ -18,7 +18,7 @@ public:
   ~TestChannelController();
 
   void testChannel(const HttpRequestPtr &request, std::function<void(const HttpResponsePtr &)> &&callback);
-  
+
 private:
   TestChannelServicePtr srvPtr_;
 };

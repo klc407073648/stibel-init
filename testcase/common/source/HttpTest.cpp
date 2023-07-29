@@ -66,13 +66,13 @@ std::string HttpTest::readArrayStringFromJson(const std::string &file)
 	int arraySize = root.size();
 
 	// 读取数组信息
-	//std::cout << "[readArrayStringFromJson] arraySize: " << arraySize << std::endl;
+	// std::cout << "[readArrayStringFromJson] arraySize: " << arraySize << std::endl;
 	for (int i = 0; i < arraySize; i++)
 	{
 		Json::Value::Members mem = root[i].getMemberNames();
 		for (auto iter = mem.begin(); iter != mem.end(); iter++)
 		{
-			//std::cout << "[readArrayStringFromJson] key: " << *iter << "value: " << root[i][*iter].asString() << std::endl;
+			// std::cout << "[readArrayStringFromJson] key: " << *iter << "value: " << root[i][*iter].asString() << std::endl;
 		}
 	}
 
@@ -107,7 +107,7 @@ std::string HttpTest::sendRequest()
 		result = sendGetRequest();
 	}
 
-	std::cout << "[sendRequest] result:" << result << std::endl;
+	std::cout << "[sendRequest] method: " << _method << ", result:" << result << std::endl;
 
 	return result;
 }
@@ -148,7 +148,7 @@ std::string HttpTest::sendPostRequest()
 	}
 	catch (const NetException &ex)
 	{
-		std::cerr << "ex: " << ex.displayText() << std::endl;
+		std::cerr << "sendPostRequest ex: " << ex.displayText() << std::endl;
 	}
 
 	return result;
@@ -180,7 +180,7 @@ std::string HttpTest::sendGetRequest()
 	}
 	catch (const NetException &ex)
 	{
-		std::cerr << "ex: " << ex.displayText() << std::endl;
+		std::cerr << "sendGetRequest ex: " << ex.displayText() << std::endl;
 	}
 
 	return result;

@@ -54,8 +54,6 @@ void UserController::userRegister(const HttpRequestPtr &request, std::function<v
     {
         std::string userAccount = reqUser.getValueOfUseraccount();
         std::string userPassword = reqUser.getValueOfUserpassword();
-        // std::string checkPassword = checkPassword_;
-        // std::string planetCode = reqUser.getValueOfPlanetcode();
 
         if (userAccount.size() == 0 || userPassword.size() == 0 || checkPassword.size() == 0)
         {
@@ -63,7 +61,6 @@ void UserController::userRegister(const HttpRequestPtr &request, std::function<v
         }
 
         long id = srvPtr_->userRegister(userAccount, userPassword, checkPassword);
-
         callNormalResponse(std::move(callback), id);
     }
     catch (BusinessException &e)
@@ -103,7 +100,6 @@ void UserController::userLogout(const HttpRequestPtr &request, std::function<voi
         }
 
         long result = srvPtr_->userLogout(request);
-
         callNormalResponse(std::move(callback), result);
     }
     catch (BusinessException &e)
@@ -123,7 +119,6 @@ void UserController::searchUsers(const HttpRequestPtr &request, std::function<vo
 
         std::string username = request->getParameter("username");
         std::vector<User> userList = srvPtr_->userSearch(username);
-
         callNormalResponse(std::move(callback), userList);
     }
     catch (BusinessException &e)
@@ -146,7 +141,6 @@ void UserController::getCurrentUser(const HttpRequestPtr &request, std::function
         User curentUser = request->getSession()->get<User>(USER_LOGIN_STATE);
         long userId = curentUser.getValueOfId();
         User user = srvPtr_->userCurrent(userId);
-
         callNormalResponse(std::move(callback), user);
     }
     catch (BusinessException &e)
@@ -172,12 +166,10 @@ void UserController::deleteUsers(const HttpRequestPtr &request, std::function<vo
         }
 
         bool ret = srvPtr_->userDelete(id);
-
         callNormalResponse(std::move(callback), ret);
     }
     catch (BusinessException &e)
     {
-
         callErrorResponse(std::move(callback), e);
     }
 }

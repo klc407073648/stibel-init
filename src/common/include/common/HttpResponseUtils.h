@@ -1,5 +1,13 @@
 #pragma once
 
+/**
+ * @file HttpResponseUtils.h
+ * @brief Http响应工具类，封装正常和异常的返回结果
+ * @author klc
+ * @date 2023-07-29
+ * @copyright Copyright (c) 2023年 klc
+ */
+
 #include <drogon/HttpResponse.h>
 #include <common/ResultUtils.h>
 #include <common/Response2json.h>
@@ -26,7 +34,7 @@ static void callNormalResponse(std::function<void(const HttpResponsePtr &)> &&ca
 {
     std::string callFunName = str;
     
-    auto base = ResultUtils<decltype(value)>::susscess(value);
+    auto base = ResultUtils<decltype(value)>::success(value);
     auto json = Response2json<decltype(value)>::rep2json(base);
 
     LOG_ERROR << "[callErrorResponse] callFunName:" << callFunName <<", normal response:" << json.toStyledString();

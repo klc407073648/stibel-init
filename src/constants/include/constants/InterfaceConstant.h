@@ -1,6 +1,6 @@
-#include<string>
-
 #pragma once
+
+#include<string>
 
 //百度翻译API的appid和key
 const std::string FANYI_API_APPID = "20230217001565627";//待处理

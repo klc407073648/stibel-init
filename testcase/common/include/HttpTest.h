@@ -11,7 +11,7 @@ class HttpTest
 {
 public:
 	HttpTest(const std::string &host, Poco::UInt16 port, const std::string &method, const std::string &uri,
-			 const std::string &version, const std::string &contentType, 
+			 const std::string &version, const std::string &contentType,
 			 const std::string &reqJsonFile, const std::string &respJsonFile);
 	~HttpTest();
 
@@ -19,17 +19,12 @@ public:
 	std::string readStringFromJson(const std::string &file);
 	std::string readArrayStringFromJson(const std::string &file);
 	std::string sendRequest();
+	const std::string &getReqJsonFile() const { return _reqJsonFile; }
+	const std::string &getRespJsonFile() const { return _respJsonFile; }
+
+private:
 	std::string sendPostRequest();
 	std::string sendGetRequest();
-
-	const std::string &getReqJsonFile() const
-	{
-		return _reqJsonFile;
-	}
-	const std::string &getRespJsonFile() const
-	{
-		return _respJsonFile;
-	}
 
 private:
 	// HTTPClientSession
@@ -37,7 +32,7 @@ private:
 	Poco::UInt16 _port;
 
 	// HTTPRequest
-	std::string _method;
+	std::string _method; // 请求方法
 	std::string _uri;
 	std::string _version;
 	std::string _contentType;

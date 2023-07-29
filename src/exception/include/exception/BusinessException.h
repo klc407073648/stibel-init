@@ -1,4 +1,13 @@
-#pragma once
+/**
+ * @file BusinessException.h
+ * @brief 业务异常类
+ * @author klc
+ * @date 2023-07-29
+ * @copyright Copyright (c) 2023年 klc
+ */
+
+#ifndef __STIBEL_BUSINESS_EXCEPTION_H__
+#define __STIBEL_BUSINESS_EXCEPTION_H__
 
 #include <exception>
 #include <functional>
@@ -24,28 +33,18 @@ public:
 
     BusinessException() = delete;
 
-    int getCode()
-    {
-        return code_;
-    }
+    int getCode() { return code_; }
 
-    const std::string & getDescription()
-    {
-        return description_;
-    }
-	
-	const std::string & getMessage()
-    {
-        return message_;
-    }
+    const std::string &getDescription() { return description_; }
 
-    const char *what() const noexcept override
-    {
-        return message_.data();
-    }
+    const std::string &getMessage() { return message_; }
+
+    const char *what() const noexcept override { return message_.data(); }
 
 private:
     int code_;
     std::string message_;
     std::string description_;
 };
+
+#endif // __STIBEL_BUSINESS_EXCEPTION_H__
