@@ -1,10 +1,13 @@
 /**
- *
- *  LoginFilter.h
- *
+ * @file LoginFilter.h
+ * @brief 过滤器
+ * @author klc
+ * @date 2023-08-05
+ * @copyright Copyright (c) 2023年 klc
  */
 
-#pragma once
+#ifndef __STIBEL_LOGIN_FILTER_H__
+#define __STIBEL_LOGIN_FILTER_H__
 
 #include <services/impl/UserServiceImpl.h>
 #include <drogon/HttpFilter.h>
@@ -24,3 +27,4 @@ class LoginFilter : public HttpFilter<LoginFilter>
     UserServicePtr srvPtr_;
 };
 
+#endif //__STIBEL_LOGIN_FILTER_H__

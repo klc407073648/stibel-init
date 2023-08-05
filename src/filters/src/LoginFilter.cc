@@ -1,14 +1,7 @@
-/**
- *
- *  LoginFilter.cc
- *
- */
-
 #include <filters/LoginFilter.h>
 #include <common/HttpResponseUtils.h>
 
 using namespace drogon;
-
 void LoginFilter::doFilter(const HttpRequestPtr &req,
                          FilterCallback &&fcb,
                          FilterChainCallback &&fccb)

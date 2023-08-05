@@ -14,9 +14,11 @@ public:
   ADD_METHOD_TO(LogController::writeUserLog, "/api/log/user/{1}", Post, Options);
   METHOD_LIST_END
 
+public:
   LogController();
   ~LogController();
-
+  
+public:
   void writeUserLog(const HttpRequestPtr &request, std::function<void(const HttpResponsePtr &)> &&callback,std::string userId);
 
 private:

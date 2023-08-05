@@ -21,25 +21,23 @@ enum ERROR_CODE
     SYSTEM_ERROR = 50000,
 };
 
+//错误码宏定义
 #define DEFINE_STATIC_ERROR_CODE(fun_name, error_code, message, description)  ErrorCode ErrorCode::fun_name() \
     { \
         return ErrorCode(ERROR_CODE::error_code, message, description); \
     }
 
-//常成员函数，待处理
 class ErrorCode
 {
-
 public:
     ErrorCode(int code, const std::string &message, const std::string &description)
         : code_(code), message_(message), description_(description)
     {
     }
 
+public:
     int getCode(){return code_;}
-
     const std::string &getMessage(){return message_;}
-
     const std::string &getDescription(){return description_;}
 
 public:

@@ -15,7 +15,8 @@ namespace cmdterminal
   public:
     LogServiceImpl();
     ~LogServiceImpl();
-
+    
+  public:
     bool writeUserLog(long userid,const std::string& content) override;
 
   private:

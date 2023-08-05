@@ -162,7 +162,6 @@ std::string HttpTest::sendGetRequest()
 	{
 		HTTPClientSession session(_host, _port);
 		HTTPRequest request(_method, _uri, _version);
-
 		session.sendRequest(request);
 
 		HTTPResponse response;

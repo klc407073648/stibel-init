@@ -18,9 +18,11 @@ public:
   ADD_METHOD_TO(InterfaceController::getBackendVersion, "/api/backend/version", Get, Options);
   METHOD_LIST_END
 
+public:
   InterfaceController();
   ~InterfaceController();
 
+public:
   void getBackground(const HttpRequestPtr &request, std::function<void(const HttpResponsePtr &)> &&callback);
   void getTranslate(const HttpRequestPtr &request, std::function<void(const HttpResponsePtr &)> &&callback);
   void getBackendVersion(const HttpRequestPtr &request, std::function<void(const HttpResponsePtr &)> &&callback);

@@ -51,3 +51,18 @@ make
 gdb -tui --args ./InterfaceControllerTest
 b HttpTest.cpp:31
 ```
+
+测试镜像
+```
+docker run -it -d --rm=false --privileged --restart="always" --name build_lib_test_run  -e.utf8 \
+    -v /home/stibel/build_lib:/home/stibel/build_lib \
+    -v /var/run/docker.sock:/var/run/docker.sock -v $(which docker):/usr/bin/docker    \
+    -v $(which gdb):/usr/bin/gdb    \
+    -p 8082:8082 \
+    -w /home/stibel/build_lib docker.io/klc407073648/centos_build_lib:v3.0 /bin/bash
+```
+
+```
+curl -XPOST 81.68.132.31:8082/api/user/register -H 'content-type:  application/json' -d '{"userAccount":"111","userPassword":"222","checkPassword":"333","planetCode":"4444"}'
+```
+

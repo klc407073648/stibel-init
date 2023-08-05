@@ -82,7 +82,7 @@ void UserController::userLogin(const HttpRequestPtr &request, std::function<void
         }
 
         auto user = srvPtr_->userLogin(userAccount, userPassword, request);
-        callNormalResponse(std::move(callback), user);
+        callNormalResponse(std::move(callback), user.toJson());
     }
     catch (BusinessException &e)
     {
@@ -119,7 +119,14 @@ void UserController::searchUsers(const HttpRequestPtr &request, std::function<vo
 
         std::string username = request->getParameter("username");
         std::vector<User> userList = srvPtr_->userSearch(username);
-        callNormalResponse(std::move(callback), userList);
+        Json::Value userListJsonValue;
+
+        for(auto &user:userList)
+        {
+            userListJsonValue.append(user.toJson());
+        }
+
+        callNormalResponse(std::move(callback), userListJsonValue);
     }
     catch (BusinessException &e)
     {
@@ -141,7 +148,7 @@ void UserController::getCurrentUser(const HttpRequestPtr &request, std::function
         User curentUser = request->getSession()->get<User>(USER_LOGIN_STATE);
         long userId = curentUser.getValueOfId();
         User user = srvPtr_->userCurrent(userId);
-        callNormalResponse(std::move(callback), user);
+        callNormalResponse(std::move(callback), user.toJson());
     }
     catch (BusinessException &e)
     {

@@ -20,8 +20,11 @@ public:
   ADD_METHOD_TO(UserController::deleteUsers, "/api/user/delete", Post, Options);
   METHOD_LIST_END
 
+public:
   UserController();
   ~UserController();
+  
+public:
   void userRegister(const HttpRequestPtr &request, std::function<void(const HttpResponsePtr &)> &&callback, User &&reqUser);
   void userLogin(const HttpRequestPtr &request, std::function<void(const HttpResponsePtr &)> &&callback, User &&reqUser);
   void userLogout(const HttpRequestPtr &request, std::function<void(const HttpResponsePtr &)> &&callback);

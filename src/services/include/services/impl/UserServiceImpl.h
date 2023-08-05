@@ -15,18 +15,13 @@ namespace cmdterminal
     UserServiceImpl();
     ~UserServiceImpl();
   
+  public:
     long userRegister(const std::string &userAccount, const std::string &userPassword, const std::string &checkPassword, const std::string &planetCode) override;
-
     User userLogin(const std::string &userAccount, const std::string &userPassword, const HttpRequestPtr &request) override;
-
     long userLogout(const HttpRequestPtr &request) override;
-
     std::vector<User> userSearch(const std::string &username) override;
-
     User userCurrent(long id) override;
-
     bool userDelete(long id) override;
-
     std::vector<User> searchUsersByTags(std::vector<std::string> tagNameList) override;
 
     bool isAdmin(const HttpRequestPtr &request) override;  

@@ -2,7 +2,7 @@
 
 using namespace drogon;
 
-int main()
+void setFileOutput()
 {
     //设置文件输出
     trantor::AsyncFileLogger asyncFileLogger;
@@ -14,11 +14,10 @@ int main()
         },
         [&]() { asyncFileLogger.flush(); });
     asyncFileLogger.setFileSizeLimit(100000000);
+}
 
-    //加载项目配置文件
-	app().loadConfigFile("../conf/config.json").run();
-
-    //支持跨域请求
+void supportCrossOrigin()
+{
     app().registerPostHandlingAdvice([](const drogon::HttpRequestPtr &,
                                         const drogon::HttpResponsePtr &resp) {
         resp->addHeader("Access-Control-Allow-Origin", "*");
@@ -27,4 +26,16 @@ int main()
 		resp->addHeader("Access-Control-Allow-Methods", "*");
 		resp->addHeader("Access-Control-Expose-Headers", "*");
     });
+}
+
+int main()
+{
+    //设置文件输出
+    //setFileOutput();
+
+    //加载项目配置文件
+	app().loadConfigFile("../conf/config.json").run();
+
+    //支持跨域请求
+    supportCrossOrigin();
 }

@@ -14,9 +14,11 @@ public:
   ADD_METHOD_TO(TestChannelController::testChannel, "/api/testchannel", Post, Options);
   METHOD_LIST_END
 
+public:
   TestChannelController();
   ~TestChannelController();
-
+  
+public:
   void testChannel(const HttpRequestPtr &request, std::function<void(const HttpResponsePtr &)> &&callback);
 
 private:

@@ -48,12 +48,10 @@ public:
     {
     }
 
+public:
     int getCode() { return code_; }
-
     const T &getData() { return data_; }
-
     const std::string &getMessage() { return message_; }
-
     const std::string &getDescription() { return description_; }
 
 private:

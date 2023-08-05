@@ -32,13 +32,11 @@ public:
     }
 
     BusinessException() = delete;
-
+    
+public:
     int getCode() { return code_; }
-
     const std::string &getDescription() { return description_; }
-
     const std::string &getMessage() { return message_; }
-
     const char *what() const noexcept override { return message_.data(); }
 
 private:
