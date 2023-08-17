@@ -46,19 +46,32 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 # 头文件目录
-INCLUDE_DIRECTORIES( ${PROJECT_SOURCE_DIR}/src/common/include  ${PROJECT_SOURCE_DIR}/src/constants/include ${PROJECT_SOURCE_DIR}/src/controllers/include
-${PROJECT_SOURCE_DIR}/src/exception/include ${PROJECT_SOURCE_DIR}/src/filters/include ${PROJECT_SOURCE_DIR}/src/models/include
-${PROJECT_SOURCE_DIR}/src/plugins/include ${PROJECT_SOURCE_DIR}/src/services/include )
+INCLUDE_DIRECTORIES( 
+${PROJECT_SOURCE_DIR}/core/common/include  
+${PROJECT_SOURCE_DIR}/core/constants/include 
+${PROJECT_SOURCE_DIR}/core/controllers/include
+${PROJECT_SOURCE_DIR}/core/exception/include 
+${PROJECT_SOURCE_DIR}/core/filters/include 
+${PROJECT_SOURCE_DIR}/core/models/include
+${PROJECT_SOURCE_DIR}/core/plugins/include 
+${PROJECT_SOURCE_DIR}/core/services/include )
 
 #代码列表
-FILE (GLOB PROJECT_DROGON_FILES ${PROJECT_SOURCE_DIR}/src/common/src/*.*  ${PROJECT_SOURCE_DIR}/src/constants/src/*.* ${PROJECT_SOURCE_DIR}/src/controllers/src/*.*
-${PROJECT_SOURCE_DIR}/src/exception/src/*.* ${PROJECT_SOURCE_DIR}/src/filters/src/*.* ${PROJECT_SOURCE_DIR}/src/models/src/*.*
-${PROJECT_SOURCE_DIR}/src/plugins/src/*.* ${PROJECT_SOURCE_DIR}/src/services/src/*.* ${PROJECT_SOURCE_DIR}/src/services/src/inner/*.*)
+FILE (GLOB PROJECT_DROGON_FILES 
+${PROJECT_SOURCE_DIR}/core/common/source/*.*  
+${PROJECT_SOURCE_DIR}/core/constants/source/*.* 
+${PROJECT_SOURCE_DIR}/core/controllers/source/*.*
+${PROJECT_SOURCE_DIR}/core/exception/source/*.* 
+${PROJECT_SOURCE_DIR}/core/filters/source/*.* 
+${PROJECT_SOURCE_DIR}/core/models/source/*.*
+${PROJECT_SOURCE_DIR}/core/plugins/source/*.* 
+${PROJECT_SOURCE_DIR}/core/services/source/*.* 
+${PROJECT_SOURCE_DIR}/core/services/source/inner/*.*)
 
 #drogon_create_views(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/views
 #                    ${CMAKE_CURRENT_BINARY_DIR} TRUE)
 
-add_executable(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/src/main/main.cc ${PROJECT_DROGON_FILES})                    
+add_executable(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/core/main/main.cc ${PROJECT_DROGON_FILES})                    
 
 # 链接drogon库
 find_package(Drogon CONFIG REQUIRED)
