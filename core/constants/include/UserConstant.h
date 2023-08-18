@@ -9,3 +9,4 @@ enum USER_TYPE{
     DEFAULT_ROLE = 0, //默认权限
     ADMIN_ROLE = 1 //管理员权限
 };
+

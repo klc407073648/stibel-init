@@ -1,5 +1,6 @@
 #include "LoginFilter.h"
 #include "HttpResponseUtils.h"
+#include "Description.h"
 
 using namespace drogon;
 void LoginFilter::doFilter(const HttpRequestPtr &req,
@@ -11,7 +12,7 @@ void LoginFilter::doFilter(const HttpRequestPtr &req,
         //管理员用户校验
         if (!srvPtr_->isAdmin(req))
         {
-            throw BusinessException(ErrorCode::PARAMS_ERROR(), "LoginFilter::非管理员用户，无查询权限");
+            throw BusinessException(ErrorCode::PARAMS_ERROR(), UserDescription::NO_QUERY_PERMISSION());
         }
 
         //接口存在性校验  todo

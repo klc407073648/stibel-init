@@ -139,6 +139,7 @@ std::string HttpTest::sendPostRequest()
 		if (HTTPResponse::HTTPStatus::HTTP_OK == status)
 		{
 			StreamCopier::copyToString(is, result);
+			std::cout << "[sendPostRequest] result:" << result << std::endl;
 			return result;
 		}
 		else

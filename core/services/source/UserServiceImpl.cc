@@ -1,8 +1,9 @@
 #include "impl/UserServiceImpl.h"
-#include <trantor/utils/Utilities.h>
 #include "UserConstant.h"
 #include "ErrorCode.h"
+#include "Description.h"
 #include "BusinessException.h"
+#include <trantor/utils/Utilities.h>
 #include <regex>
 
 using namespace drogon;
@@ -40,34 +41,34 @@ long UserServiceImpl::userRegister(const std::string &userAccount, const std::st
     {
         if (userAccount.size() == 0 || userPassword.size() == 0 || checkPassword.size() == 0 || checkPassword.size() == 0)
         {
-            throw BusinessException(ErrorCode::PARAMS_ERROR(), "参数为空");
+            throw BusinessException(ErrorCode::PARAMS_ERROR(), UserDescription::PARA_EMPTY());
         }
 
         if (userAccount.length() < 4)
         {
-            throw BusinessException(ErrorCode::PARAMS_ERROR(), "用户账号小于4位");
+            throw BusinessException(ErrorCode::PARAMS_ERROR(), UserDescription::USER_ACCOUNT_LESS_THAN_4());
         }
 
         if (userPassword.length() < 8 || checkPassword.length() < 8)
         {
-            throw BusinessException(ErrorCode::PARAMS_ERROR(), "用户密码和校验密码小于8位");
+            throw BusinessException(ErrorCode::PARAMS_ERROR(), UserDescription::USER_PWD_OR_VERI_PWD_LESS_THAN_8());
         }
 
         if (planetCode.length() > 5)
         {
-            throw BusinessException(ErrorCode::PARAMS_ERROR(), "星球编号大于5位");
+            throw BusinessException(ErrorCode::PARAMS_ERROR(), UserDescription::PLANT_CODE_GREATER_THAN_5());
         }
 
         // 特殊字符校验
         if (checkSpecialCharacter(userAccount))
         {
-            throw BusinessException(ErrorCode::PARAMS_ERROR(), "用户账号中存在特殊字符");
+            throw BusinessException(ErrorCode::PARAMS_ERROR(), UserDescription::USER_ACCOUNT_HAS_SPEC_CHARACTER());
         }
 
         // 密码和校验密码相同
         if (userPassword != checkPassword)
         {
-            throw BusinessException(ErrorCode::PARAMS_ERROR(), "用户密码和校验密码不同");
+            throw BusinessException(ErrorCode::PARAMS_ERROR(), UserDescription::USER_PWD_AND_VERI_PWD_DIFF());
         }
 
         // 用户不能重复
@@ -77,7 +78,7 @@ long UserServiceImpl::userRegister(const std::string &userAccount, const std::st
 
         if (!ret.empty())
         {
-            throw BusinessException(ErrorCode::PARAMS_ERROR(), "用户账号已存在");
+            throw BusinessException(ErrorCode::PARAMS_ERROR(), UserDescription::USER_ACCOUNT_EXIST());
         }
 
         // 星球账号不能重复
@@ -107,7 +108,7 @@ long UserServiceImpl::userRegister(const std::string &userAccount, const std::st
     }
     catch (const DrogonDbException &e)
     {
-        throw BusinessException(ErrorCode::PARAMS_ERROR(),  "插入数据失败");
+        throw BusinessException(ErrorCode::PARAMS_ERROR(),  UserDescription::INSERT_DATA_FAIL());
     }
 }
 User UserServiceImpl::userLogin(const std::string &userAccount, const std::string &userPassword, const HttpRequestPtr &request)
@@ -118,23 +119,23 @@ User UserServiceImpl::userLogin(const std::string &userAccount, const std::strin
     // 1. 校验
     if (userAccount.size() == 0 || userPassword.size() == 0)
     {
-        throw BusinessException(ErrorCode::PARAMS_ERROR(), "用户账号或密码为空");
+        throw BusinessException(ErrorCode::PARAMS_ERROR(), UserDescription::USER_ACCOUNT_OR_PWD_EMPTY());
     }
 
     if (userAccount.length() < 4)
     {
-        throw BusinessException(ErrorCode::PARAMS_ERROR(), "用户账号小于4位");
+        throw BusinessException(ErrorCode::PARAMS_ERROR(), UserDescription::USER_ACCOUNT_LESS_THAN_4());
     }
 
     if (userPassword.length() < 8)
     {
-        throw BusinessException(ErrorCode::PARAMS_ERROR(), "用户密码小于8位");
+        throw BusinessException(ErrorCode::PARAMS_ERROR(), UserDescription::USER_PWD_LESS_THAN_8());
     }
 
     // 特殊字符校验
     if (checkSpecialCharacter(userAccount))
     {
-        throw BusinessException(ErrorCode::PARAMS_ERROR(), "用户账号中存在特殊字符");
+        throw BusinessException(ErrorCode::PARAMS_ERROR(), UserDescription::USER_ACCOUNT_HAS_SPEC_CHARACTER());
     }
 
     // 2.加密
@@ -157,7 +158,7 @@ User UserServiceImpl::userLogin(const std::string &userAccount, const std::strin
     }
     catch (const DrogonDbException &e)
     {
-        throw BusinessException(ErrorCode::PARAMS_ERROR(), "用户不存在");
+        throw BusinessException(ErrorCode::PARAMS_ERROR(), UserDescription::USER_ACCOUNT_NO_EXIST());
     }
 }
 
@@ -195,7 +196,7 @@ User UserServiceImpl::userCurrent(long id)
     }
     catch (const DrogonDbException &e)
     {
-        throw BusinessException(ErrorCode::PARAMS_ERROR(), "获取当前用户失败");
+        throw BusinessException(ErrorCode::PARAMS_ERROR(), UserDescription::GET_CURRENT_USER_FAIL());
     }
 
     return safetyUser;
@@ -209,13 +210,13 @@ bool UserServiceImpl::userDelete(long id)
 
         if (ret != 1)
         {
-            throw BusinessException(ErrorCode::PARAMS_ERROR(), "删除指定用户失败");
+            throw BusinessException(ErrorCode::PARAMS_ERROR(), UserDescription::DELETE_SPEC_USER_FAIL());
         }
         return true;
     }
     catch (const DrogonDbException &e)
     {
-        throw BusinessException(ErrorCode::PARAMS_ERROR(), "删除指定用户失败");
+        throw BusinessException(ErrorCode::PARAMS_ERROR(), UserDescription::DELETE_SPEC_USER_FAIL());
     }
 }
 

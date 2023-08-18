@@ -1,5 +1,6 @@
 #include "UserController.h"
 #include "UserConstant.h"
+#include "Description.h"
 #include "HttpResponseUtils.h"
 #include "ErrorCode.h"
 #include <string>
@@ -58,7 +59,7 @@ void UserController::userRegister(const HttpRequestPtr &request, std::function<v
 
         if (userAccount.size() == 0 || userPassword.size() == 0 || checkPassword.size() == 0)
         {
-            throw BusinessException(ErrorCode::PARAMS_ERROR(), "入参中账号或密码或校验密码或星球编号为空");
+            throw BusinessException(ErrorCode::PARAMS_ERROR(), UserDescription::ACCOUNT_OR_PWD_OR_VERI_PWD_OR_PLANT_CODE_EMPTY());
         }
 
         long id = srvPtr_->userRegister(userAccount, userPassword, checkPassword);
@@ -79,7 +80,7 @@ void UserController::userLogin(const HttpRequestPtr &request, std::function<void
 
         if (userAccount.size() == 0 || userPassword.size() == 0)
         {
-            throw BusinessException(ErrorCode::PARAMS_ERROR(), "入参中账号或密码为空");
+            throw BusinessException(ErrorCode::PARAMS_ERROR(), UserDescription::ACCOUNT_OR_PWD_EMPTY());
         }
 
         auto user = srvPtr_->userLogin(userAccount, userPassword, request);
@@ -97,7 +98,7 @@ void UserController::userLogout(const HttpRequestPtr &request, std::function<voi
     {
         if (request == nullptr)
         {
-            throw BusinessException(ErrorCode::PARAMS_ERROR(), "请求为空");
+            throw BusinessException(ErrorCode::PARAMS_ERROR(), UserDescription::REQUEST_EMPTY());
         }
 
         long result = srvPtr_->userLogout(request);
@@ -115,7 +116,7 @@ void UserController::searchUsers(const HttpRequestPtr &request, std::function<vo
     {
         if (!srvPtr_->isAdmin(request))
         {
-            throw BusinessException(ErrorCode::PARAMS_ERROR(), "非管理员用户，无查询权限");
+            throw BusinessException(ErrorCode::PARAMS_ERROR(), UserDescription::NO_QUERY_PERMISSION());
         }
 
         std::string username = request->getParameter("username");
@@ -163,14 +164,14 @@ void UserController::deleteUsers(const HttpRequestPtr &request, std::function<vo
     {
         if (!srvPtr_->isAdmin(request))
         {
-            throw BusinessException(ErrorCode::PARAMS_ERROR(), "非管理员用户，无删除权限");
+            throw BusinessException(ErrorCode::PARAMS_ERROR(), UserDescription::NO_DELETE_PERMISSION());
         }
 
         auto id = (reqUser.getId() != nullptr) ? reqUser.getValueOfId() : -1;
 
         if (id <= 0)
         {
-            throw BusinessException(ErrorCode::PARAMS_ERROR(), "用户id不合法");
+            throw BusinessException(ErrorCode::PARAMS_ERROR(), UserDescription::USER_ID_ILLEGAL());
         }
 
         bool ret = srvPtr_->userDelete(id);

@@ -119,6 +119,16 @@ TEST_F(UserControllerTest, Login_correct_user)
     httpTest.readArrayStringFromJson(temp);
 
     EXPECT_EQ(resp, res) << "Login_correct_user req and resp not same.";
+
+    // 注销，避免影响后续用例
+    HttpTest httpTest3(BACKEND_IP, BACKEND_PORT, HTTPRequest::HTTP_POST, "/api/user/logout", HTTPMessage::HTTP_1_1,"application/json",
+                      "",
+                      "../testcase/user/json/resp/Given_null_When_logout_Then_return_success_resp.json");
+
+    std::string resp3 = httpTest.sendRequest();
+    std::string res3 = httpTest.readStringFromJson(httpTest.getRespJsonFile());
+	
+    EXPECT_EQ(resp3, res3) << "Logout_normal req and resp not same.";
 }
 
 // 登录不存在的用户

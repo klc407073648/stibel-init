@@ -1,6 +1,6 @@
 {
     "code": 40000,
     "data": 0,
-    "description": "入参中账号或密码或校验密码或星球编号为空",
-    "message": "请求参数错误"
+    "description": "The account or password or verification password or planet number is empty",
+    "message": "Request parameter error"
 }
