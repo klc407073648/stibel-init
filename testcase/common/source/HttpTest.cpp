@@ -13,6 +13,7 @@
 #include <json/json.h>
 #include <fstream>
 #include "HttpTest.h"
+#include "stub_glibc.h"
 
 using namespace Poco;
 using namespace Poco::Net;
@@ -48,7 +49,7 @@ std::string HttpTest::readStringFromJson(const std::string &file)
 		res.erase(pos, 1); // 在换行符的位置删除一个字符，即删除换行符
 	}
 
-	std::cout << "[readStringFromJson] file: " << file << ", res:" << res << std::endl;
+	printf("[readStringFromJson] file:%s,res:%s", file.c_str(), res.c_str());
 
 	return res;
 }
@@ -89,7 +90,7 @@ std::string HttpTest::readArrayStringFromJson(const std::string &file)
 		res.erase(pos, 1); // 在换行符的位置删除一个字符，即删除换行符
 	}
 
-	std::cout << "[readArrayStringFromJson] file: " << file << ", res:" << res << std::endl;
+	printf("[readArrayStringFromJson] file:%s,res:%s", file.c_str(), res.c_str());
 
 	return res;
 }
@@ -107,7 +108,7 @@ std::string HttpTest::sendRequest()
 		result = sendGetRequest();
 	}
 
-	std::cout << "[sendRequest] method: " << _method << ", result:" << result << std::endl;
+	printf("[sendRequest] method:%d, result:%s", _method, result.c_str());
 
 	return result;
 }
@@ -139,17 +140,17 @@ std::string HttpTest::sendPostRequest()
 		if (HTTPResponse::HTTPStatus::HTTP_OK == status)
 		{
 			StreamCopier::copyToString(is, result);
-			std::cout << "[sendPostRequest] result:" << result << std::endl;
+			printf("[sendPostRequest] result:%s", result.c_str());
 			return result;
 		}
 		else
 		{
-			std::cout << "HTTPStatus is not HTTP_OK val:" << status << std::endl;
+			printf("[sendPostRequest] HTTPStatus is not HTTP_OK val:%d", status);
 		}
 	}
 	catch (const NetException &ex)
 	{
-		std::cerr << "sendPostRequest ex: " << ex.displayText() << std::endl;
+		printf("[sendPostRequest] ex:%s", ex.displayText());
 	}
 
 	return result;
@@ -175,12 +176,12 @@ std::string HttpTest::sendGetRequest()
 		}
 		else
 		{
-			std::cout << "HTTPStatus is not HTTP_OK val:" << status << std::endl;
+			printf("[sendGetRequest] HTTPStatus is not HTTP_OK val:%d", status);
 		}
 	}
 	catch (const NetException &ex)
 	{
-		std::cerr << "sendGetRequest ex: " << ex.displayText() << std::endl;
+		printf("[sendGetRequest] ex:%s", ex.displayText());
 	}
 
 	return result;
