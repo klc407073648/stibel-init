@@ -14,6 +14,6 @@ do
    #echo $depend_so_list
    echo "$depend_so_list" | while read rows
    do
-      cp -rf $rows $app_lib_path
+      cp -rf -L $rows $ #-L 拷贝源文件而不是链接
    done
 done

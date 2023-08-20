@@ -44,6 +44,12 @@ function buildProject()
 
    checkBuildResult buildProject
 
+   # 链接so特殊处理
+   cd $work_path/docker
+   ./ldd.sh
+   
+   echo '$PROJECT_WORK_PATH/lib/app' >> $work_path/conf/etc/ld.so.conf.d/stibel.conf
+
    logDebug "buildProject end"
 }
 
