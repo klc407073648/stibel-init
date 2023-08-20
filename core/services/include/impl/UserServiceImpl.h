@@ -5,9 +5,9 @@
 #include "UserService.h"
 #include <drogon/drogon.h>
 
-using drogon_model::cmdterminal::User;
+using drogon_model::stibel_init::User;
 
-namespace cmdterminal
+namespace stibel_init
 {
   class UserServiceImpl : public UserService
   {

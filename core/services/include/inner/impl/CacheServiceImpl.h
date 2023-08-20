@@ -6,7 +6,7 @@
 #include <drogon/drogon.h>
 #include <map>
 
-using drogon_model::cmdterminal::Interface;
+using drogon_model::stibel_init::Interface;
 
 enum CacheType
 {
@@ -14,7 +14,7 @@ enum CacheType
   BY_REDIS
 };
   
-namespace cmdterminal
+namespace stibel_init
 {
 
   class CacheServiceImpl : public CacheService

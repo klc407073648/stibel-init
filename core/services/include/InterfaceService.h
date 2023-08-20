@@ -8,7 +8,7 @@
 using namespace drogon;
 
 // InterfaceService 纯虚函数，接口类
-namespace cmdterminal
+namespace stibel_init
 {
   class InterfaceService;
   using InterfaceServicePtr = std::shared_ptr<InterfaceService>;

@@ -10,7 +10,7 @@
 #include <string>
 
 using namespace drogon;
-using namespace drogon_model::cmdterminal;
+using namespace drogon_model::stibel_init;
 
 const std::string Log::Cols::_id = "id";
 const std::string Log::Cols::_userid = "userid";

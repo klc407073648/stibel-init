@@ -7,11 +7,11 @@
 #include <drogon/drogon.h>
 #include "User.h"
 
-using drogon_model::cmdterminal::User;
+using drogon_model::stibel_init::User;
 using namespace drogon;
 
 // UserService 纯虚函数，接口类
-namespace cmdterminal
+namespace stibel_init
 {
   class UserService;
   using UserServicePtr = std::shared_ptr<UserService>;

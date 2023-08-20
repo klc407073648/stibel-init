@@ -7,7 +7,7 @@ function runMyprj()
 
     cd $work_path/deploy
 
-    ./cmdterminal &
+    ./stibel-init &
 
     logDebug "runMyprj end"
 }

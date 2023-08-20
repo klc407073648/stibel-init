@@ -7,7 +7,7 @@
 #include <regex>
 
 using namespace drogon;
-using namespace cmdterminal;
+using namespace stibel_init;
 using namespace drogon::internal;
 
 UserServiceImpl::UserServiceImpl()
@@ -28,12 +28,12 @@ long UserServiceImpl::userRegister(const std::string &userAccount, const std::st
     LOG_INFO << "planetCode:" << planetCode;
 
     /*
-    校验用户的账户、密码、校验密码，是否符合要求
+    校验用户的账号、密码、校验密码，是否符合要求
     1. 非空
-    2. 账户长度 **不小于** 4 位
-    3. 密码就 **不小于** 8 位吧
-    4. 账户不能重复
-    5. 账户不包含特殊字符
+    2. 账号长度不小于4位
+    3. 密码，校验密码不小于8位
+    4. 账号不能重复
+    5. 账号不包含特殊字符
     6. 密码和校验密码相同
     */
 

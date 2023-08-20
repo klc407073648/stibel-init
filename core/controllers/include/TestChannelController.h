@@ -5,7 +5,7 @@
 #include <drogon/drogon.h>
 
 using namespace drogon;
-using cmdterminal::TestChannelServicePtr;
+using stibel_init::TestChannelServicePtr;
 
 class TestChannelController : public drogon::HttpController<TestChannelController>
 {

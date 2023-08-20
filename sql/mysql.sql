@@ -1,5 +1,5 @@
 -- auto-generated definition
-create table if not exists cmdterminal.`user`
+create table if not exists stibel_init.`user`
 (
     id           bigint auto_increment comment 'id' primary key,
     username     varchar(256)                       null comment '用户昵称',
@@ -23,7 +23,7 @@ create table if not exists cmdterminal.`user`
 
 -- 用户表设计时，考虑伙伴匹配系统、用户中心系统、开发api接口， 对于用户表的设计，兼容处理。（后端处理时，根据请求的项目不同，设计标签）
 
-create table if not exists cmdterminal.`interface`
+create table if not exists stibel_init.`interface`
 (
     `id`                 bigint                               not null auto_increment comment '主键' primary key,
     `name`               varchar(256)                         not null comment '名称',
@@ -40,7 +40,7 @@ create table if not exists cmdterminal.`interface`
     `isDelete`           tinyint default 0                    not null comment   '是否删除(0-未删, 1-已删)'
 ) ENGINE = InnoDB COMMENT = '接口信息' character set = utf8;
 
-create table if not exists cmdterminal.`log`
+create table if not exists stibel_init.`log`
 (
     `id`                 bigint                               not null auto_increment comment '主键' primary key,
     `userid`             bigint                               not null,

@@ -6,7 +6,7 @@
 #include <string>
 #include <json/json.h>
 
-using namespace cmdterminal;
+using namespace stibel_init;
 
 UserController::UserController(): srvPtr_(new UserServiceImpl())
 {

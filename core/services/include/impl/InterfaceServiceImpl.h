@@ -7,10 +7,10 @@
 #include <drogon/drogon.h>
 #include <map>
 
-using cmdterminal::CacheServicePtr;
-using drogon_model::cmdterminal::Interface;
+using stibel_init::CacheServicePtr;
+using drogon_model::stibel_init::Interface;
 
-namespace cmdterminal
+namespace stibel_init
 {
   class InterfaceServiceImpl : public InterfaceService
   {

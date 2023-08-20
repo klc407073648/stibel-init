@@ -13,7 +13,7 @@
 #include <drogon/HttpFilter.h>
 
 using namespace drogon;
-using namespace cmdterminal;
+using namespace stibel_init;
 
 class LoginFilter : public HttpFilter<LoginFilter>
 {

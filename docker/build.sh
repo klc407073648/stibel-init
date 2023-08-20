@@ -54,9 +54,9 @@ function tarProject()
    cd $work_path
 
    mkdir -p $work_path/logs
-   touch $work_path/logs/cmdterminal.log 
+   touch $work_path/logs/stibel-init.log 
    
-   tar -zcvf cmd-terminal.tar.gz ./lib ./deploy ./conf ./docker ./logs
+   tar -zcvf stibel-init.tar.gz ./lib/app ./deploy ./conf ./docker ./logs
 
    logDebug "tarProject end"
 }

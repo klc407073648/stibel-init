@@ -8,7 +8,7 @@
 using namespace drogon;
 
 // TestChannelService 纯虚函数，接口类
-namespace cmdterminal
+namespace stibel_init
 {
   class TestChannelService;
   using TestChannelServicePtr = std::shared_ptr<TestChannelService>;

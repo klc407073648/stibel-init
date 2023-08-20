@@ -5,7 +5,7 @@
 #include "impl/InterfaceServiceImpl.h"
 
 using namespace drogon;
-using cmdterminal::InterfaceServicePtr;
+using stibel_init::InterfaceServicePtr;
 
 class InterfaceController : public HttpController<InterfaceController>
 {

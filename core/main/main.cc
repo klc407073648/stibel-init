@@ -6,7 +6,7 @@ void setFileOutput()
 {
     //设置文件输出
     trantor::AsyncFileLogger asyncFileLogger;
-    asyncFileLogger.setFileName("cmdterminal",".log","../logs/");
+    asyncFileLogger.setFileName("stibel-init",".log","../logs/");
     asyncFileLogger.startLogging();
     trantor::Logger::setOutputFunction(
         [&](const char *msg, const uint64_t len) {

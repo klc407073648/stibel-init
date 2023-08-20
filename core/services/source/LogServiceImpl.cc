@@ -2,7 +2,7 @@
 #include "ErrorCode.h"
 #include "BusinessException.h"
 
-using namespace cmdterminal;
+using namespace stibel_init;
 using namespace drogon;
 using namespace drogon::internal;
 

@@ -15,7 +15,7 @@
 #define DEFINE_STATIC_DESCRIPTION(class_name, fun_name, zh, en) \
     std::string class_name::fun_name()                          \
     {                                                           \
-        return class_name(zh, en).getMessage();                              \
+        return class_name(zh, en).getMessage();                 \
     }
 
 class Description

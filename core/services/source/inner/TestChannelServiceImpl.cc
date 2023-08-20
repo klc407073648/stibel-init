@@ -2,7 +2,7 @@
 #include "BusinessException.h"
 #include <json/json.h>
 
-using namespace cmdterminal;
+using namespace stibel_init;
 using namespace drogon;
 
 TestChannelServiceImpl::TestChannelServiceImpl()

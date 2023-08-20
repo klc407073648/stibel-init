@@ -7,7 +7,7 @@
 	},
 	"listeners": [{
 			"address": "0.0.0.0",
-			"port": $CMD_TERMINAL_BACKEND_PORT,
+			"port": $STIBEL_INIT_BACKEND_PORT,
 			"https": false
 		}
 	],
@@ -15,7 +15,7 @@
 		"rdbms": "mysql",
 		"host": "$MYSQL_IP",
 		"port": $MYSQL_PORT,
-		"dbname": "$CMD_TERMINAL_BACKEND_DATABASE",
+		"dbname": "$STIBEL_INIT_BACKEND_DATABASE",
 		"schema": "public",
 		"user": "$MYSQL_USER",
 		"password": "$MYSQL_PASSWORD",

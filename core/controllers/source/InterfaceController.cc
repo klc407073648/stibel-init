@@ -3,7 +3,7 @@
 #include <string>
 #include <json/json.h>
 
-using namespace cmdterminal;
+using namespace stibel_init;
 
 InterfaceController::InterfaceController() : srvPtr_(new InterfaceServiceImpl())
 {

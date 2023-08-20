@@ -35,7 +35,7 @@ using DbClientPtr = std::shared_ptr<DbClient>;
 }
 namespace drogon_model
 {
-namespace cmdterminal 
+namespace stibel_init 
 {
 
 class User
@@ -548,5 +548,5 @@ class User
         return sql;   
     }
 };
-} // namespace cmdterminal
+} // namespace stibel_init
 } // namespace drogon_model

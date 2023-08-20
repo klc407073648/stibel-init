@@ -5,7 +5,7 @@
 #include "impl/LogServiceImpl.h"
 
 using namespace drogon;
-using cmdterminal::LogServicePtr;
+using stibel_init::LogServicePtr;
 
 class LogController : public HttpController<LogController>
 {

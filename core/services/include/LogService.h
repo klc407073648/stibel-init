@@ -8,7 +8,7 @@
 using namespace drogon;
 
 // LogService 纯虚函数，接口类
-namespace cmdterminal
+namespace stibel_init
 {
   class LogService;
   using LogServicePtr = std::shared_ptr<LogService>;

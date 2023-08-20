@@ -6,12 +6,12 @@
 #include <drogon/drogon.h>
 #include "Interface.h"
 
-using drogon_model::cmdterminal::Interface;
+using drogon_model::stibel_init::Interface;
 
 using namespace drogon;
 
 // CacheService 纯虚函数，接口类
-namespace cmdterminal
+namespace stibel_init
 {
   class CacheService;
   using CacheServicePtr = std::shared_ptr<CacheService>;

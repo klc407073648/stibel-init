@@ -3,7 +3,7 @@
 #include <string>
 #include <json/json.h>
 
-using namespace cmdterminal;
+using namespace stibel_init;
 
 TestChannelController::TestChannelController() : srvPtr_(new TestChannelServiceImpl())
 {

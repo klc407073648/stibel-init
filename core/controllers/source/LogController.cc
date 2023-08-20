@@ -3,7 +3,7 @@
 #include <string>
 #include <json/json.h>
 
-using namespace cmdterminal;
+using namespace stibel_init;
 
 LogController::LogController(): srvPtr_(new LogServiceImpl())
 {

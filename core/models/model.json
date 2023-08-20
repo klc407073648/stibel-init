@@ -2,7 +2,7 @@
 	"rdbms": "mysql",
 	"host": "127.0.0.1",
 	"port": 3308,
-	"dbname": "cmdterminal",
+	"dbname": "stibel_init",
 	"schema": "public",
 	"user": "root",
 	"password": "123456",

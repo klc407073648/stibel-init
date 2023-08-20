@@ -6,7 +6,7 @@
 #include <drogon/drogon.h>
 
 using namespace drogon;
-using cmdterminal::UserServicePtr;
+using stibel_init::UserServicePtr;
 
 class UserController : public drogon::HttpController<UserController>
 {

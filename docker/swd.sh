@@ -2,7 +2,7 @@
 
 #进程名列表、工作路径、间隔时间
 export cur_path=`pwd`
-process_list='cmdterminal'
+process_list='stibel-init'
 workPath=${cur_path}/../deploy
 intervalTime='5'
 

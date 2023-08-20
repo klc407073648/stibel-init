@@ -6,9 +6,9 @@
 #include <drogon/drogon.h>
 #include <map>
 
-using drogon_model::cmdterminal::Interface;
+using drogon_model::stibel_init::Interface;
   
-namespace cmdterminal
+namespace stibel_init
 {
 
   class TestChannelServiceImpl : public TestChannelService

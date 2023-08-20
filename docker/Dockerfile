@@ -1,15 +1,15 @@
 #基础镜像
-#TODO 待改成普通centos镜像
-FROM docker.io/klc407073648/centos_build_lib:v3.0
+FROM centos:7
 
 #创建路径
 WORKDIR /home/stibel
 
 #拷贝源文件
-ADD ./cmd-terminal.tar.gz  /home/stibel
+ADD ./stibel-init.tar.gz  /home/stibel
 
-#添加动态搜索库路径; 替换宏定义; 修改权限
+#添加动态搜索库路径; 替换宏定义; 修改权限； stibel.conf  来自
 RUN  cp -rf /home/stibel/conf/etc/ld.so.conf.d/stibel.conf  /etc/ld.so.conf.d \
+     && echo '$PROJECT_WORK_PATH/lib/app' >> /etc/ld.so.conf.d/stibel.conf  \
      && sed -i "s/\$PROJECT_WORK_PATH/\/home\/stibel/g"  /etc/ld.so.conf.d/stibel.conf  \
      && chmod 777 /etc/ld.so.conf.d/stibel.conf 
 
@@ -19,11 +19,7 @@ RUN echo 'ldconfig'  >> /etc/profile \
     && echo 'source /etc/profile'   >> ~/.bashrc
 
 #配置环境变量
-ENV project_name  cmd-terminal
-
-#脚本执行权限
-RUN cd /home/stibel/docker \
-    && chmod 777 *.sh && dos2unix *.sh
+ENV project_name  stibel-init
 
 #执行命令 
-CMD ["/bin/bash","-c","cd /home/stibel/docker && ./run.sh && tail -f /dev/null"] 
+CMD ["/bin/bash","-c","cd /home/stibel/docker && chmod 777 *.sh && dos2unix *.sh && ./run.sh && tail -f /dev/null"] 
