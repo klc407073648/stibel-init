@@ -4,8 +4,8 @@
 #include <Poco/Types.h>
 #include <string>
 
-const std::string BACKEND_IP = "81.68.132.31";
-const int BACKEND_PORT = 8082;
+const std::string BACKEND_IP = "127.0.0.1";
+const int BACKEND_PORT = 8083;
 
 class HttpTest
 {
