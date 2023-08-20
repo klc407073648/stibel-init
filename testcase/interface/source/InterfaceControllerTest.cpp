@@ -13,7 +13,7 @@ TEST_F(InterfaceControllerTest, BackendVersion_query)
     //先登录
     HttpTest httpTest(BACKEND_IP, BACKEND_PORT, HTTPRequest::HTTP_GET, "/api/backend/version", HTTPMessage::HTTP_1_1,"application/json", 
                       "",
-                      "../testcase/interface/json/resp/Given_null_When_query_backend_version_Then_return_success_resp.json");
+                      "../testcase/json/interface/resp/Given_null_When_query_backend_version_Then_return_success_resp.json");
 
     std::string resp = httpTest.sendRequest();
     std::string res = httpTest.readStringFromJson(httpTest.getRespJsonFile());
@@ -25,8 +25,8 @@ TEST_F(InterfaceControllerTest, BackendVersion_query)
 TEST_F(InterfaceControllerTest, Background_Dongman)
 {
     HttpTest httpTest(BACKEND_IP, BACKEND_PORT, HTTPRequest::HTTP_POST, "/api/background/get/random", HTTPMessage::HTTP_1_1,"application/json", 
-                      "../testcase/interface/json/req/Given_dongman_When_get_background_Then_return_success.json",
-                      "../testcase/interface/json/resp/Given_dongman_When_get_background_Then_return_success_resp.json");
+                      "../testcase/json/interface/req/Given_dongman_When_get_background_Then_return_success.json",
+                      "../testcase/json/interface/resp/Given_dongman_When_get_background_Then_return_success_resp.json");
 
     std::string resp = httpTest.sendRequest();
     std::string res = httpTest.readStringFromJson(httpTest.getRespJsonFile());
@@ -38,8 +38,8 @@ TEST_F(InterfaceControllerTest, Background_Dongman)
 TEST_F(InterfaceControllerTest, Translate_hello)
 {
     HttpTest httpTest(BACKEND_IP, BACKEND_PORT, HTTPRequest::HTTP_POST, "/api/fanyi/translate", HTTPMessage::HTTP_1_1,"application/json", 
-                      "../testcase/interface/json/req/Given_hello_When_translate_Then_return_success.json",
-                      "../testcase/interface/json/resp/Given_hello_When_translate_Then_return_success_resp.json");
+                      "../testcase/json/interface/req/Given_hello_When_translate_Then_return_success.json",
+                      "../testcase/json/interface/resp/Given_hello_When_translate_Then_return_success_resp.json");
 
     std::string resp = httpTest.sendRequest();
     std::string res = httpTest.readStringFromJson(httpTest.getRespJsonFile());
@@ -51,8 +51,8 @@ TEST_F(InterfaceControllerTest, Translate_hello)
 TEST_F(InterfaceControllerTest, Weather_current)
 {
     HttpTest httpTest(BACKEND_IP, BACKEND_PORT, HTTPRequest::HTTP_POST, "/api/weather/now", HTTPMessage::HTTP_1_1,"application/json",
-                      "../testcase/interface/json/req/Given_city_When_query_now_weather_Then_return_success.json",
-                      "../testcase/interface/json/resp/Given_city_When_query_now_weather_Then_return_success_resp.json");
+                      "../testcase/json/interface/req/Given_city_When_query_now_weather_Then_return_success.json",
+                      "../testcase/json/interface/resp/Given_city_When_query_now_weather_Then_return_success_resp.json");
 
     std::string resp = httpTest.sendRequest();
     std::string res = httpTest.readStringFromJson(httpTest.getRespJsonFile());
@@ -64,8 +64,8 @@ TEST_F(InterfaceControllerTest, Weather_current)
 TEST_F(InterfaceControllerTest, Weather_future)
 {
     HttpTest httpTest(BACKEND_IP, BACKEND_PORT, HTTPRequest::HTTP_POST, "/api/weather/future", HTTPMessage::HTTP_1_1,"application/json",
-                      "../testcase/interface/json/req/Given_city_When_query_future_weather_Then_return_success.json",
-                      "../testcase/interface/json/resp/Given_city_When_query_future_weather_Then_return_success_resp.json");
+                      "../testcase/json/interface/req/Given_city_When_query_future_weather_Then_return_success.json",
+                      "../testcase/json/interface/resp/Given_city_When_query_future_weather_Then_return_success_resp.json");
 
     std::string resp = httpTest.sendRequest();
     std::string res = httpTest.readStringFromJson(httpTest.getRespJsonFile());

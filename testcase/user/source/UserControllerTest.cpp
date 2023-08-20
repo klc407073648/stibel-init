@@ -17,8 +17,8 @@ TEST_F(UserControllerTest, Given_userAccount_Or_userPassword_Or_checkPassword_Nu
 {
     //userAccount 为空
     httpTest = std::make_shared<HttpTest>(BACKEND_IP, BACKEND_PORT, HTTPRequest::HTTP_POST, "/api/user/register", HTTPMessage::HTTP_1_1, "application/json",
-                      "../testcase/user/json/req/register/Given_userAccount_Null_When_register_Then_return_fail.json",
-                      "../testcase/user/json/resp/register/Given_Input_Exist_Null_When_register_Then_return_fail_resp.json");
+                      "../testcase/json/user/req/register/Given_userAccount_Null_When_register_Then_return_fail.json",
+                      "../testcase/json/user/resp/register/Given_Input_Exist_Null_When_register_Then_return_fail_resp.json");
 
     response = httpTest->sendRequest();
     expect = httpTest->readStringFromJson(httpTest->getRespJsonFile());
@@ -27,8 +27,8 @@ TEST_F(UserControllerTest, Given_userAccount_Or_userPassword_Or_checkPassword_Nu
 
     //userPassword为空
     httpTest = std::make_shared<HttpTest>(BACKEND_IP, BACKEND_PORT, HTTPRequest::HTTP_POST, "/api/user/register", HTTPMessage::HTTP_1_1, "application/json",
-                      "../testcase/user/json/req/register/Given_userPassword_Null_When_register_Then_return_fail.json",
-                      "../testcase/user/json/resp/register/Given_Input_Exist_Null_When_register_Then_return_fail_resp.json");
+                      "../testcase/json/user/req/register/Given_userPassword_Null_When_register_Then_return_fail.json",
+                      "../testcase/json/user/resp/register/Given_Input_Exist_Null_When_register_Then_return_fail_resp.json");
 
     response = httpTest->sendRequest();
     expect = httpTest->readStringFromJson(httpTest->getRespJsonFile());
@@ -38,8 +38,8 @@ TEST_F(UserControllerTest, Given_userAccount_Or_userPassword_Or_checkPassword_Nu
 
     //checkPassword为空
     httpTest = std::make_shared<HttpTest>(BACKEND_IP, BACKEND_PORT, HTTPRequest::HTTP_POST, "/api/user/register", HTTPMessage::HTTP_1_1, "application/json",
-                      "../testcase/user/json/req/register/Given_checkPassword_Null_When_register_Then_return_fail.json",
-                      "../testcase/user/json/resp/register/Given_Input_Exist_Null_When_register_Then_return_fail_resp.json");
+                      "../testcase/json/user/req/register/Given_checkPassword_Null_When_register_Then_return_fail.json",
+                      "../testcase/json/user/resp/register/Given_Input_Exist_Null_When_register_Then_return_fail_resp.json");
 
     response = httpTest->sendRequest();
     expect = httpTest->readStringFromJson(httpTest->getRespJsonFile());
@@ -57,8 +57,8 @@ Then: 报错 账号长度应该不小于 4 位
 TEST_F(UserControllerTest, Given_userAccount_is_ad_When_Register_Then_check_fail)
 {
     httpTest = std::make_shared<HttpTest>(BACKEND_IP, BACKEND_PORT, HTTPRequest::HTTP_POST, "/api/user/register", HTTPMessage::HTTP_1_1, "application/json",
-                      "../testcase/user/json/req/register/Given_userAccount_Length_Less_than_4_When_register_Then_return_fail.json",
-                      "../testcase/user/json/resp/register/Given_userAccount_Length_Less_than_4_When_register_Then_return_fail_resp.json");
+                      "../testcase/json/user/req/register/Given_userAccount_Length_Less_than_4_When_register_Then_return_fail.json",
+                      "../testcase/json/user/resp/register/Given_userAccount_Length_Less_than_4_When_register_Then_return_fail_resp.json");
 
     response = httpTest->sendRequest();
     expect = httpTest->readStringFromJson(httpTest->getRespJsonFile());
@@ -75,8 +75,8 @@ Then: 报错 密码应该不小于8 位
 TEST_F(UserControllerTest, Given_userPassword_is_1234567_When_Register_Then_check_fail)
 {
     httpTest = std::make_shared<HttpTest>(BACKEND_IP, BACKEND_PORT, HTTPRequest::HTTP_POST, "/api/user/register", HTTPMessage::HTTP_1_1,"application/json",
-                      "../testcase/user/json/req/register/Given_userPassword_Length_Less_than_8_When_register_Then_return_fail.json",
-                      "../testcase/user/json/resp/register/Given_password_Length_Less_than_8_When_register_Then_return_fail_resp.json");
+                      "../testcase/json/user/req/register/Given_userPassword_Length_Less_than_8_When_register_Then_return_fail.json",
+                      "../testcase/json/user/resp/register/Given_password_Length_Less_than_8_When_register_Then_return_fail_resp.json");
 
     response = httpTest->sendRequest();
     expect = httpTest->readStringFromJson(httpTest->getRespJsonFile());
@@ -93,8 +93,8 @@ Then: 报错 校验密码应该不小于8 位
 TEST_F(UserControllerTest, Given_checkPassword_is_1234567_When_Register_Then_check_fail)
 {
     httpTest = std::make_shared<HttpTest>(BACKEND_IP, BACKEND_PORT, HTTPRequest::HTTP_POST, "/api/user/register", HTTPMessage::HTTP_1_1,"application/json",
-                      "../testcase/user/json/req/register/Given_checkPassword_Length_Less_than_8_When_register_Then_return_fail.json",
-                      "../testcase/user/json/resp/register/Given_password_Length_Less_than_8_When_register_Then_return_fail_resp.json");
+                      "../testcase/json/user/req/register/Given_checkPassword_Length_Less_than_8_When_register_Then_return_fail.json",
+                      "../testcase/json/user/resp/register/Given_password_Length_Less_than_8_When_register_Then_return_fail_resp.json");
 
     response = httpTest->sendRequest();
     expect = httpTest->readStringFromJson(httpTest->getRespJsonFile());
@@ -111,8 +111,8 @@ Then: 报错 账号不应该包含特殊字符
 TEST_F(UserControllerTest, Given_userAccount_has_special_charater_When_Register_Then_check_fail)
 {
     httpTest = std::make_shared<HttpTest>(BACKEND_IP, BACKEND_PORT, HTTPRequest::HTTP_POST, "/api/user/register", HTTPMessage::HTTP_1_1,"application/json", 
-                      "../testcase/user/json/req/register/Given_userAccount_contain_special_charater_When_register_Then_return_fail.json",
-                      "../testcase/user/json/resp/register/Given_userAccount_contain_special_charater_When_register_Then_return_fail_resp.json");
+                      "../testcase/json/user/req/register/Given_userAccount_contain_special_charater_When_register_Then_return_fail.json",
+                      "../testcase/json/user/resp/register/Given_userAccount_contain_special_charater_When_register_Then_return_fail_resp.json");
 
     response = httpTest->sendRequest();
     expect = httpTest->readStringFromJson(httpTest->getRespJsonFile());
@@ -129,8 +129,8 @@ Then: 报错 密码和校验密码应该相同
 TEST_F(UserControllerTest, Given_userPassword_checkPassword_not_same_When_Register_Then_check_fail)
 {
     httpTest = std::make_shared<HttpTest>(BACKEND_IP, BACKEND_PORT, HTTPRequest::HTTP_POST, "/api/user/register", HTTPMessage::HTTP_1_1,"application/json", 
-                      "../testcase/user/json/req/register/Given_userPassword_checkPassword_not_same_When_register_Then_return_fail.json",
-                      "../testcase/user/json/resp/register/Given_userPassword_checkPassword_not_same_When_register_Then_return_fail_resp.json");
+                      "../testcase/json/user/req/register/Given_userPassword_checkPassword_not_same_When_register_Then_return_fail.json",
+                      "../testcase/json/user/resp/register/Given_userPassword_checkPassword_not_same_When_register_Then_return_fail_resp.json");
 
     response = httpTest->sendRequest();
     expect = httpTest->readStringFromJson(httpTest->getRespJsonFile());
@@ -142,8 +142,8 @@ TEST_F(UserControllerTest, Given_userPassword_checkPassword_not_same_When_Regist
 TEST_F(UserControllerTest, DISABLED_Register_userAccount_unique)
 {
     httpTest = std::make_shared<HttpTest>(BACKEND_IP, BACKEND_PORT, HTTPRequest::HTTP_POST, "/api/user/register", HTTPMessage::HTTP_1_1,"application/json", 
-                      "../testcase/user/json/req/register/Given_userAccount_unique_When_register_Then_return_fail.json",
-                      "../testcase/user/json/resp/register/Given_userAccount_unique_When_register_Then_return_fail_resp.json");
+                      "../testcase/json/user/req/register/Given_userAccount_unique_When_register_Then_return_fail.json",
+                      "../testcase/json/user/resp/register/Given_userAccount_unique_When_register_Then_return_fail_resp.json");
 
     response = httpTest->sendRequest();
     expect = httpTest->readStringFromJson(httpTest->getRespJsonFile());
@@ -156,8 +156,8 @@ TEST_F(UserControllerTest, DISABLED_Register_userAccount_unique)
 TEST_F(UserControllerTest, DISABLED_Register_plant_code_greater_5)
 {
     httpTest = std::make_shared<HttpTest>(BACKEND_IP, BACKEND_PORT, HTTPRequest::HTTP_POST, "/api/user/register", HTTPMessage::HTTP_1_1,"application/json", 
-                      "../testcase/user/json/req/Given_userPassword_checkPassword_not_same_When_register_Then_return_fail.json",
-                      "../testcase/user/json/resp/Given_userPassword_checkPassword_not_same_When_register_Then_return_fail_resp.json");
+                      "../testcase/json/user/req/Given_userPassword_checkPassword_not_same_When_register_Then_return_fail.json",
+                      "../testcase/json/user/resp/Given_userPassword_checkPassword_not_same_When_register_Then_return_fail_resp.json");
 
     response = httpTest->sendRequest();
     expect = httpTest->readStringFromJson(httpTest->getRespJsonFile());
@@ -173,8 +173,8 @@ TEST_F(UserControllerTest, DISABLED_Register_plant_code_greater_5)
 TEST_F(UserControllerTest, Given_correct_user_When_login_Then_success)
 {
     httpTest = std::make_shared<HttpTest>(BACKEND_IP, BACKEND_PORT, HTTPRequest::HTTP_POST, "/api/user/login", HTTPMessage::HTTP_1_1,"application/json", 
-                      "../testcase/user/json/req/login/Given_correct_user_When_login_Then_return_success.json",
-                      "../testcase/user/json/resp/login/Given_correct_user_When_login_Then_return_success_resp.json");
+                      "../testcase/json/user/req/login/Given_correct_user_When_login_Then_return_success.json",
+                      "../testcase/json/user/resp/login/Given_correct_user_When_login_Then_return_success_resp.json");
 
     response = httpTest->sendRequest();
     expect = httpTest->readStringFromJson(httpTest->getRespJsonFile());
@@ -189,13 +189,13 @@ TEST_F(UserControllerTest, Given_correct_user_When_login_Then_success)
     [readArrayStringFromJson] key: checkPasswordvalue: 12345678333
     [readArrayStringFromJson] key: userAccountvalue: testuser222
     [readArrayStringFromJson] key: userPasswordvalue: 12345678333
-    [readArrayStringFromJson] file: /home/stibel/cpp-backend/testcase/user/json/login../testcase/user/json/req/Given_correct_array_user_When_login_Then_return_success.json,
+    [readArrayStringFromJson] file: /home/stibel/cpp-backend/testcase/json/user/login../testcase/json/user/req/Given_correct_array_user_When_login_Then_return_success.json,
     res:[{"checkPassword":"12345678","userAccount":"testuser","userPassword":"12345678"},
     {"checkPassword":"12345678333","userAccount":"testuser222","userPassword":"12345678333"}]
     */
 
    /*
-    std::string temp = "../testcase/user/json/req/Given_correct_array_user_When_login_Then_return_success.json";
+    std::string temp = "../testcase/json/user/req/Given_correct_array_user_When_login_Then_return_success.json";
     httpTest->readArrayStringFromJson(temp);
 
     EXPECT_EQ(response, expect) << "Login_correct_user req and resp not same.";
@@ -203,7 +203,7 @@ TEST_F(UserControllerTest, Given_correct_user_When_login_Then_success)
     // 注销，避免影响后续用例
     httpTest = std::make_shared<HttpTest>(BACKEND_IP, BACKEND_PORT, HTTPRequest::HTTP_POST, "/api/user/logout", HTTPMessage::HTTP_1_1,"application/json",
                       "",
-                      "../testcase/user/json/resp/Given_null_When_logout_Then_return_success_resp.json");
+                      "../testcase/json/user/resp/Given_null_When_logout_Then_return_success_resp.json");
 
     std::string resp3 = httpTest->sendRequest();
     std::string res3 = httpTest->readStringFromJson(httpTest->getRespJsonFile());
@@ -216,8 +216,8 @@ TEST_F(UserControllerTest, Given_correct_user_When_login_Then_success)
 TEST_F(UserControllerTest, Given_no_exist_user_When_login_Then_fail)
 {
     httpTest = std::make_shared<HttpTest>(BACKEND_IP, BACKEND_PORT, HTTPRequest::HTTP_POST, "/api/user/login", HTTPMessage::HTTP_1_1,"application/json",
-                      "../testcase/user/json/req/login/Given_no_exist_user_When_login_Then_return_fail.json",
-                      "../testcase/user/json/resp/login/Given_no_exist_user_When_login_Then_return_fail_resp.json");
+                      "../testcase/json/user/req/login/Given_no_exist_user_When_login_Then_return_fail.json",
+                      "../testcase/json/user/resp/login/Given_no_exist_user_When_login_Then_return_fail_resp.json");
 
     response = httpTest->sendRequest();
     expect = httpTest->readStringFromJson(httpTest->getRespJsonFile());
@@ -234,8 +234,8 @@ TEST_F(UserControllerTest, DISABLED_Current_Login_correct_user)
 {
     // 先登录
     httpTest = std::make_shared<HttpTest>(BACKEND_IP, BACKEND_PORT, HTTPRequest::HTTP_POST, "/api/user/login", HTTPMessage::HTTP_1_1,"application/json", 
-                      "../testcase/user/json/req/Given_correct_user_When_login_Then_return_success.json",
-                      "../testcase/user/json/resp/Given_correct_user_When_login_Then_return_success_resp.json");
+                      "../testcase/json/user/req/Given_correct_user_When_login_Then_return_success.json",
+                      "../testcase/json/user/resp/Given_correct_user_When_login_Then_return_success_resp.json");
 
     response = httpTest->sendRequest();
     expect = httpTest->readStringFromJson(httpTest->getRespJsonFile());
@@ -245,7 +245,7 @@ TEST_F(UserControllerTest, DISABLED_Current_Login_correct_user)
     // 再获取当前用户
     httpTest = std::make_shared<HttpTest>(BACKEND_IP, BACKEND_PORT, HTTPRequest::HTTP_GET, "/api/user/current", HTTPMessage::HTTP_1_1,"application/json", 
                        "",
-                       "../testcase/user/json/resp/Given_login_user_When_query_Then_return_success_resp.json");
+                       "../testcase/json/user/resp/Given_login_user_When_query_Then_return_success_resp.json");
 
     response = httpTest->sendRequest();
     expect = httpTest->readStringFromJson(httpTest->getRespJsonFile());
@@ -255,7 +255,7 @@ TEST_F(UserControllerTest, DISABLED_Current_Login_correct_user)
     // 注销，避免影响后续用例
     httpTest = std::make_shared<HttpTest>(BACKEND_IP, BACKEND_PORT, HTTPRequest::HTTP_POST, "/api/user/logout", HTTPMessage::HTTP_1_1,"application/json",
                       "",
-                      "../testcase/user/json/resp/Given_null_When_logout_Then_return_success_resp.json");
+                      "../testcase/json/user/resp/Given_null_When_logout_Then_return_success_resp.json");
 
     response = httpTest->sendRequest();
     expect = httpTest->readStringFromJson(httpTest->getRespJsonFile());
@@ -268,8 +268,8 @@ TEST_F(UserControllerTest, DISABLED_Current_Login_no_exist_user)
 {
     // 先注销
     httpTest = std::make_shared<HttpTest>(BACKEND_IP, BACKEND_PORT, HTTPRequest::HTTP_POST, "/api/user/login", HTTPMessage::HTTP_1_1,"application/json", 
-                      "../testcase/user/json/req/Given_no_exist_user_When_login_Then_return_fail.json",
-                      "../testcase/user/json/resp/Given_no_exist_user_When_login_Then_return_fail_resp.json");
+                      "../testcase/json/user/req/Given_no_exist_user_When_login_Then_return_fail.json",
+                      "../testcase/json/user/resp/Given_no_exist_user_When_login_Then_return_fail_resp.json");
 
     response = httpTest->sendRequest();
     expect = httpTest->readStringFromJson(httpTest->getRespJsonFile());
@@ -279,7 +279,7 @@ TEST_F(UserControllerTest, DISABLED_Current_Login_no_exist_user)
     // 再获取当前用户
     httpTest = std::make_shared<HttpTest>(BACKEND_IP, BACKEND_PORT, HTTPRequest::HTTP_GET, "/api/user/current", HTTPMessage::HTTP_1_1,"application/json",
                        "",
-                       "../testcase/user/json/resp/Given_login_user_When_query_Then_return_success_resp.json");
+                       "../testcase/json/user/resp/Given_login_user_When_query_Then_return_success_resp.json");
 
     response = httpTest->sendRequest();
     expect = httpTest->readStringFromJson(httpTest->getRespJsonFile());
@@ -296,7 +296,7 @@ TEST_F(UserControllerTest, DISABLED_Logout_normal)
 {
     httpTest = std::make_shared<HttpTest>(BACKEND_IP, BACKEND_PORT, HTTPRequest::HTTP_POST, "/api/user/logout", HTTPMessage::HTTP_1_1,"application/json",
                       "",
-                      "../testcase/user/json/resp/Given_null_When_logout_Then_return_success_resp.json");
+                      "../testcase/json/user/resp/Given_null_When_logout_Then_return_success_resp.json");
 
     response = httpTest->sendRequest();
     expect = httpTest->readStringFromJson(httpTest->getRespJsonFile());
