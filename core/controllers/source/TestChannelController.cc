@@ -3,7 +3,12 @@
 #include <string>
 #include <json/json.h>
 
-using namespace stibel_init;
+using namespace stibel_init::common;
+using namespace stibel_init::exception;
+using namespace stibel_init::utils;
+
+namespace stibel_init {
+namespace controller {
 
 TestChannelController::TestChannelController() : srvPtr_(new TestChannelServiceImpl())
 {
@@ -19,7 +24,6 @@ void TestChannelController::testChannel(const HttpRequestPtr &request, std::func
 {
     try
     {
-		LOG_DEBUG << "TestChannelController testChannel";
         std::string res = srvPtr_->testChannel(request);
         callNormalResponse(std::move(callback), res);
     }
@@ -28,3 +32,5 @@ void TestChannelController::testChannel(const HttpRequestPtr &request, std::func
         callErrorResponse(std::move(callback), e);
     }
 }
+
+} } // namespace stibel_init::controller

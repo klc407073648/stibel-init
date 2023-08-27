@@ -5,7 +5,11 @@
 #include <drogon/drogon.h>
 
 using namespace drogon;
-using stibel_init::TestChannelServicePtr;
+using stibel_init::service::TestChannelServicePtr;
+using namespace stibel_init::service;
+
+namespace stibel_init {
+namespace controller {
 
 class TestChannelController : public drogon::HttpController<TestChannelController>
 {
@@ -17,12 +21,14 @@ public:
 public:
   TestChannelController();
   ~TestChannelController();
-  
+
 public:
   void testChannel(const HttpRequestPtr &request, std::function<void(const HttpResponsePtr &)> &&callback);
 
 private:
   TestChannelServicePtr srvPtr_;
 };
+
+} } // namespace stibel_init::controller
 
 #endif //__TestChannel_CONTROLLER_H__

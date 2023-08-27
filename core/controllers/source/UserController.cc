@@ -6,21 +6,31 @@
 #include <string>
 #include <json/json.h>
 
-using namespace stibel_init;
-
-UserController::UserController(): srvPtr_(new UserServiceImpl())
-{
-    LOG_DEBUG << "UserController constructor!";
-}
-
-UserController::~UserController()
-{
-    LOG_DEBUG << "UserController destructor!";
-}
+using namespace stibel_init::common;
+using namespace stibel_init::exception;
+using namespace stibel_init::utils;
 
 // Add definition of your processing function here
 namespace drogon
 {
+	/*
+    void printHttpRequestDetails(const HttpRequest &req)
+    {
+		
+        LOG_INFO << "HttpRequest Body: {";
+        LOG_INFO << "Method:" << req.getMethodString();
+        LOG_INFO << "Headers:" << unordered_map2string(req.getHeaders());
+        LOG_INFO << "Cookies:" << unordered_map2string(req.getCookies());
+        LOG_INFO << "Query string:" << req.getQuery();
+        LOG_INFO << "Body:" << req.getBody();
+        LOG_INFO << "Path:" << req.getPath();
+        LOG_INFO << "Version:" << req.getVersionString();
+        LOG_INFO << "Parameters:" << unordered_map2string(req.getParameters());
+        LOG_INFO << "LocalAddr:" << req.getLocalAddr().toIpPort();
+        LOG_INFO << "PeerAddr:" << req.getPeerAddr().toIpPort();
+        LOG_INFO << "}";
+		
+    }*/
     /**
      * @brief This template is used to convert a request object to a custom
      * type object. Users must specialize the template for a particular type.
@@ -28,24 +38,22 @@ namespace drogon
     template <>
     inline User fromRequest(const HttpRequest &req)
     {
-        auto json = req.getJsonObject();
-        auto jsonStr = (*json).toStyledString();
-        auto userJson = (*json);
-        auto user = User(userJson);
-
-        //LOG_INFO << "UserController::fromRequest user:" << jsonStr;
-        //LOG_INFO << "UserController::fromRequest Method:" << req.getMethodString();
-        ///LOG_INFO << "UserController::fromRequest Headers:" << unordered_map2string(req.getHeaders());
-		//LOG_INFO << "UserController::fromRequest Cookies:" << unordered_map2string(req.getCookies());
-		//LOG_INFO << "UserController::fromRequest Query string:" << req.getQuery();
-		//LOG_INFO << "UserController::fromRequest Body:" << req.getBody();
-		//LOG_INFO << "UserController::fromRequest Path:" << req.getPath();
-		//LOG_INFO << "UserController::fromRequest Version:" << req.getVersionString();
-        //LOG_INFO << "UserController::fromRequest Parameters:" << unordered_map2string(req.getParameters());
-		//LOG_INFO << "UserController::fromRequest LocalAddr:" << req.getLocalAddr().toIpPort();
-		//LOG_INFO << "UserController::fromRequest PeerAddr:" << req.getPeerAddr().toIpPort();
+        auto user = User(*req.getJsonObject());
         return user;
     }
+}
+
+namespace stibel_init {
+namespace controller {
+
+UserController::UserController() : srvPtr_(new UserServiceImpl())
+{
+    LOG_DEBUG << "UserController constructor!";
+}
+
+UserController::~UserController()
+{
+    LOG_DEBUG << "UserController destructor!";
 }
 
 void UserController::userRegister(const HttpRequestPtr &request, std::function<void(const HttpResponsePtr &)> &&callback, User &&reqUser)
@@ -56,7 +64,6 @@ void UserController::userRegister(const HttpRequestPtr &request, std::function<v
     {
         std::string userAccount = reqUser.getValueOfUseraccount();
         std::string userPassword = reqUser.getValueOfUserpassword();
-
         if (userAccount.size() == 0 || userPassword.size() == 0 || checkPassword.size() == 0)
         {
             throw BusinessException(ErrorCode::PARAMS_ERROR(), UserDescription::ACCOUNT_OR_PWD_OR_VERI_PWD_OR_PLANT_CODE_EMPTY());
@@ -77,7 +84,6 @@ void UserController::userLogin(const HttpRequestPtr &request, std::function<void
     {
         std::string userAccount = reqUser.getValueOfUseraccount();
         std::string userPassword = reqUser.getValueOfUserpassword();
-
         if (userAccount.size() == 0 || userPassword.size() == 0)
         {
             throw BusinessException(ErrorCode::PARAMS_ERROR(), UserDescription::ACCOUNT_OR_PWD_EMPTY());
@@ -122,8 +128,7 @@ void UserController::searchUsers(const HttpRequestPtr &request, std::function<vo
         std::string username = request->getParameter("username");
         std::vector<User> userList = srvPtr_->userSearch(username);
         Json::Value userListJsonValue;
-
-        for(auto &user:userList)
+        for (auto &user : userList)
         {
             userListJsonValue.append(user.toJson());
         }
@@ -141,7 +146,6 @@ void UserController::getCurrentUser(const HttpRequestPtr &request, std::function
     try
     {
         bool isFind = request->getSession()->find(USER_LOGIN_STATE);
-
         if (!isFind)
         {
             throw BusinessException(ErrorCode::NO_LOGIN());
@@ -168,7 +172,6 @@ void UserController::deleteUsers(const HttpRequestPtr &request, std::function<vo
         }
 
         auto id = (reqUser.getId() != nullptr) ? reqUser.getValueOfId() : -1;
-
         if (id <= 0)
         {
             throw BusinessException(ErrorCode::PARAMS_ERROR(), UserDescription::USER_ID_ILLEGAL());
@@ -182,3 +185,5 @@ void UserController::deleteUsers(const HttpRequestPtr &request, std::function<vo
         callErrorResponse(std::move(callback), e);
     }
 }
+
+} } // namespace stibel_init::controller

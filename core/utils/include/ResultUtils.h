@@ -13,6 +13,12 @@
 #include <string>
 #include <vector>
 
+using stibel_init::common::BaseResponse;
+using namespace stibel_init::exception;
+
+namespace stibel_init {
+namespace utils {
+
 template <class T>
 class ResultUtils
 {
@@ -68,5 +74,7 @@ public:
         return BaseResponse<T>(errorCode.getCode(), NULL, errorCode.getMessage(), description);
     }
 };
+
+} } // namespace stibel_init::utils
 
 #endif // __STIBEL_RESULT_UTILS_H__

@@ -3,7 +3,12 @@
 #include <string>
 #include <json/json.h>
 
-using namespace stibel_init;
+using namespace stibel_init::common;
+using namespace stibel_init::exception;
+using namespace stibel_init::utils;
+
+namespace stibel_init {
+namespace controller {
 
 InterfaceController::InterfaceController() : srvPtr_(new InterfaceServiceImpl())
 {
@@ -79,3 +84,5 @@ void InterfaceController::getFutureWeather(const HttpRequestPtr &request, std::f
         callErrorResponse(std::move(callback), e);
     }
 }
+
+} } // namespace stibel_init::controller

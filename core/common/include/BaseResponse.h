@@ -12,6 +12,11 @@
 #include "ErrorCode.h"
 #include <string>
 
+using namespace stibel_init::exception;
+
+namespace stibel_init {
+namespace common {
+
 template <class T>
 class BaseResponse
 {
@@ -55,10 +60,12 @@ public:
     const std::string &getDescription() { return description_; }
 
 private:
-    int code_;
-    T data_;
-    std::string message_;
-    std::string description_;
+    int code_;                // 响应码
+    T data_;                  // 数据
+    std::string message_;     // 信息
+    std::string description_; // 描述
 };
+
+} }// namespace stibel_init::common
 
 #endif // __STIBEL_BASERESPONSE_H__

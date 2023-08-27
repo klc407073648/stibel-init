@@ -14,6 +14,9 @@
 #include <vector>
 #include <json/json.h>
 
+namespace stibel_init {
+namespace common {
+
 /**
  * @brief Response2json 模板类
  *
@@ -53,5 +56,7 @@ public:
         return ret;
     }
 };
+
+} } // namespace stibel_init::common
 
 #endif // __STIBEL_RESPONSE_2_JSON_H__

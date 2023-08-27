@@ -17,6 +17,12 @@
 #include <string>
 #include <unordered_map>
 
+using namespace stibel_init::exception;
+using namespace stibel_init::common;
+
+namespace stibel_init {
+namespace utils {
+
 // template <class T>
 // class HttpResponseUtils
 // {
@@ -41,16 +47,8 @@ static void callNormalResponse(std::function<void(const HttpResponsePtr &)> &&ca
     auto resp = HttpResponse::newHttpJsonResponse(json);
     callback(resp);
 }
-
-static std::string unordered_map2string(const std::unordered_map<std::string, std::string> &umap)
-{
-    std::string res("");
-    for (auto &pair : umap)
-    {
-        res = res + pair.first + ": " + pair.second + ';';
-    }
-    return res;
-}
 // };
+
+} } // namespace stibel_init::utils
 
 #endif // __STIBEL_HTTPRESPONSE_UTILS_H__

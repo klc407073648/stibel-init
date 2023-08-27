@@ -1,15 +1,19 @@
 #include "impl/UserServiceImpl.h"
 #include "UserConstant.h"
 #include "ErrorCode.h"
-#include "Description.h"
+#include "UserDescription.h"
 #include "BusinessException.h"
 #include <trantor/utils/Utilities.h>
 #include <regex>
 
 using namespace drogon;
-using namespace stibel_init;
 using namespace drogon::internal;
+using namespace stibel_init::exception;
+using namespace stibel_init::utils;
 
+namespace stibel_init {
+namespace service {
+    
 UserServiceImpl::UserServiceImpl()
 {
     LOG_INFO << "UserServiceImpl constructor!";
@@ -22,7 +26,7 @@ UserServiceImpl::~UserServiceImpl()
 
 long UserServiceImpl::userRegister(const std::string &userAccount, const std::string &userPassword, const std::string &checkPassword, const std::string &planetCode)
 {
-    LOG_INFO << "userAccount:" << userAccount;
+    LOG_INFO << "userAccount:" << userAccount; //TODO打印优化
     LOG_INFO << "userPassword:" << userPassword;
     LOG_INFO << "checkPassword:" << checkPassword;
     LOG_INFO << "planetCode:" << planetCode;
@@ -262,7 +266,7 @@ bool UserServiceImpl::checkSpecialCharacter(const std::string &str)
 
 std::string UserServiceImpl::encryptPwd(const std::string &str)
 {
-    return utils::getMd5(str);
+    return drogon::utils::getMd5(str);
 }
 
 std::vector<User> UserServiceImpl::searchUsersByTags(std::vector<std::string> tagNameList)
@@ -293,3 +297,5 @@ bool UserServiceImpl::isAdmin(const HttpRequestPtr &request)
 
     return false;
 }
+
+} } // namespace stibel_init::service

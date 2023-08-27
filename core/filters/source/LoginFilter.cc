@@ -1,6 +1,6 @@
 #include "LoginFilter.h"
 #include "HttpResponseUtils.h"
-#include "Description.h"
+#include "UserDescription.h"
 
 using namespace drogon;
 void LoginFilter::doFilter(const HttpRequestPtr &req,
@@ -12,7 +12,7 @@ void LoginFilter::doFilter(const HttpRequestPtr &req,
         //管理员用户校验
         if (!srvPtr_->isAdmin(req))
         {
-            throw BusinessException(ErrorCode::PARAMS_ERROR(), UserDescription::NO_QUERY_PERMISSION());
+            throw BusinessException(stibel_init::exception::ErrorCode::PARAMS_ERROR(), stibel_init::utils::UserDescription::NO_QUERY_PERMISSION());
         }
 
         //接口存在性校验  todo
@@ -25,8 +25,8 @@ void LoginFilter::doFilter(const HttpRequestPtr &req,
         fccb();
         return;
     }
-    catch (BusinessException &e)
+    catch (stibel_init::exception::BusinessException &e)
     {
-        callErrorResponse(std::move(fcb), e);
+        stibel_init::utils::callErrorResponse(std::move(fcb), e);
     }
 }

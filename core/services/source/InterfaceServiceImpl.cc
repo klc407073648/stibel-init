@@ -9,10 +9,15 @@
 #include <codecvt>
 #include <json/json.h>
 #include <cctype>
+#include <string>
 
-using namespace stibel_init;
 using namespace drogon;
 using namespace drogon::internal;
+//using namespace stibel_init::common;
+using namespace stibel_init::exception;
+
+namespace stibel_init {
+namespace service {
 
 InterfaceServiceImpl::InterfaceServiceImpl() : cacheServicePtr_(new CacheServiceImpl())
 {
@@ -403,3 +408,5 @@ void InterfaceServiceImpl::toLower(std::string &str)
         str[i] = tolower(str[i]);
     }
 }
+
+} } // namespace stibel_init::service

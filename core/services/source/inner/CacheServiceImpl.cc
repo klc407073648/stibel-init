@@ -2,13 +2,15 @@
 #include "BusinessException.h"
 #include <json/json.h>
 
-using namespace stibel_init;
 using namespace drogon;
+using namespace stibel_init::exception;
 
-CacheServiceImpl::CacheServiceImpl() //: cacheType_(type)
+namespace stibel_init {
+namespace service {
+
+CacheServiceImpl::CacheServiceImpl()
 {
     LOG_INFO << "CacheServiceImpl constructor!";
-    //LOG_INFO << "CacheServiceImpl cacheType_:"<<cacheType_;
     initData();
 }
 
@@ -22,15 +24,15 @@ void CacheServiceImpl::initData()
     try
     {
         auto interfaces = interfaceMapper_.findAll();
-
         for (auto &interface : interfaces)
         {
             std::string name = interface.getValueOfName();
             int isDelete = interface.getValueOfIsdelete();
 
-            //接口未被删除
-            if( isDelete == 0){
-                name2Interface_.insert(make_pair(name,interface));
+            // 接口未被删除
+            if (isDelete == 0)
+            {
+                name2Interface_.insert(make_pair(name, interface));
                 LOG_DEBUG << "name:" << name << ",value:" << interface.toJson().toStyledString();
             }
         }
@@ -50,3 +52,5 @@ bool CacheServiceImpl::getInterfaceInfoByName(const std::string &name, Interface
     }
     return false;
 }
+
+} } // namespace stibel_init::service

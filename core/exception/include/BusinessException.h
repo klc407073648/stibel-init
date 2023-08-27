@@ -13,6 +13,9 @@
 #include <exception>
 #include <functional>
 
+namespace stibel_init {
+namespace exception {
+
 class BusinessException : public std::exception
 {
 public:
@@ -30,9 +33,9 @@ public:
         : message_(errorCode.getMessage()), code_(errorCode.getCode()), description_(description)
     {
     }
-
-    BusinessException() = delete;
     
+    BusinessException() = delete;
+
 public:
     int getCode() { return code_; }
     const std::string &getDescription() { return description_; }
@@ -44,5 +47,7 @@ private:
     std::string message_;
     std::string description_;
 };
+
+} } // namespace stibel_init::exception
 
 #endif // __STIBEL_BUSINESS_EXCEPTION_H__

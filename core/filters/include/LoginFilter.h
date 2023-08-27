@@ -14,6 +14,8 @@
 
 using namespace drogon;
 using namespace stibel_init;
+using stibel_init::service::UserServicePtr;
+using namespace stibel_init::service;
 
 class LoginFilter : public HttpFilter<LoginFilter>
 {

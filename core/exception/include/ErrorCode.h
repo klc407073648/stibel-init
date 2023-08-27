@@ -11,6 +11,9 @@
 
 #include <string>
 
+namespace stibel_init {
+namespace exception {
+
 enum ERROR_CODE
 {
     SUCCESS = 0,
@@ -21,10 +24,11 @@ enum ERROR_CODE
     SYSTEM_ERROR = 50000,
 };
 
-//错误码宏定义
-#define DEFINE_STATIC_ERROR_CODE(fun_name, error_code, message, description)  ErrorCode ErrorCode::fun_name() \
-    { \
-        return ErrorCode(ERROR_CODE::error_code, message, description); \
+// 错误码宏定义
+#define DEFINE_STATIC_ERROR_CODE(fun_name, error_code, message, description) \
+    ErrorCode ErrorCode::fun_name()                                          \
+    {                                                                        \
+        return ErrorCode(ERROR_CODE::error_code, message, description);      \
     }
 
 class ErrorCode
@@ -36,12 +40,12 @@ public:
     }
 
 public:
-    int getCode(){return code_;}
-    const std::string &getMessage(){return message_;}
-    const std::string &getDescription(){return description_;}
+    int getCode() { return code_; }
+    const std::string &getMessage() { return message_; }
+    const std::string &getDescription() { return description_; }
 
 public:
-    //定义返回错误码
+    // 定义返回错误码
     static ErrorCode SUCCESS();
     static ErrorCode PARAMS_ERROR();
     static ErrorCode NULL_ERROR();
@@ -50,9 +54,11 @@ public:
     static ErrorCode SYSTEM_ERROR();
 
 private:
-    int code_;                //状态码
-    std::string message_;     //状态码信息
-    std::string description_; //状态码描述
+    int code_;                // 状态码
+    std::string message_;     // 状态码信息
+    std::string description_; // 状态码描述
 };
+
+} } // namespace stibel_init::exception
 
 #endif // __STIBEL_ERROR_CODE_H__

@@ -5,8 +5,12 @@
 #include "impl/LogServiceImpl.h"
 
 using namespace drogon;
-using stibel_init::LogServicePtr;
+using stibel_init::service::LogServicePtr;
+using namespace stibel_init::service;
 
+namespace stibel_init {
+namespace controller {
+  
 class LogController : public HttpController<LogController>
 {
 public:
@@ -17,12 +21,14 @@ public:
 public:
   LogController();
   ~LogController();
-  
+
 public:
-  void writeUserLog(const HttpRequestPtr &request, std::function<void(const HttpResponsePtr &)> &&callback,std::string userId);
+  void writeUserLog(const HttpRequestPtr &request, std::function<void(const HttpResponsePtr &)> &&callback, const std::string &userId);
 
 private:
   LogServicePtr srvPtr_;
 };
+
+} } // namespace stibel_init::controller
 
 #endif //__LOG_CONTROLLER_H__

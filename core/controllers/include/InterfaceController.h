@@ -5,13 +5,17 @@
 #include "impl/InterfaceServiceImpl.h"
 
 using namespace drogon;
-using stibel_init::InterfaceServicePtr;
+using stibel_init::service::InterfaceServicePtr;
+using namespace stibel_init::service;
+
+namespace stibel_init {
+namespace controller {
 
 class InterfaceController : public HttpController<InterfaceController>
 {
 public:
   METHOD_LIST_BEGIN
-  ADD_METHOD_TO(InterfaceController::getBackground, "/api/background/get/random", Post, Options);//, "LoginFilter");
+  ADD_METHOD_TO(InterfaceController::getBackground, "/api/background/get/random", Post, Options); //, "LoginFilter");
   ADD_METHOD_TO(InterfaceController::getTranslate, "/api/fanyi/translate", Post, Options);
   ADD_METHOD_TO(InterfaceController::getCurrentWeather, "/api/weather/now", Post, Options);
   ADD_METHOD_TO(InterfaceController::getFutureWeather, "/api/weather/future", Post, Options);
@@ -32,5 +36,7 @@ public:
 private:
   InterfaceServicePtr srvPtr_;
 };
+
+} } // namespace stibel_init::controller
 
 #endif //__INTERFACE_CONTROLLER_H__

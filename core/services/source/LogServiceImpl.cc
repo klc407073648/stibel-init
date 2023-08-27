@@ -5,6 +5,10 @@
 using namespace stibel_init;
 using namespace drogon;
 using namespace drogon::internal;
+using namespace stibel_init::exception;
+
+namespace stibel_init {
+namespace service {
 
 LogServiceImpl::LogServiceImpl()
 {
@@ -37,7 +41,6 @@ bool LogServiceImpl::writeUserLog(long userid, const std::string &content)
         */
 
         LOG_ERROR << "[writeUserLog] userid:" << userid << ", content:" << content << " success";
-
         res = true;
     }
     catch (const DrogonDbException &e)
@@ -47,3 +50,5 @@ bool LogServiceImpl::writeUserLog(long userid, const std::string &content)
 
     return res;
 }
+
+} } // namespace stibel_init::service

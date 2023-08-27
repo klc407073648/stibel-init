@@ -3,10 +3,16 @@
 
 #include "impl/UserServiceImpl.h"
 #include "User.h"
+#include "UserDescription.h"
 #include <drogon/drogon.h>
 
 using namespace drogon;
-using stibel_init::UserServicePtr;
+using stibel_init::service::UserServicePtr;
+using namespace stibel_init::service;
+using stibel_init::utils::UserDescription;
+
+namespace stibel_init {
+namespace controller {
 
 class UserController : public drogon::HttpController<UserController>
 {
@@ -35,5 +41,7 @@ public:
 private:
   UserServicePtr srvPtr_;
 };
+
+} } // namespace stibel_init::controller
 
 #endif //__USER_CONTROLLER_H__
