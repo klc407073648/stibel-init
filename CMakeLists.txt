@@ -54,7 +54,8 @@ ${PROJECT_SOURCE_DIR}/core/exception/include
 ${PROJECT_SOURCE_DIR}/core/filters/include 
 ${PROJECT_SOURCE_DIR}/core/models/include
 ${PROJECT_SOURCE_DIR}/core/plugins/include 
-${PROJECT_SOURCE_DIR}/core/services/include )
+${PROJECT_SOURCE_DIR}/core/services/include
+${PROJECT_SOURCE_DIR}/core/utils/include )
 
 #代码列表
 FILE (GLOB PROJECT_DROGON_FILES 
@@ -66,7 +67,8 @@ ${PROJECT_SOURCE_DIR}/core/filters/source/*.*
 ${PROJECT_SOURCE_DIR}/core/models/source/*.*
 ${PROJECT_SOURCE_DIR}/core/plugins/source/*.* 
 ${PROJECT_SOURCE_DIR}/core/services/source/*.* 
-${PROJECT_SOURCE_DIR}/core/services/source/inner/*.*)
+${PROJECT_SOURCE_DIR}/core/services/source/inner/*.*
+${PROJECT_SOURCE_DIR}/core/utils/source/*.*  )
 
 #drogon_create_views(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/views
 #                    ${CMAKE_CURRENT_BINARY_DIR} TRUE)
@@ -89,4 +91,6 @@ else ()
     message(STATUS "use c++20")
 endif ()
 
-add_subdirectory(testcase)
+if(BUILD_TESTS)
+    add_subdirectory(testcase)
+endif ()
