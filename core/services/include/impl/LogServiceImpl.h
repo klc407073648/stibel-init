@@ -6,10 +6,10 @@
 #include <drogon/drogon.h>
 #include <map>
 
-using drogon_model::stibel_init::Log;
-
 namespace stibel_init {
 namespace service {
+
+using drogon_model::stibel_init::Log;
 
 class LogServiceImpl : public LogService
 {

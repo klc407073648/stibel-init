@@ -1,6 +1,7 @@
 #include "impl/InterfaceServiceImpl.h"
 #include "ErrorCode.h"
 #include "BusinessException.h"
+#include "InterfaceDescription.h"
 #include <drogon/utils/Utilities.h>
 #include <trantor/utils/Utilities.h>
 #include <trantor/utils/Date.h>
@@ -13,8 +14,8 @@
 
 using namespace drogon;
 using namespace drogon::internal;
-//using namespace stibel_init::common;
 using namespace stibel_init::exception;
+using stibel_init::utils::InterfaceDescription;
 
 namespace stibel_init {
 namespace service {
@@ -49,30 +50,20 @@ std::string InterfaceServiceImpl::getBackground(const HttpRequestPtr &request)
 
     try
     {
-        // 1. 根据缓存获取接口信息
-        Interface interface;
+        // 1. 根据接口名称做校验，如果通过则返回对应接口内容
+        Interface interface = checkInterface(funName);
 
-        if (!cacheServicePtr_->getInterfaceInfoByName(funName, interface))
-        {
-            throw BusinessException(ErrorCode::PARAMS_ERROR(), funName + "接口不存在");
-        }
-
-        // 2. 校验接口内容有效性
-        checkInterface(interface);
-
-        // 3. 读取url,method
-        std::string url = interface.getValueOfUrl();
-        std::string method = interface.getValueOfMethod();
+        // 2. 获取接口中的请求参数
         std::string lx = ((*(request->getJsonObject()))["lx"]).asString();
         const std::string BACKGROUND_FORMAT = "json"; 
 
         std::string host("");
         std::string path("");
-        getHostAndPathFromUrl(url, host, path);
+        getHostAndPathFromUrl(interface.getValueOfUrl(), host, path);
 
         auto client = HttpClient::newHttpClient(host);
         auto req = HttpRequest::newHttpRequest();
-        req->setMethod(httpMethodMap[method]);
+        req->setMethod(httpMethodMap[interface.getValueOfMethod()]);
         req->setPath(path);
         req->setParameter("lx", lx);
         req->setParameter("format", BACKGROUND_FORMAT);
@@ -81,7 +72,7 @@ std::string InterfaceServiceImpl::getBackground(const HttpRequestPtr &request)
     }
     catch (const DrogonDbException &e)
     {
-        throw BusinessException(ErrorCode::PARAMS_ERROR(), funName + "接口不存在");
+        throw BusinessException(ErrorCode::PARAMS_ERROR(), funName + InterfaceDescription::NO_EXIST());
     }
     return imgurl;
 }
@@ -93,35 +84,22 @@ std::string InterfaceServiceImpl::getTranslate(const HttpRequestPtr &request)
 
     try
     {
-        // 1. 根据缓存获取接口信息
-        Interface interface;
+        // 1. 根据接口名称做校验，如果通过则返回对应接口内容
+        Interface interface = checkInterface(funName);
 
-        if (!cacheServicePtr_->getInterfaceInfoByName(funName, interface))
-        {
-            throw BusinessException(ErrorCode::PARAMS_ERROR(), funName + "接口不存在");
-        }
-
-        // 2. 校验接口内容有效性
-        checkInterface(interface);
-
-        // 3. 读取url,method
-        std::string url = interface.getValueOfUrl();
-        std::string method = interface.getValueOfMethod();
-
-        // 4. 从数据库获取密钥信息
+        // 2. 获取接口中的请求参数
         auto interfaceJson = interface.toJson();
         std::string appid = interfaceJson["requestParams"]["appid"].asString();
         std::string key = interfaceJson["requestParams"]["key"].asString();
 
-        LOG_INFO << "appid:" << appid;
-        LOG_INFO << "key: " <<key;
+        LOG_INFO << "appid:[" << appid << "], key:[" <<key << "]";
 
         std::string host("");
         std::string path("");
-        getHostAndPathFromUrl(url, host, path);
+        getHostAndPathFromUrl(interface.getValueOfUrl(), host, path);
         auto client = HttpClient::newHttpClient(host);
 
-        // 5. 百度云翻译api方法
+        // 3. 百度云翻译api方法
         auto json = *(request->getJsonObject()); // 从请求参数中获取keywords,from,to内容
 
         std::string keywords = json.isMember("keywords") ? json["keywords"].asString() : "";
@@ -130,11 +108,11 @@ std::string InterfaceServiceImpl::getTranslate(const HttpRequestPtr &request)
 
         LOG_INFO << "[getTranslate] keywords:" << keywords << ", from:" << from << ", to:" << to;
         std::string salt = std::to_string(trantor::Date::now().microSecondsSinceEpoch()).substr(0, 10); // 随机数
-        std::string sign = utils::getMd5(appid + keywords + salt + key);
+        std::string sign = drogon::utils::getMd5(appid + keywords + salt + key);
         toLower(sign);
 
         auto req = HttpRequest::newHttpRequest();
-        req->setMethod(httpMethodMap[method]);
+        req->setMethod(httpMethodMap[interface.getValueOfMethod()]);
         req->setPath(path);
         req->setParameter("q", keywords);  // 请求翻译query	UTF-8编码
         req->setParameter("from", from);   // 翻译源语言	语言列表(可设置为auto)
@@ -146,7 +124,7 @@ std::string InterfaceServiceImpl::getTranslate(const HttpRequestPtr &request)
     }
     catch (const DrogonDbException &e)
     {
-        throw BusinessException(ErrorCode::PARAMS_ERROR(), funName + "接口不存在");
+        throw BusinessException(ErrorCode::PARAMS_ERROR(), funName + InterfaceDescription::NO_EXIST());
     }
 
     return translateRes;
@@ -159,23 +137,15 @@ std::string InterfaceServiceImpl::getBackendVersion(const HttpRequestPtr &reques
 
     try
     {
-        // 1. 根据缓存获取接口信息
-        Interface interface;
+        // 1. 根据接口名称做校验，如果通过则返回对应接口内容
+        Interface interface = checkInterface(funName);
 
-        if (!cacheServicePtr_->getInterfaceInfoByName(funName, interface))
-        {
-            throw BusinessException(ErrorCode::PARAMS_ERROR(), funName + "接口不存在");
-        }
-
-        // 2. 校验接口内容有效性
-        checkInterface(interface);
-
-        // 3. 返回后端版本号,待存储到数据库
+        // 2. 返回后端版本号,待存储到数据库
         version = "drogon:V1.1.0";
     }
     catch (const DrogonDbException &e)
     {
-        throw BusinessException(ErrorCode::PARAMS_ERROR(), funName + "接口不存在");
+        throw BusinessException(ErrorCode::PARAMS_ERROR(), funName + InterfaceDescription::NO_EXIST());
     }
 
     return version;
@@ -187,30 +157,20 @@ std::string InterfaceServiceImpl::getCurrentWeather(const HttpRequestPtr &reques
     std::string weatherInfo("");
     try
     {
-        // 1. 根据缓存获取接口信息
-        Interface interface;
+        // 1. 根据接口名称做校验，如果通过则返回对应接口内容
+        Interface interface = checkInterface(funName);
 
-        if (!cacheServicePtr_->getInterfaceInfoByName(funName, interface))
-        {
-            throw BusinessException(ErrorCode::PARAMS_ERROR(), funName + "接口不存在");
-        }
-
-        // 2. 校验接口内容有效性
-        checkInterface(interface);
-
-        // 3. 获取url,method
-        std::string url = interface.getValueOfUrl();
-        std::string method = interface.getValueOfMethod();
+        // 2. 获取接口中的请求参数
 		std::string weather_api_key = (interface.toJson())["requestParams"]["key"].asString();
 
         std::string host("");
         std::string path("");
-        getHostAndPathFromUrl(url, host, path);
+        getHostAndPathFromUrl(interface.getValueOfUrl(), host, path);
 
-        // 4. 填写对应请求内容，发送请求
+        // 3. 填写对应请求内容，发送请求
         auto client = HttpClient::newHttpClient(host);
         auto req = HttpRequest::newHttpRequest();
-        req->setMethod(httpMethodMap[method]);
+        req->setMethod(httpMethodMap[interface.getValueOfMethod()]);
         req->setPath(path);
 
         auto json = *(request->getJsonObject());
@@ -226,7 +186,7 @@ std::string InterfaceServiceImpl::getCurrentWeather(const HttpRequestPtr &reques
     }
     catch (const DrogonDbException &e)
     {
-        throw BusinessException(ErrorCode::PARAMS_ERROR(), funName + "接口不存在");
+        throw BusinessException(ErrorCode::PARAMS_ERROR(), funName + InterfaceDescription::NO_EXIST());
     }
 
     return weatherInfo;
@@ -238,35 +198,24 @@ std::string InterfaceServiceImpl::getFutureWeather(const HttpRequestPtr &request
     std::string weatherInfo("");
     try
     {
-        // 1. 根据缓存获取接口信息
-        Interface interface;
+        // 1. 根据接口名称做校验，如果通过则返回对应接口内容
+        Interface interface = checkInterface(funName);
 
-        if (!cacheServicePtr_->getInterfaceInfoByName(funName, interface))
-        {
-            throw BusinessException(ErrorCode::PARAMS_ERROR(), funName + "接口不存在");
-        }
-
-        // 2. 校验接口内容有效性
-        checkInterface(interface);
-
-        // 3. 获取url,method
-        std::string url = interface.getValueOfUrl();
-        std::string method = interface.getValueOfMethod();
+        // 2. 获取接口中的请求参数
 		std::string weather_api_key = (interface.toJson())["requestParams"]["key"].asString();
 
         std::string host("");
         std::string path("");
-        getHostAndPathFromUrl(url, host, path);
+        getHostAndPathFromUrl(interface.getValueOfUrl(), host, path);
 
-        // 4. 填写对应请求内容，发送请求
+        // 3. 填写对应请求内容，发送请求
         auto client = HttpClient::newHttpClient(host);
         auto req = HttpRequest::newHttpRequest();
-        req->setMethod(httpMethodMap[method]);
+        req->setMethod(httpMethodMap[interface.getValueOfMethod()]);
         req->setPath(path);
 
         auto json = *(request->getJsonObject());
         std::string city = json.isMember("city") ? json["city"].asString() : "";
-
 
         // 高德天气API
         req->setParameter("key", weather_api_key); // 请求服务权限标识
@@ -278,7 +227,7 @@ std::string InterfaceServiceImpl::getFutureWeather(const HttpRequestPtr &request
     }
     catch (const DrogonDbException &e)
     {
-        throw BusinessException(ErrorCode::PARAMS_ERROR(), funName + "接口不存在");
+        throw BusinessException(ErrorCode::PARAMS_ERROR(), funName + InterfaceDescription::NO_EXIST());
     }
 
     return weatherInfo;
@@ -306,47 +255,7 @@ void InterfaceServiceImpl::getHostAndPathFromUrl(const std::string &url, std::st
     }
     catch (...)
     {
-        throw BusinessException(ErrorCode::PARAMS_ERROR(), "解析接口url信息错误");
-    }
-}
-
-void InterfaceServiceImpl::getRequestParams(const std::string &json, std::map<std::string, std::string> &retMap)
-{
-    Json::Reader reader;
-    Json::Value paramValue;
-
-    if (reader.parse(json, paramValue))
-    {
-        Json::Value::Members mem = paramValue.getMemberNames();
-
-        for (auto iter = mem.begin(); iter != mem.end(); iter++)
-        {
-            if (paramValue[*iter].type() == Json::objectValue)
-            {
-                getRequestParams(paramValue[*iter].asString(), retMap);
-            }
-            else if (paramValue[*iter].type() == Json::arrayValue)
-            {
-                // 数组则不处理
-            }
-            else if (paramValue[*iter].type() == Json::stringValue)
-            {
-                retMap[*iter] = paramValue[*iter].asString();
-            }
-            else if (paramValue[*iter].type() == Json::realValue)
-            {
-                retMap[*iter] = paramValue[*iter].asString();
-            }
-            else if (paramValue[*iter].type() == Json::uintValue)
-            {
-                retMap[*iter] = paramValue[*iter].asString();
-            }
-            else
-            {
-                retMap[*iter] = paramValue[*iter].asString();
-            }
-        }
-        return;
+        throw BusinessException(ErrorCode::PARAMS_ERROR(), InterfaceDescription::PARSE_URL_ERROR());
     }
 }
 
@@ -385,13 +294,18 @@ std::string InterfaceServiceImpl::syncSendRequest(const HttpRequestPtr &req, con
     return res;
 }
 
-void InterfaceServiceImpl::checkInterface(const Interface &interface)
+Interface InterfaceServiceImpl::checkInterface(const std::string& interfaceName)
 {
-    std::string name = interface.getValueOfName();
+    Interface interface;
+
+    if (!cacheServicePtr_->getInterfaceInfoByName(interfaceName, interface))
+    {
+        throw BusinessException(ErrorCode::PARAMS_ERROR(), interfaceName + InterfaceDescription::NO_EXIST());
+    }
 
     if (interface.getValueOfStatus() != 0)
     {
-        throw BusinessException(ErrorCode::PARAMS_ERROR(), name + "接口状态异常");
+        throw BusinessException(ErrorCode::PARAMS_ERROR(), interface.getValueOfName() + InterfaceDescription::STATUS_ERROR());
     }
 
     /*
@@ -399,6 +313,8 @@ void InterfaceServiceImpl::checkInterface(const Interface &interface)
         throw BusinessException(ErrorCode::PARAMS_ERROR(), name + "接口已经删除");
     }
     */
+
+   return interface;
 }
 
 void InterfaceServiceImpl::toLower(std::string &str)

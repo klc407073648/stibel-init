@@ -12,7 +12,7 @@ void LoginFilter::doFilter(const HttpRequestPtr &req,
         //管理员用户校验
         if (!srvPtr_->isAdmin(req))
         {
-            throw BusinessException(stibel_init::exception::ErrorCode::PARAMS_ERROR(), stibel_init::utils::UserDescription::NO_QUERY_PERMISSION());
+            throw stibel_init::exception::BusinessException(stibel_init::exception::ErrorCode::PARAMS_ERROR(), stibel_init::utils::UserDescription::NO_QUERY_PERMISSION());
         }
 
         //接口存在性校验  todo

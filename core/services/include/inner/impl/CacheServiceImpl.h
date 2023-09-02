@@ -6,6 +6,9 @@
 #include <drogon/drogon.h>
 #include <map>
 
+namespace stibel_init {
+namespace service {
+
 using drogon_model::stibel_init::Interface;
 
 enum CacheType
@@ -14,16 +17,13 @@ enum CacheType
   BY_REDIS
 };
 
-namespace stibel_init {
-namespace service {
-
 class CacheServiceImpl : public CacheService
 {
 public:
   CacheServiceImpl();
   ~CacheServiceImpl();
   bool getInterfaceInfoByName(const std::string &name, Interface &interface) override;
-
+  std::map<std::string, Interface> getInterfaceInfoMap();
 private:
   void initData();
 

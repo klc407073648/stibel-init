@@ -17,11 +17,11 @@
 #include <string>
 #include <unordered_map>
 
-using namespace stibel_init::exception;
-using namespace stibel_init::common;
-
 namespace stibel_init {
 namespace utils {
+
+using namespace stibel_init::exception;
+using namespace stibel_init::common;
 
 // template <class T>
 // class HttpResponseUtils

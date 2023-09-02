@@ -6,13 +6,13 @@
 #include "UserDescription.h"
 #include <drogon/drogon.h>
 
-using namespace drogon;
-using stibel_init::service::UserServicePtr;
-using namespace stibel_init::service;
-using stibel_init::utils::UserDescription;
-
 namespace stibel_init {
 namespace controller {
+
+using namespace drogon;
+using stibel_init::service::UserServicePtr;
+using stibel_init::service::UserServiceImpl;
+using stibel_init::utils::UserDescription;
 
 class UserController : public drogon::HttpController<UserController>
 {

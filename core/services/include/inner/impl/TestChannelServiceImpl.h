@@ -6,10 +6,10 @@
 #include <drogon/drogon.h>
 #include <map>
 
-using drogon_model::stibel_init::Interface;
-
 namespace stibel_init {
 namespace service {
+
+using drogon_model::stibel_init::Interface;
 
 class TestChannelServiceImpl : public TestChannelService
 {

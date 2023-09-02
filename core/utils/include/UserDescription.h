@@ -11,10 +11,10 @@
 
 #include "Description.h"
 
-using stibel_init::common::Description;
-
 namespace stibel_init {
 namespace utils {
+
+using stibel_init::common::Description;
 
 class UserDescription : public Description
 {

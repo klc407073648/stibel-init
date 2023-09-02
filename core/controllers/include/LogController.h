@@ -4,12 +4,12 @@
 #include <drogon/drogon.h>
 #include "impl/LogServiceImpl.h"
 
-using namespace drogon;
-using stibel_init::service::LogServicePtr;
-using namespace stibel_init::service;
-
 namespace stibel_init {
 namespace controller {
+
+using namespace drogon;
+using stibel_init::service::LogServicePtr;
+using stibel_init::service::LogServiceImpl;
   
 class LogController : public HttpController<LogController>
 {

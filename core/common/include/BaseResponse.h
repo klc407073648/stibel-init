@@ -12,10 +12,10 @@
 #include "ErrorCode.h"
 #include <string>
 
-using namespace stibel_init::exception;
-
 namespace stibel_init {
 namespace common {
+
+using stibel_init::exception::ErrorCode;
 
 template <class T>
 class BaseResponse

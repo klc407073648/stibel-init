@@ -5,10 +5,10 @@
 #include "UserService.h"
 #include <drogon/drogon.h>
 
-using drogon_model::stibel_init::User;
-
 namespace stibel_init {
 namespace service {
+
+using drogon_model::stibel_init::User;
 
 class UserServiceImpl : public UserService
 {

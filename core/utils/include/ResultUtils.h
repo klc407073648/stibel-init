@@ -13,11 +13,11 @@
 #include <string>
 #include <vector>
 
-using stibel_init::common::BaseResponse;
-using namespace stibel_init::exception;
-
 namespace stibel_init {
 namespace utils {
+
+using stibel_init::common::BaseResponse;
+using stibel_init::exception::ErrorCode;
 
 template <class T>
 class ResultUtils

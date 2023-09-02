@@ -1,9 +1,11 @@
 #include "inner/impl/CacheServiceImpl.h"
 #include "BusinessException.h"
+#include "InterfaceDescription.h"
 #include <json/json.h>
 
 using namespace drogon;
 using namespace stibel_init::exception;
+using stibel_init::utils::InterfaceDescription;
 
 namespace stibel_init {
 namespace service {
@@ -39,7 +41,7 @@ void CacheServiceImpl::initData()
     }
     catch (const DrogonDbException &e)
     {
-        throw BusinessException(ErrorCode::PARAMS_ERROR(), "获取接口表信息失败");
+        throw BusinessException(ErrorCode::PARAMS_ERROR(), InterfaceDescription::GET_INFO_ERROR());
     }
 }
 

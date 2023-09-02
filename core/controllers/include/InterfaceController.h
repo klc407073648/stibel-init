@@ -4,12 +4,12 @@
 #include <drogon/drogon.h>
 #include "impl/InterfaceServiceImpl.h"
 
-using namespace drogon;
-using stibel_init::service::InterfaceServicePtr;
-using namespace stibel_init::service;
-
 namespace stibel_init {
 namespace controller {
+
+using namespace drogon;
+using stibel_init::service::InterfaceServicePtr;
+using stibel_init::service::InterfaceServiceImpl;
 
 class InterfaceController : public HttpController<InterfaceController>
 {
