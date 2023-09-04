@@ -35,7 +35,7 @@ using DbClientPtr = std::shared_ptr<DbClient>;
 }
 namespace drogon_model
 {
-namespace stibel_init 
+namespace stibel_init
 {
 
 class Log
@@ -62,12 +62,12 @@ class Log
     /**
      * @brief constructor
      * @param r One row of records in the SQL query result.
-     * @param indexOffset Set the offset to -1 to access all columns by column names, 
+     * @param indexOffset Set the offset to -1 to access all columns by column names,
      * otherwise access all columns by offsets.
-     * @note If the SQL is not a style of 'select * from table_name ...' (select all 
+     * @note If the SQL is not a style of 'select * from table_name ...' (select all
      * columns by an asterisk), please set the offset to -1.
      */
-    explicit Log(const Row &r, const ssize_t indexOffset = 0) noexcept;
+    explicit Log(const drogon::orm::Row &r, const ssize_t indexOffset = 0) noexcept;
 
     /**
      * @brief constructor
@@ -83,7 +83,7 @@ class Log
     Log(const Json::Value &pJson, const std::vector<std::string> &pMasqueradingVector) noexcept(false);
 
     Log() = default;
-    
+
     void updateByJson(const Json::Value &pJson) noexcept(false);
     void updateByMasqueradedJson(const Json::Value &pJson,
                                  const std::vector<std::string> &pMasqueradingVector) noexcept(false);
@@ -97,8 +97,8 @@ class Log
                                           std::string &err);
     static bool validJsonOfField(size_t index,
                           const std::string &fieldName,
-                          const Json::Value &pJson, 
-                          std::string &err, 
+                          const Json::Value &pJson,
+                          std::string &err,
                           bool isForCreation);
 
     /**  For column id  */
@@ -106,71 +106,57 @@ class Log
     const int64_t &getValueOfId() const noexcept;
     ///Return a shared_ptr object pointing to the column const value, or an empty shared_ptr object if the column is null
     const std::shared_ptr<int64_t> &getId() const noexcept;
-
     ///Set the value of the column id
     void setId(const int64_t &pId) noexcept;
-
 
     /**  For column userid  */
     ///Get the value of the column userid, returns the default value if the column is null
     const int64_t &getValueOfUserid() const noexcept;
     ///Return a shared_ptr object pointing to the column const value, or an empty shared_ptr object if the column is null
     const std::shared_ptr<int64_t> &getUserid() const noexcept;
-
     ///Set the value of the column userid
     void setUserid(const int64_t &pUserid) noexcept;
-
 
     /**  For column content  */
     ///Get the value of the column content, returns the default value if the column is null
     const std::string &getValueOfContent() const noexcept;
     ///Return a shared_ptr object pointing to the column const value, or an empty shared_ptr object if the column is null
     const std::shared_ptr<std::string> &getContent() const noexcept;
-
     ///Set the value of the column content
     void setContent(const std::string &pContent) noexcept;
     void setContent(std::string &&pContent) noexcept;
-
 
     /**  For column type  */
     ///Get the value of the column type, returns the default value if the column is null
     const int32_t &getValueOfType() const noexcept;
     ///Return a shared_ptr object pointing to the column const value, or an empty shared_ptr object if the column is null
     const std::shared_ptr<int32_t> &getType() const noexcept;
-
     ///Set the value of the column type
     void setType(const int32_t &pType) noexcept;
-
 
     /**  For column createTime  */
     ///Get the value of the column createTime, returns the default value if the column is null
     const ::trantor::Date &getValueOfCreatetime() const noexcept;
     ///Return a shared_ptr object pointing to the column const value, or an empty shared_ptr object if the column is null
     const std::shared_ptr<::trantor::Date> &getCreatetime() const noexcept;
-
     ///Set the value of the column createTime
     void setCreatetime(const ::trantor::Date &pCreatetime) noexcept;
-
 
     /**  For column updateTime  */
     ///Get the value of the column updateTime, returns the default value if the column is null
     const ::trantor::Date &getValueOfUpdatetime() const noexcept;
     ///Return a shared_ptr object pointing to the column const value, or an empty shared_ptr object if the column is null
     const std::shared_ptr<::trantor::Date> &getUpdatetime() const noexcept;
-
     ///Set the value of the column updateTime
     void setUpdatetime(const ::trantor::Date &pUpdatetime) noexcept;
-
 
     /**  For column isDelete  */
     ///Get the value of the column isDelete, returns the default value if the column is null
     const int8_t &getValueOfIsdelete() const noexcept;
     ///Return a shared_ptr object pointing to the column const value, or an empty shared_ptr object if the column is null
     const std::shared_ptr<int8_t> &getIsdelete() const noexcept;
-
     ///Set the value of the column isDelete
     void setIsdelete(const int8_t &pIsdelete) noexcept;
-
 
 
     static size_t getColumnNumber() noexcept {  return 7;  }
@@ -180,9 +166,9 @@ class Log
     Json::Value toMasqueradedJson(const std::vector<std::string> &pMasqueradingVector) const;
     /// Relationship interfaces
   private:
-    friend Mapper<Log>;
+    friend drogon::orm::Mapper<Log>;
 #ifdef __cpp_impl_coroutine
-    friend CoroMapper<Log>;
+    friend drogon::orm::CoroMapper<Log>;
 #endif
     static const std::vector<std::string> &insertColumns() noexcept;
     void outputArgs(drogon::orm::internal::SqlBinder &binder) const;
@@ -213,13 +199,13 @@ class Log
     static const std::string &sqlForFindingByPrimaryKey()
     {
         static const std::string sql="select * from " + tableName + " where id = ?";
-        return sql;                   
+        return sql;
     }
 
     static const std::string &sqlForDeletingByPrimaryKey()
     {
         static const std::string sql="delete from " + tableName + " where id = ?";
-        return sql;                   
+        return sql;
     }
     std::string sqlForInserting(bool &needSelection) const
     {
@@ -270,23 +256,23 @@ class Log
         }
         else
             sql += ") values (";
-        
+
         sql +="default,";
         if(dirtyFlag_[1])
         {
             sql.append("?,");
 
-        } 
+        }
         if(dirtyFlag_[2])
         {
             sql.append("?,");
 
-        } 
+        }
         if(dirtyFlag_[3])
         {
             sql.append("?,");
 
-        } 
+        }
         else
         {
             sql +="default,";
@@ -295,7 +281,7 @@ class Log
         {
             sql.append("?,");
 
-        } 
+        }
         else
         {
             sql +="default,";
@@ -304,7 +290,7 @@ class Log
         {
             sql.append("?,");
 
-        } 
+        }
         else
         {
             sql +="default,";
@@ -313,7 +299,7 @@ class Log
         {
             sql.append("?,");
 
-        } 
+        }
         else
         {
             sql +="default,";
@@ -324,7 +310,7 @@ class Log
         }
         sql.append(1, ')');
         LOG_TRACE << sql;
-        return sql;   
+        return sql;
     }
 };
 } // namespace stibel_init

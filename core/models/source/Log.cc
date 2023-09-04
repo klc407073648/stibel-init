@@ -10,6 +10,7 @@
 #include <string>
 
 using namespace drogon;
+using namespace drogon::orm;
 using namespace drogon_model::stibel_init;
 
 const std::string Log::Cols::_id = "id";
@@ -219,7 +220,6 @@ Log::Log(const Json::Value &pJson, const std::vector<std::string> &pMasquerading
         if(!pJson[pMasqueradingVector[2]].isNull())
         {
             content_=std::make_shared<std::string>(pJson[pMasqueradingVector[2]].asString());
-
         }
     }
     if(!pMasqueradingVector[3].empty() && pJson.isMember(pMasqueradingVector[3]))
@@ -488,7 +488,7 @@ void Log::updateByMasqueradedJson(const Json::Value &pJson,
         }
     }
 }
-                                                                    
+
 void Log::updateByJson(const Json::Value &pJson) noexcept(false)
 {
     if(pJson.isMember("id"))
@@ -600,9 +600,6 @@ void Log::setId(const int64_t &pId) noexcept
     id_ = std::make_shared<int64_t>(pId);
     dirtyFlag_[0] = true;
 }
-
-
-
 const typename Log::PrimaryKeyType & Log::getPrimaryKey() const
 {
     assert(id_);
@@ -626,9 +623,6 @@ void Log::setUserid(const int64_t &pUserid) noexcept
     dirtyFlag_[1] = true;
 }
 
-
-
-
 const std::string &Log::getValueOfContent() const noexcept
 {
     const static std::string defaultValue = std::string();
@@ -651,9 +645,6 @@ void Log::setContent(std::string &&pContent) noexcept
     dirtyFlag_[2] = true;
 }
 
-
-
-
 const int32_t &Log::getValueOfType() const noexcept
 {
     const static int32_t defaultValue = int32_t();
@@ -670,9 +661,6 @@ void Log::setType(const int32_t &pType) noexcept
     type_ = std::make_shared<int32_t>(pType);
     dirtyFlag_[3] = true;
 }
-
-
-
 
 const ::trantor::Date &Log::getValueOfCreatetime() const noexcept
 {
@@ -691,9 +679,6 @@ void Log::setCreatetime(const ::trantor::Date &pCreatetime) noexcept
     dirtyFlag_[4] = true;
 }
 
-
-
-
 const ::trantor::Date &Log::getValueOfUpdatetime() const noexcept
 {
     const static ::trantor::Date defaultValue = ::trantor::Date();
@@ -711,9 +696,6 @@ void Log::setUpdatetime(const ::trantor::Date &pUpdatetime) noexcept
     dirtyFlag_[5] = true;
 }
 
-
-
-
 const int8_t &Log::getValueOfIsdelete() const noexcept
 {
     const static int8_t defaultValue = int8_t();
@@ -730,9 +712,6 @@ void Log::setIsdelete(const int8_t &pIsdelete) noexcept
     isdelete_ = std::make_shared<int8_t>(pIsdelete);
     dirtyFlag_[6] = true;
 }
-
-
-
 
 void Log::updateId(const uint64_t id)
 {
@@ -1254,7 +1233,7 @@ bool Log::validateMasqueradedJsonForCreation(const Json::Value &pJson,
           }
       }
     }
-    catch(const Json::LogicError &e) 
+    catch(const Json::LogicError &e)
     {
       err = e.what();
       return false;
@@ -1356,7 +1335,7 @@ bool Log::validateMasqueradedJsonForUpdate(const Json::Value &pJson,
               return false;
       }
     }
-    catch(const Json::LogicError &e) 
+    catch(const Json::LogicError &e)
     {
       err = e.what();
       return false;
@@ -1365,8 +1344,8 @@ bool Log::validateMasqueradedJsonForUpdate(const Json::Value &pJson,
 }
 bool Log::validJsonOfField(size_t index,
                            const std::string &fieldName,
-                           const Json::Value &pJson, 
-                           std::string &err, 
+                           const Json::Value &pJson,
+                           std::string &err,
                            bool isForCreation)
 {
     switch(index)
@@ -1381,7 +1360,7 @@ bool Log::validJsonOfField(size_t index,
             {
                 err="The automatic primary key cannot be set";
                 return false;
-            }        
+            }
             if(!pJson.isInt64())
             {
                 err="Type error in the "+fieldName+" field";
@@ -1409,7 +1388,7 @@ bool Log::validJsonOfField(size_t index,
             if(!pJson.isString())
             {
                 err="Type error in the "+fieldName+" field";
-                return false;                
+                return false;
             }
             // asString().length() creates a string object, is there any better way to validate the length?
             if(pJson.isString() && pJson.asString().length() > 1024)
@@ -1417,7 +1396,7 @@ bool Log::validJsonOfField(size_t index,
                 err="String length exceeds limit for the " +
                     fieldName +
                     " field (the maximum value is 1024)";
-                return false;               
+                return false;
             }
 
             break;
@@ -1442,7 +1421,7 @@ bool Log::validJsonOfField(size_t index,
             if(!pJson.isString())
             {
                 err="Type error in the "+fieldName+" field";
-                return false;                
+                return false;
             }
             break;
         case 5:
@@ -1454,7 +1433,7 @@ bool Log::validJsonOfField(size_t index,
             if(!pJson.isString())
             {
                 err="Type error in the "+fieldName+" field";
-                return false;                
+                return false;
             }
             break;
         case 6:
@@ -1469,11 +1448,9 @@ bool Log::validJsonOfField(size_t index,
                 return false;
             }
             break;
-     
         default:
             err="Internal error in the server";
             return false;
-            break;
     }
     return true;
 }

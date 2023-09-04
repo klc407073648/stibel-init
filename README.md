@@ -42,6 +42,10 @@ ldconfig
 
 cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_BUILD_VERSION=V2.1.1 ..
 make
+
+# 需要业务库剥离
+export LD_LIBRARY_PATH=/home/stibel/lib/app
+ldconfig
 ```
 
 ### 测试验证

@@ -100,7 +100,7 @@ long UserServiceImpl::userRegister(const std::string &userAccount, const std::st
 
         // 3.插入数据
         User user;
-        user.setIphone("");
+        user.setPhone("");
         user.setEmail("");
         user.setUserstatus(0);
         user.setUseraccount(userAccount);
@@ -239,7 +239,7 @@ User UserServiceImpl::getSafetyUser(User originUser)
     safetyUser.setUseraccount(originUser.getValueOfUseraccount());
     safetyUser.setAvatarurl(originUser.getValueOfAvatarurl());
     safetyUser.setGender(originUser.getValueOfGender());
-    safetyUser.setIphone(originUser.getValueOfIphone());
+    safetyUser.setPhone(originUser.getValueOfPhone());
     safetyUser.setEmail(originUser.getValueOfEmail());
     safetyUser.setUserrole(originUser.getValueOfUserrole());
     safetyUser.setUserstatus(originUser.getValueOfUserstatus());

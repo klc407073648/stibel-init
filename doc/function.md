@@ -16,3 +16,17 @@
 
        函数统计
        构建镜像
+
+- [ ] 测试用例interface given when then
+- [ ] 需求分析
+- [ ] 方案设计  逻辑框图
+- [ ] 编码实现
+- [ ] 研究公司代码的函数统计
+- [ ] 参考infra分不同路径，明确代码用途
+- [ ] 多线程处理thread local
+- [ ] 全局异常处理
+- [ ] 调试命令处理
+- [X] 改目录结构按照功能分类，不要再include了
+- [X] 国际化代码和用例校验
+- [ ] Debug和Release区别生不生成测试程序和testcase ———— BUILD_TESTS 来区分不生成程序程序
+- [X] 命令空间整改stibel_init service controller utils common                drogon_model::stibel_init::  

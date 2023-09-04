@@ -49,7 +49,7 @@ std::string HttpTest::readStringFromJson(const std::string &file)
 		res.erase(pos, 1); // 在换行符的位置删除一个字符，即删除换行符
 	}
 
-	printf("[readStringFromJson] file:%s,res:%s", file.c_str(), res.c_str());
+	printf("[readStringFromJson] file:%s, res:%s", file.c_str(), res.c_str());
 
 	return res;
 }
@@ -90,7 +90,7 @@ std::string HttpTest::readArrayStringFromJson(const std::string &file)
 		res.erase(pos, 1); // 在换行符的位置删除一个字符，即删除换行符
 	}
 
-	printf("[readArrayStringFromJson] file:%s,res:%s", file.c_str(), res.c_str());
+	printf("[readArrayStringFromJson] file:%s, res:%s", file.c_str(), res.c_str());
 
 	return res;
 }
@@ -109,7 +109,6 @@ std::string HttpTest::sendRequest()
 	}
 
 	printf("[sendRequest] method:%d, result:%s", _method, result.c_str());
-
 	return result;
 }
 

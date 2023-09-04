@@ -10,6 +10,7 @@
 #include <string>
 
 using namespace drogon;
+using namespace drogon::orm;
 using namespace drogon_model::stibel_init;
 
 const std::string Interface::Cols::_id = "id";
@@ -277,7 +278,6 @@ Interface::Interface(const Json::Value &pJson, const std::vector<std::string> &p
         if(!pJson[pMasqueradingVector[1]].isNull())
         {
             name_=std::make_shared<std::string>(pJson[pMasqueradingVector[1]].asString());
-
         }
     }
     if(!pMasqueradingVector[2].empty() && pJson.isMember(pMasqueradingVector[2]))
@@ -286,7 +286,6 @@ Interface::Interface(const Json::Value &pJson, const std::vector<std::string> &p
         if(!pJson[pMasqueradingVector[2]].isNull())
         {
             description_=std::make_shared<std::string>(pJson[pMasqueradingVector[2]].asString());
-
         }
     }
     if(!pMasqueradingVector[3].empty() && pJson.isMember(pMasqueradingVector[3]))
@@ -295,7 +294,6 @@ Interface::Interface(const Json::Value &pJson, const std::vector<std::string> &p
         if(!pJson[pMasqueradingVector[3]].isNull())
         {
             url_=std::make_shared<std::string>(pJson[pMasqueradingVector[3]].asString());
-
         }
     }
     if(!pMasqueradingVector[4].empty() && pJson.isMember(pMasqueradingVector[4]))
@@ -304,7 +302,6 @@ Interface::Interface(const Json::Value &pJson, const std::vector<std::string> &p
         if(!pJson[pMasqueradingVector[4]].isNull())
         {
             method_=std::make_shared<std::string>(pJson[pMasqueradingVector[4]].asString());
-
         }
     }
     if(!pMasqueradingVector[5].empty() && pJson.isMember(pMasqueradingVector[5]))
@@ -313,7 +310,6 @@ Interface::Interface(const Json::Value &pJson, const std::vector<std::string> &p
         if(!pJson[pMasqueradingVector[5]].isNull())
         {
             requestparams_=std::make_shared<std::string>(pJson[pMasqueradingVector[5]].asString());
-
         }
     }
     if(!pMasqueradingVector[6].empty() && pJson.isMember(pMasqueradingVector[6]))
@@ -322,7 +318,6 @@ Interface::Interface(const Json::Value &pJson, const std::vector<std::string> &p
         if(!pJson[pMasqueradingVector[6]].isNull())
         {
             requestheader_=std::make_shared<std::string>(pJson[pMasqueradingVector[6]].asString());
-
         }
     }
     if(!pMasqueradingVector[7].empty() && pJson.isMember(pMasqueradingVector[7]))
@@ -331,7 +326,6 @@ Interface::Interface(const Json::Value &pJson, const std::vector<std::string> &p
         if(!pJson[pMasqueradingVector[7]].isNull())
         {
             responseheader_=std::make_shared<std::string>(pJson[pMasqueradingVector[7]].asString());
-
         }
     }
     if(!pMasqueradingVector[8].empty() && pJson.isMember(pMasqueradingVector[8]))
@@ -704,7 +698,7 @@ void Interface::updateByMasqueradedJson(const Json::Value &pJson,
         }
     }
 }
-                                                                    
+
 void Interface::updateByJson(const Json::Value &pJson) noexcept(false)
 {
     if(pJson.isMember("id"))
@@ -864,9 +858,6 @@ void Interface::setId(const int64_t &pId) noexcept
     id_ = std::make_shared<int64_t>(pId);
     dirtyFlag_[0] = true;
 }
-
-
-
 const typename Interface::PrimaryKeyType & Interface::getPrimaryKey() const
 {
     assert(id_);
@@ -895,9 +886,6 @@ void Interface::setName(std::string &&pName) noexcept
     dirtyFlag_[1] = true;
 }
 
-
-
-
 const std::string &Interface::getValueOfDescription() const noexcept
 {
     const static std::string defaultValue = std::string();
@@ -919,14 +907,11 @@ void Interface::setDescription(std::string &&pDescription) noexcept
     description_ = std::make_shared<std::string>(std::move(pDescription));
     dirtyFlag_[2] = true;
 }
-
-
 void Interface::setDescriptionToNull() noexcept
 {
     description_.reset();
     dirtyFlag_[2] = true;
 }
-
 
 const std::string &Interface::getValueOfUrl() const noexcept
 {
@@ -949,14 +934,11 @@ void Interface::setUrl(std::string &&pUrl) noexcept
     url_ = std::make_shared<std::string>(std::move(pUrl));
     dirtyFlag_[3] = true;
 }
-
-
 void Interface::setUrlToNull() noexcept
 {
     url_.reset();
     dirtyFlag_[3] = true;
 }
-
 
 const std::string &Interface::getValueOfMethod() const noexcept
 {
@@ -980,9 +962,6 @@ void Interface::setMethod(std::string &&pMethod) noexcept
     dirtyFlag_[4] = true;
 }
 
-
-
-
 const std::string &Interface::getValueOfRequestparams() const noexcept
 {
     const static std::string defaultValue = std::string();
@@ -1004,14 +983,11 @@ void Interface::setRequestparams(std::string &&pRequestparams) noexcept
     requestparams_ = std::make_shared<std::string>(std::move(pRequestparams));
     dirtyFlag_[5] = true;
 }
-
-
 void Interface::setRequestparamsToNull() noexcept
 {
     requestparams_.reset();
     dirtyFlag_[5] = true;
 }
-
 
 const std::string &Interface::getValueOfRequestheader() const noexcept
 {
@@ -1034,14 +1010,11 @@ void Interface::setRequestheader(std::string &&pRequestheader) noexcept
     requestheader_ = std::make_shared<std::string>(std::move(pRequestheader));
     dirtyFlag_[6] = true;
 }
-
-
 void Interface::setRequestheaderToNull() noexcept
 {
     requestheader_.reset();
     dirtyFlag_[6] = true;
 }
-
 
 const std::string &Interface::getValueOfResponseheader() const noexcept
 {
@@ -1064,14 +1037,11 @@ void Interface::setResponseheader(std::string &&pResponseheader) noexcept
     responseheader_ = std::make_shared<std::string>(std::move(pResponseheader));
     dirtyFlag_[7] = true;
 }
-
-
 void Interface::setResponseheaderToNull() noexcept
 {
     responseheader_.reset();
     dirtyFlag_[7] = true;
 }
-
 
 const int32_t &Interface::getValueOfStatus() const noexcept
 {
@@ -1090,9 +1060,6 @@ void Interface::setStatus(const int32_t &pStatus) noexcept
     dirtyFlag_[8] = true;
 }
 
-
-
-
 const int32_t &Interface::getValueOfType() const noexcept
 {
     const static int32_t defaultValue = int32_t();
@@ -1109,9 +1076,6 @@ void Interface::setType(const int32_t &pType) noexcept
     type_ = std::make_shared<int32_t>(pType);
     dirtyFlag_[9] = true;
 }
-
-
-
 
 const ::trantor::Date &Interface::getValueOfCreatetime() const noexcept
 {
@@ -1130,9 +1094,6 @@ void Interface::setCreatetime(const ::trantor::Date &pCreatetime) noexcept
     dirtyFlag_[10] = true;
 }
 
-
-
-
 const ::trantor::Date &Interface::getValueOfUpdatetime() const noexcept
 {
     const static ::trantor::Date defaultValue = ::trantor::Date();
@@ -1150,9 +1111,6 @@ void Interface::setUpdatetime(const ::trantor::Date &pUpdatetime) noexcept
     dirtyFlag_[11] = true;
 }
 
-
-
-
 const int8_t &Interface::getValueOfIsdelete() const noexcept
 {
     const static int8_t defaultValue = int8_t();
@@ -1169,9 +1127,6 @@ void Interface::setIsdelete(const int8_t &pIsdelete) noexcept
     isdelete_ = std::make_shared<int8_t>(pIsdelete);
     dirtyFlag_[12] = true;
 }
-
-
-
 
 void Interface::updateId(const uint64_t id)
 {
@@ -2095,7 +2050,7 @@ bool Interface::validateMasqueradedJsonForCreation(const Json::Value &pJson,
           }
       }
     }
-    catch(const Json::LogicError &e) 
+    catch(const Json::LogicError &e)
     {
       err = e.what();
       return false;
@@ -2257,7 +2212,7 @@ bool Interface::validateMasqueradedJsonForUpdate(const Json::Value &pJson,
               return false;
       }
     }
-    catch(const Json::LogicError &e) 
+    catch(const Json::LogicError &e)
     {
       err = e.what();
       return false;
@@ -2266,8 +2221,8 @@ bool Interface::validateMasqueradedJsonForUpdate(const Json::Value &pJson,
 }
 bool Interface::validJsonOfField(size_t index,
                                  const std::string &fieldName,
-                                 const Json::Value &pJson, 
-                                 std::string &err, 
+                                 const Json::Value &pJson,
+                                 std::string &err,
                                  bool isForCreation)
 {
     switch(index)
@@ -2282,7 +2237,7 @@ bool Interface::validJsonOfField(size_t index,
             {
                 err="The automatic primary key cannot be set";
                 return false;
-            }        
+            }
             if(!pJson.isInt64())
             {
                 err="Type error in the "+fieldName+" field";
@@ -2298,7 +2253,7 @@ bool Interface::validJsonOfField(size_t index,
             if(!pJson.isString())
             {
                 err="Type error in the "+fieldName+" field";
-                return false;                
+                return false;
             }
             // asString().length() creates a string object, is there any better way to validate the length?
             if(pJson.isString() && pJson.asString().length() > 256)
@@ -2306,7 +2261,7 @@ bool Interface::validJsonOfField(size_t index,
                 err="String length exceeds limit for the " +
                     fieldName +
                     " field (the maximum value is 256)";
-                return false;               
+                return false;
             }
 
             break;
@@ -2318,7 +2273,7 @@ bool Interface::validJsonOfField(size_t index,
             if(!pJson.isString())
             {
                 err="Type error in the "+fieldName+" field";
-                return false;                
+                return false;
             }
             // asString().length() creates a string object, is there any better way to validate the length?
             if(pJson.isString() && pJson.asString().length() > 256)
@@ -2326,7 +2281,7 @@ bool Interface::validJsonOfField(size_t index,
                 err="String length exceeds limit for the " +
                     fieldName +
                     " field (the maximum value is 256)";
-                return false;               
+                return false;
             }
 
             break;
@@ -2338,7 +2293,7 @@ bool Interface::validJsonOfField(size_t index,
             if(!pJson.isString())
             {
                 err="Type error in the "+fieldName+" field";
-                return false;                
+                return false;
             }
             // asString().length() creates a string object, is there any better way to validate the length?
             if(pJson.isString() && pJson.asString().length() > 512)
@@ -2346,7 +2301,7 @@ bool Interface::validJsonOfField(size_t index,
                 err="String length exceeds limit for the " +
                     fieldName +
                     " field (the maximum value is 512)";
-                return false;               
+                return false;
             }
 
             break;
@@ -2359,7 +2314,7 @@ bool Interface::validJsonOfField(size_t index,
             if(!pJson.isString())
             {
                 err="Type error in the "+fieldName+" field";
-                return false;                
+                return false;
             }
             // asString().length() creates a string object, is there any better way to validate the length?
             if(pJson.isString() && pJson.asString().length() > 256)
@@ -2367,7 +2322,7 @@ bool Interface::validJsonOfField(size_t index,
                 err="String length exceeds limit for the " +
                     fieldName +
                     " field (the maximum value is 256)";
-                return false;               
+                return false;
             }
 
             break;
@@ -2379,7 +2334,7 @@ bool Interface::validJsonOfField(size_t index,
             if(!pJson.isString())
             {
                 err="Type error in the "+fieldName+" field";
-                return false;                
+                return false;
             }
             break;
         case 6:
@@ -2390,7 +2345,7 @@ bool Interface::validJsonOfField(size_t index,
             if(!pJson.isString())
             {
                 err="Type error in the "+fieldName+" field";
-                return false;                
+                return false;
             }
             break;
         case 7:
@@ -2401,7 +2356,7 @@ bool Interface::validJsonOfField(size_t index,
             if(!pJson.isString())
             {
                 err="Type error in the "+fieldName+" field";
-                return false;                
+                return false;
             }
             break;
         case 8:
@@ -2437,7 +2392,7 @@ bool Interface::validJsonOfField(size_t index,
             if(!pJson.isString())
             {
                 err="Type error in the "+fieldName+" field";
-                return false;                
+                return false;
             }
             break;
         case 11:
@@ -2449,7 +2404,7 @@ bool Interface::validJsonOfField(size_t index,
             if(!pJson.isString())
             {
                 err="Type error in the "+fieldName+" field";
-                return false;                
+                return false;
             }
             break;
         case 12:
@@ -2464,11 +2419,9 @@ bool Interface::validJsonOfField(size_t index,
                 return false;
             }
             break;
-     
         default:
             err="Internal error in the server";
             return false;
-            break;
     }
     return true;
 }

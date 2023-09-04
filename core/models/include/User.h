@@ -35,7 +35,7 @@ using DbClientPtr = std::shared_ptr<DbClient>;
 }
 namespace drogon_model
 {
-namespace stibel_init 
+namespace stibel_init
 {
 
 class User
@@ -48,7 +48,7 @@ class User
         static const std::string _userAccount;
         static const std::string _userPassword;
         static const std::string _email;
-        static const std::string _iphone;
+        static const std::string _phone;
         static const std::string _avatarUrl;
         static const std::string _gender;
         static const std::string _userStatus;
@@ -71,12 +71,12 @@ class User
     /**
      * @brief constructor
      * @param r One row of records in the SQL query result.
-     * @param indexOffset Set the offset to -1 to access all columns by column names, 
+     * @param indexOffset Set the offset to -1 to access all columns by column names,
      * otherwise access all columns by offsets.
-     * @note If the SQL is not a style of 'select * from table_name ...' (select all 
+     * @note If the SQL is not a style of 'select * from table_name ...' (select all
      * columns by an asterisk), please set the offset to -1.
      */
-    explicit User(const Row &r, const ssize_t indexOffset = 0) noexcept;
+    explicit User(const drogon::orm::Row &r, const ssize_t indexOffset = 0) noexcept;
 
     /**
      * @brief constructor
@@ -92,7 +92,7 @@ class User
     User(const Json::Value &pJson, const std::vector<std::string> &pMasqueradingVector) noexcept(false);
 
     User() = default;
-    
+
     void updateByJson(const Json::Value &pJson) noexcept(false);
     void updateByMasqueradedJson(const Json::Value &pJson,
                                  const std::vector<std::string> &pMasqueradingVector) noexcept(false);
@@ -106,8 +106,8 @@ class User
                                           std::string &err);
     static bool validJsonOfField(size_t index,
                           const std::string &fieldName,
-                          const Json::Value &pJson, 
-                          std::string &err, 
+                          const Json::Value &pJson,
+                          std::string &err,
                           bool isForCreation);
 
     /**  For column id  */
@@ -115,179 +115,147 @@ class User
     const int64_t &getValueOfId() const noexcept;
     ///Return a shared_ptr object pointing to the column const value, or an empty shared_ptr object if the column is null
     const std::shared_ptr<int64_t> &getId() const noexcept;
-
     ///Set the value of the column id
     void setId(const int64_t &pId) noexcept;
-
 
     /**  For column username  */
     ///Get the value of the column username, returns the default value if the column is null
     const std::string &getValueOfUsername() const noexcept;
     ///Return a shared_ptr object pointing to the column const value, or an empty shared_ptr object if the column is null
     const std::shared_ptr<std::string> &getUsername() const noexcept;
-
     ///Set the value of the column username
     void setUsername(const std::string &pUsername) noexcept;
     void setUsername(std::string &&pUsername) noexcept;
     void setUsernameToNull() noexcept;
-
 
     /**  For column userAccount  */
     ///Get the value of the column userAccount, returns the default value if the column is null
     const std::string &getValueOfUseraccount() const noexcept;
     ///Return a shared_ptr object pointing to the column const value, or an empty shared_ptr object if the column is null
     const std::shared_ptr<std::string> &getUseraccount() const noexcept;
-
     ///Set the value of the column userAccount
     void setUseraccount(const std::string &pUseraccount) noexcept;
     void setUseraccount(std::string &&pUseraccount) noexcept;
-
 
     /**  For column userPassword  */
     ///Get the value of the column userPassword, returns the default value if the column is null
     const std::string &getValueOfUserpassword() const noexcept;
     ///Return a shared_ptr object pointing to the column const value, or an empty shared_ptr object if the column is null
     const std::shared_ptr<std::string> &getUserpassword() const noexcept;
-
     ///Set the value of the column userPassword
     void setUserpassword(const std::string &pUserpassword) noexcept;
     void setUserpassword(std::string &&pUserpassword) noexcept;
-
 
     /**  For column email  */
     ///Get the value of the column email, returns the default value if the column is null
     const std::string &getValueOfEmail() const noexcept;
     ///Return a shared_ptr object pointing to the column const value, or an empty shared_ptr object if the column is null
     const std::shared_ptr<std::string> &getEmail() const noexcept;
-
     ///Set the value of the column email
     void setEmail(const std::string &pEmail) noexcept;
     void setEmail(std::string &&pEmail) noexcept;
 
-
-    /**  For column iphone  */
-    ///Get the value of the column iphone, returns the default value if the column is null
-    const std::string &getValueOfIphone() const noexcept;
+    /**  For column phone  */
+    ///Get the value of the column phone, returns the default value if the column is null
+    const std::string &getValueOfPhone() const noexcept;
     ///Return a shared_ptr object pointing to the column const value, or an empty shared_ptr object if the column is null
-    const std::shared_ptr<std::string> &getIphone() const noexcept;
-
-    ///Set the value of the column iphone
-    void setIphone(const std::string &pIphone) noexcept;
-    void setIphone(std::string &&pIphone) noexcept;
-    void setIphoneToNull() noexcept;
-
+    const std::shared_ptr<std::string> &getPhone() const noexcept;
+    ///Set the value of the column phone
+    void setPhone(const std::string &pPhone) noexcept;
+    void setPhone(std::string &&pPhone) noexcept;
+    void setPhoneToNull() noexcept;
 
     /**  For column avatarUrl  */
     ///Get the value of the column avatarUrl, returns the default value if the column is null
     const std::string &getValueOfAvatarurl() const noexcept;
     ///Return a shared_ptr object pointing to the column const value, or an empty shared_ptr object if the column is null
     const std::shared_ptr<std::string> &getAvatarurl() const noexcept;
-
     ///Set the value of the column avatarUrl
     void setAvatarurl(const std::string &pAvatarurl) noexcept;
     void setAvatarurl(std::string &&pAvatarurl) noexcept;
     void setAvatarurlToNull() noexcept;
-
 
     /**  For column gender  */
     ///Get the value of the column gender, returns the default value if the column is null
     const int8_t &getValueOfGender() const noexcept;
     ///Return a shared_ptr object pointing to the column const value, or an empty shared_ptr object if the column is null
     const std::shared_ptr<int8_t> &getGender() const noexcept;
-
     ///Set the value of the column gender
     void setGender(const int8_t &pGender) noexcept;
     void setGenderToNull() noexcept;
-
 
     /**  For column userStatus  */
     ///Get the value of the column userStatus, returns the default value if the column is null
     const int32_t &getValueOfUserstatus() const noexcept;
     ///Return a shared_ptr object pointing to the column const value, or an empty shared_ptr object if the column is null
     const std::shared_ptr<int32_t> &getUserstatus() const noexcept;
-
     ///Set the value of the column userStatus
     void setUserstatus(const int32_t &pUserstatus) noexcept;
     void setUserstatusToNull() noexcept;
-
 
     /**  For column createTime  */
     ///Get the value of the column createTime, returns the default value if the column is null
     const ::trantor::Date &getValueOfCreatetime() const noexcept;
     ///Return a shared_ptr object pointing to the column const value, or an empty shared_ptr object if the column is null
     const std::shared_ptr<::trantor::Date> &getCreatetime() const noexcept;
-
     ///Set the value of the column createTime
     void setCreatetime(const ::trantor::Date &pCreatetime) noexcept;
     void setCreatetimeToNull() noexcept;
-
 
     /**  For column updateTime  */
     ///Get the value of the column updateTime, returns the default value if the column is null
     const ::trantor::Date &getValueOfUpdatetime() const noexcept;
     ///Return a shared_ptr object pointing to the column const value, or an empty shared_ptr object if the column is null
     const std::shared_ptr<::trantor::Date> &getUpdatetime() const noexcept;
-
     ///Set the value of the column updateTime
     void setUpdatetime(const ::trantor::Date &pUpdatetime) noexcept;
     void setUpdatetimeToNull() noexcept;
-
 
     /**  For column idDelete  */
     ///Get the value of the column idDelete, returns the default value if the column is null
     const int8_t &getValueOfIddelete() const noexcept;
     ///Return a shared_ptr object pointing to the column const value, or an empty shared_ptr object if the column is null
     const std::shared_ptr<int8_t> &getIddelete() const noexcept;
-
     ///Set the value of the column idDelete
     void setIddelete(const int8_t &pIddelete) noexcept;
-
 
     /**  For column userRole  */
     ///Get the value of the column userRole, returns the default value if the column is null
     const int32_t &getValueOfUserrole() const noexcept;
     ///Return a shared_ptr object pointing to the column const value, or an empty shared_ptr object if the column is null
     const std::shared_ptr<int32_t> &getUserrole() const noexcept;
-
     ///Set the value of the column userRole
     void setUserrole(const int32_t &pUserrole) noexcept;
-
 
     /**  For column planetCode  */
     ///Get the value of the column planetCode, returns the default value if the column is null
     const std::string &getValueOfPlanetcode() const noexcept;
     ///Return a shared_ptr object pointing to the column const value, or an empty shared_ptr object if the column is null
     const std::shared_ptr<std::string> &getPlanetcode() const noexcept;
-
     ///Set the value of the column planetCode
     void setPlanetcode(const std::string &pPlanetcode) noexcept;
     void setPlanetcode(std::string &&pPlanetcode) noexcept;
     void setPlanetcodeToNull() noexcept;
-
 
     /**  For column tags  */
     ///Get the value of the column tags, returns the default value if the column is null
     const std::string &getValueOfTags() const noexcept;
     ///Return a shared_ptr object pointing to the column const value, or an empty shared_ptr object if the column is null
     const std::shared_ptr<std::string> &getTags() const noexcept;
-
     ///Set the value of the column tags
     void setTags(const std::string &pTags) noexcept;
     void setTags(std::string &&pTags) noexcept;
     void setTagsToNull() noexcept;
-
 
     /**  For column profile  */
     ///Get the value of the column profile, returns the default value if the column is null
     const std::string &getValueOfProfile() const noexcept;
     ///Return a shared_ptr object pointing to the column const value, or an empty shared_ptr object if the column is null
     const std::shared_ptr<std::string> &getProfile() const noexcept;
-
     ///Set the value of the column profile
     void setProfile(const std::string &pProfile) noexcept;
     void setProfile(std::string &&pProfile) noexcept;
     void setProfileToNull() noexcept;
-
 
 
     static size_t getColumnNumber() noexcept {  return 16;  }
@@ -297,9 +265,9 @@ class User
     Json::Value toMasqueradedJson(const std::vector<std::string> &pMasqueradingVector) const;
     /// Relationship interfaces
   private:
-    friend Mapper<User>;
+    friend drogon::orm::Mapper<User>;
 #ifdef __cpp_impl_coroutine
-    friend CoroMapper<User>;
+    friend drogon::orm::CoroMapper<User>;
 #endif
     static const std::vector<std::string> &insertColumns() noexcept;
     void outputArgs(drogon::orm::internal::SqlBinder &binder) const;
@@ -312,7 +280,7 @@ class User
     std::shared_ptr<std::string> useraccount_;
     std::shared_ptr<std::string> userpassword_;
     std::shared_ptr<std::string> email_;
-    std::shared_ptr<std::string> iphone_;
+    std::shared_ptr<std::string> phone_;
     std::shared_ptr<std::string> avatarurl_;
     std::shared_ptr<int8_t> gender_;
     std::shared_ptr<int32_t> userstatus_;
@@ -339,13 +307,13 @@ class User
     static const std::string &sqlForFindingByPrimaryKey()
     {
         static const std::string sql="select * from " + tableName + " where id = ?";
-        return sql;                   
+        return sql;
     }
 
     static const std::string &sqlForDeletingByPrimaryKey()
     {
         static const std::string sql="delete from " + tableName + " where id = ?";
-        return sql;                   
+        return sql;
     }
     std::string sqlForInserting(bool &needSelection) const
     {
@@ -376,7 +344,7 @@ class User
         }
         if(dirtyFlag_[5])
         {
-            sql += "iphone,";
+            sql += "phone,";
             ++parametersCount;
         }
         if(dirtyFlag_[6])
@@ -442,48 +410,48 @@ class User
         }
         else
             sql += ") values (";
-        
+
         sql +="default,";
         if(dirtyFlag_[1])
         {
             sql.append("?,");
 
-        } 
+        }
         if(dirtyFlag_[2])
         {
             sql.append("?,");
 
-        } 
+        }
         if(dirtyFlag_[3])
         {
             sql.append("?,");
 
-        } 
+        }
         if(dirtyFlag_[4])
         {
             sql.append("?,");
 
-        } 
+        }
         if(dirtyFlag_[5])
         {
             sql.append("?,");
 
-        } 
+        }
         if(dirtyFlag_[6])
         {
             sql.append("?,");
 
-        } 
+        }
         if(dirtyFlag_[7])
         {
             sql.append("?,");
 
-        } 
+        }
         if(dirtyFlag_[8])
         {
             sql.append("?,");
 
-        } 
+        }
         else
         {
             sql +="default,";
@@ -492,7 +460,7 @@ class User
         {
             sql.append("?,");
 
-        } 
+        }
         else
         {
             sql +="default,";
@@ -501,7 +469,7 @@ class User
         {
             sql.append("?,");
 
-        } 
+        }
         else
         {
             sql +="default,";
@@ -510,7 +478,7 @@ class User
         {
             sql.append("?,");
 
-        } 
+        }
         else
         {
             sql +="default,";
@@ -519,7 +487,7 @@ class User
         {
             sql.append("?,");
 
-        } 
+        }
         else
         {
             sql +="default,";
@@ -528,24 +496,24 @@ class User
         {
             sql.append("?,");
 
-        } 
+        }
         if(dirtyFlag_[14])
         {
             sql.append("?,");
 
-        } 
+        }
         if(dirtyFlag_[15])
         {
             sql.append("?,");
 
-        } 
+        }
         if(parametersCount > 0)
         {
             sql.resize(sql.length() - 1);
         }
         sql.append(1, ')');
         LOG_TRACE << sql;
-        return sql;   
+        return sql;
     }
 };
 } // namespace stibel_init

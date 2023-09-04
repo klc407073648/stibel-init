@@ -10,6 +10,7 @@
 #include <string>
 
 using namespace drogon;
+using namespace drogon::orm;
 using namespace drogon_model::stibel_init;
 
 const std::string User::Cols::_id = "id";
@@ -17,7 +18,7 @@ const std::string User::Cols::_username = "username";
 const std::string User::Cols::_userAccount = "userAccount";
 const std::string User::Cols::_userPassword = "userPassword";
 const std::string User::Cols::_email = "email";
-const std::string User::Cols::_iphone = "iphone";
+const std::string User::Cols::_phone = "phone";
 const std::string User::Cols::_avatarUrl = "avatarUrl";
 const std::string User::Cols::_gender = "gender";
 const std::string User::Cols::_userStatus = "userStatus";
@@ -38,7 +39,7 @@ const std::vector<typename User::MetaData> User::metaData_={
 {"userAccount","std::string","varchar(256)",256,0,0,1},
 {"userPassword","std::string","varchar(512)",512,0,0,1},
 {"email","std::string","varchar(512)",512,0,0,1},
-{"iphone","std::string","varchar(128)",128,0,0,0},
+{"phone","std::string","varchar(128)",128,0,0,0},
 {"avatarUrl","std::string","varchar(1024)",1024,0,0,0},
 {"gender","int8_t","tinyint(4)",1,0,0,0},
 {"userStatus","int32_t","int(11)",4,0,0,0},
@@ -79,9 +80,9 @@ User::User(const Row &r, const ssize_t indexOffset) noexcept
         {
             email_=std::make_shared<std::string>(r["email"].as<std::string>());
         }
-        if(!r["iphone"].isNull())
+        if(!r["phone"].isNull())
         {
-            iphone_=std::make_shared<std::string>(r["iphone"].as<std::string>());
+            phone_=std::make_shared<std::string>(r["phone"].as<std::string>());
         }
         if(!r["avatarUrl"].isNull())
         {
@@ -197,7 +198,7 @@ User::User(const Row &r, const ssize_t indexOffset) noexcept
         index = offset + 5;
         if(!r[index].isNull())
         {
-            iphone_=std::make_shared<std::string>(r[index].as<std::string>());
+            phone_=std::make_shared<std::string>(r[index].as<std::string>());
         }
         index = offset + 6;
         if(!r[index].isNull())
@@ -310,7 +311,6 @@ User::User(const Json::Value &pJson, const std::vector<std::string> &pMasqueradi
         if(!pJson[pMasqueradingVector[1]].isNull())
         {
             username_=std::make_shared<std::string>(pJson[pMasqueradingVector[1]].asString());
-
         }
     }
     if(!pMasqueradingVector[2].empty() && pJson.isMember(pMasqueradingVector[2]))
@@ -319,7 +319,6 @@ User::User(const Json::Value &pJson, const std::vector<std::string> &pMasqueradi
         if(!pJson[pMasqueradingVector[2]].isNull())
         {
             useraccount_=std::make_shared<std::string>(pJson[pMasqueradingVector[2]].asString());
-
         }
     }
     if(!pMasqueradingVector[3].empty() && pJson.isMember(pMasqueradingVector[3]))
@@ -328,7 +327,6 @@ User::User(const Json::Value &pJson, const std::vector<std::string> &pMasqueradi
         if(!pJson[pMasqueradingVector[3]].isNull())
         {
             userpassword_=std::make_shared<std::string>(pJson[pMasqueradingVector[3]].asString());
-
         }
     }
     if(!pMasqueradingVector[4].empty() && pJson.isMember(pMasqueradingVector[4]))
@@ -337,7 +335,6 @@ User::User(const Json::Value &pJson, const std::vector<std::string> &pMasqueradi
         if(!pJson[pMasqueradingVector[4]].isNull())
         {
             email_=std::make_shared<std::string>(pJson[pMasqueradingVector[4]].asString());
-
         }
     }
     if(!pMasqueradingVector[5].empty() && pJson.isMember(pMasqueradingVector[5]))
@@ -345,8 +342,7 @@ User::User(const Json::Value &pJson, const std::vector<std::string> &pMasqueradi
         dirtyFlag_[5] = true;
         if(!pJson[pMasqueradingVector[5]].isNull())
         {
-            iphone_=std::make_shared<std::string>(pJson[pMasqueradingVector[5]].asString());
-
+            phone_=std::make_shared<std::string>(pJson[pMasqueradingVector[5]].asString());
         }
     }
     if(!pMasqueradingVector[6].empty() && pJson.isMember(pMasqueradingVector[6]))
@@ -355,7 +351,6 @@ User::User(const Json::Value &pJson, const std::vector<std::string> &pMasqueradi
         if(!pJson[pMasqueradingVector[6]].isNull())
         {
             avatarurl_=std::make_shared<std::string>(pJson[pMasqueradingVector[6]].asString());
-
         }
     }
     if(!pMasqueradingVector[7].empty() && pJson.isMember(pMasqueradingVector[7]))
@@ -448,7 +443,6 @@ User::User(const Json::Value &pJson, const std::vector<std::string> &pMasqueradi
         if(!pJson[pMasqueradingVector[13]].isNull())
         {
             planetcode_=std::make_shared<std::string>(pJson[pMasqueradingVector[13]].asString());
-
         }
     }
     if(!pMasqueradingVector[14].empty() && pJson.isMember(pMasqueradingVector[14]))
@@ -457,7 +451,6 @@ User::User(const Json::Value &pJson, const std::vector<std::string> &pMasqueradi
         if(!pJson[pMasqueradingVector[14]].isNull())
         {
             tags_=std::make_shared<std::string>(pJson[pMasqueradingVector[14]].asString());
-
         }
     }
     if(!pMasqueradingVector[15].empty() && pJson.isMember(pMasqueradingVector[15]))
@@ -466,7 +459,6 @@ User::User(const Json::Value &pJson, const std::vector<std::string> &pMasqueradi
         if(!pJson[pMasqueradingVector[15]].isNull())
         {
             profile_=std::make_shared<std::string>(pJson[pMasqueradingVector[15]].asString());
-
         }
     }
 }
@@ -513,12 +505,12 @@ User::User(const Json::Value &pJson) noexcept(false)
             email_=std::make_shared<std::string>(pJson["email"].asString());
         }
     }
-    if(pJson.isMember("iphone"))
+    if(pJson.isMember("phone"))
     {
         dirtyFlag_[5]=true;
-        if(!pJson["iphone"].isNull())
+        if(!pJson["phone"].isNull())
         {
-            iphone_=std::make_shared<std::string>(pJson["iphone"].asString());
+            phone_=std::make_shared<std::string>(pJson["phone"].asString());
         }
     }
     if(pJson.isMember("avatarUrl"))
@@ -691,7 +683,7 @@ void User::updateByMasqueradedJson(const Json::Value &pJson,
         dirtyFlag_[5] = true;
         if(!pJson[pMasqueradingVector[5]].isNull())
         {
-            iphone_=std::make_shared<std::string>(pJson[pMasqueradingVector[5]].asString());
+            phone_=std::make_shared<std::string>(pJson[pMasqueradingVector[5]].asString());
         }
     }
     if(!pMasqueradingVector[6].empty() && pJson.isMember(pMasqueradingVector[6]))
@@ -811,7 +803,7 @@ void User::updateByMasqueradedJson(const Json::Value &pJson,
         }
     }
 }
-                                                                    
+
 void User::updateByJson(const Json::Value &pJson) noexcept(false)
 {
     if(pJson.isMember("id"))
@@ -853,12 +845,12 @@ void User::updateByJson(const Json::Value &pJson) noexcept(false)
             email_=std::make_shared<std::string>(pJson["email"].asString());
         }
     }
-    if(pJson.isMember("iphone"))
+    if(pJson.isMember("phone"))
     {
         dirtyFlag_[5] = true;
-        if(!pJson["iphone"].isNull())
+        if(!pJson["phone"].isNull())
         {
-            iphone_=std::make_shared<std::string>(pJson["iphone"].asString());
+            phone_=std::make_shared<std::string>(pJson["phone"].asString());
         }
     }
     if(pJson.isMember("avatarUrl"))
@@ -995,9 +987,6 @@ void User::setId(const int64_t &pId) noexcept
     id_ = std::make_shared<int64_t>(pId);
     dirtyFlag_[0] = true;
 }
-
-
-
 const typename User::PrimaryKeyType & User::getPrimaryKey() const
 {
     assert(id_);
@@ -1025,14 +1014,11 @@ void User::setUsername(std::string &&pUsername) noexcept
     username_ = std::make_shared<std::string>(std::move(pUsername));
     dirtyFlag_[1] = true;
 }
-
-
 void User::setUsernameToNull() noexcept
 {
     username_.reset();
     dirtyFlag_[1] = true;
 }
-
 
 const std::string &User::getValueOfUseraccount() const noexcept
 {
@@ -1056,9 +1042,6 @@ void User::setUseraccount(std::string &&pUseraccount) noexcept
     dirtyFlag_[2] = true;
 }
 
-
-
-
 const std::string &User::getValueOfUserpassword() const noexcept
 {
     const static std::string defaultValue = std::string();
@@ -1080,9 +1063,6 @@ void User::setUserpassword(std::string &&pUserpassword) noexcept
     userpassword_ = std::make_shared<std::string>(std::move(pUserpassword));
     dirtyFlag_[3] = true;
 }
-
-
-
 
 const std::string &User::getValueOfEmail() const noexcept
 {
@@ -1106,38 +1086,32 @@ void User::setEmail(std::string &&pEmail) noexcept
     dirtyFlag_[4] = true;
 }
 
-
-
-
-const std::string &User::getValueOfIphone() const noexcept
+const std::string &User::getValueOfPhone() const noexcept
 {
     const static std::string defaultValue = std::string();
-    if(iphone_)
-        return *iphone_;
+    if(phone_)
+        return *phone_;
     return defaultValue;
 }
-const std::shared_ptr<std::string> &User::getIphone() const noexcept
+const std::shared_ptr<std::string> &User::getPhone() const noexcept
 {
-    return iphone_;
+    return phone_;
 }
-void User::setIphone(const std::string &pIphone) noexcept
+void User::setPhone(const std::string &pPhone) noexcept
 {
-    iphone_ = std::make_shared<std::string>(pIphone);
+    phone_ = std::make_shared<std::string>(pPhone);
     dirtyFlag_[5] = true;
 }
-void User::setIphone(std::string &&pIphone) noexcept
+void User::setPhone(std::string &&pPhone) noexcept
 {
-    iphone_ = std::make_shared<std::string>(std::move(pIphone));
+    phone_ = std::make_shared<std::string>(std::move(pPhone));
     dirtyFlag_[5] = true;
 }
-
-
-void User::setIphoneToNull() noexcept
+void User::setPhoneToNull() noexcept
 {
-    iphone_.reset();
+    phone_.reset();
     dirtyFlag_[5] = true;
 }
-
 
 const std::string &User::getValueOfAvatarurl() const noexcept
 {
@@ -1160,14 +1134,11 @@ void User::setAvatarurl(std::string &&pAvatarurl) noexcept
     avatarurl_ = std::make_shared<std::string>(std::move(pAvatarurl));
     dirtyFlag_[6] = true;
 }
-
-
 void User::setAvatarurlToNull() noexcept
 {
     avatarurl_.reset();
     dirtyFlag_[6] = true;
 }
-
 
 const int8_t &User::getValueOfGender() const noexcept
 {
@@ -1185,14 +1156,11 @@ void User::setGender(const int8_t &pGender) noexcept
     gender_ = std::make_shared<int8_t>(pGender);
     dirtyFlag_[7] = true;
 }
-
-
 void User::setGenderToNull() noexcept
 {
     gender_.reset();
     dirtyFlag_[7] = true;
 }
-
 
 const int32_t &User::getValueOfUserstatus() const noexcept
 {
@@ -1210,14 +1178,11 @@ void User::setUserstatus(const int32_t &pUserstatus) noexcept
     userstatus_ = std::make_shared<int32_t>(pUserstatus);
     dirtyFlag_[8] = true;
 }
-
-
 void User::setUserstatusToNull() noexcept
 {
     userstatus_.reset();
     dirtyFlag_[8] = true;
 }
-
 
 const ::trantor::Date &User::getValueOfCreatetime() const noexcept
 {
@@ -1235,14 +1200,11 @@ void User::setCreatetime(const ::trantor::Date &pCreatetime) noexcept
     createtime_ = std::make_shared<::trantor::Date>(pCreatetime);
     dirtyFlag_[9] = true;
 }
-
-
 void User::setCreatetimeToNull() noexcept
 {
     createtime_.reset();
     dirtyFlag_[9] = true;
 }
-
 
 const ::trantor::Date &User::getValueOfUpdatetime() const noexcept
 {
@@ -1260,14 +1222,11 @@ void User::setUpdatetime(const ::trantor::Date &pUpdatetime) noexcept
     updatetime_ = std::make_shared<::trantor::Date>(pUpdatetime);
     dirtyFlag_[10] = true;
 }
-
-
 void User::setUpdatetimeToNull() noexcept
 {
     updatetime_.reset();
     dirtyFlag_[10] = true;
 }
-
 
 const int8_t &User::getValueOfIddelete() const noexcept
 {
@@ -1286,9 +1245,6 @@ void User::setIddelete(const int8_t &pIddelete) noexcept
     dirtyFlag_[11] = true;
 }
 
-
-
-
 const int32_t &User::getValueOfUserrole() const noexcept
 {
     const static int32_t defaultValue = int32_t();
@@ -1305,9 +1261,6 @@ void User::setUserrole(const int32_t &pUserrole) noexcept
     userrole_ = std::make_shared<int32_t>(pUserrole);
     dirtyFlag_[12] = true;
 }
-
-
-
 
 const std::string &User::getValueOfPlanetcode() const noexcept
 {
@@ -1330,14 +1283,11 @@ void User::setPlanetcode(std::string &&pPlanetcode) noexcept
     planetcode_ = std::make_shared<std::string>(std::move(pPlanetcode));
     dirtyFlag_[13] = true;
 }
-
-
 void User::setPlanetcodeToNull() noexcept
 {
     planetcode_.reset();
     dirtyFlag_[13] = true;
 }
-
 
 const std::string &User::getValueOfTags() const noexcept
 {
@@ -1360,14 +1310,11 @@ void User::setTags(std::string &&pTags) noexcept
     tags_ = std::make_shared<std::string>(std::move(pTags));
     dirtyFlag_[14] = true;
 }
-
-
 void User::setTagsToNull() noexcept
 {
     tags_.reset();
     dirtyFlag_[14] = true;
 }
-
 
 const std::string &User::getValueOfProfile() const noexcept
 {
@@ -1390,14 +1337,11 @@ void User::setProfile(std::string &&pProfile) noexcept
     profile_ = std::make_shared<std::string>(std::move(pProfile));
     dirtyFlag_[15] = true;
 }
-
-
 void User::setProfileToNull() noexcept
 {
     profile_.reset();
     dirtyFlag_[15] = true;
 }
-
 
 void User::updateId(const uint64_t id)
 {
@@ -1411,7 +1355,7 @@ const std::vector<std::string> &User::insertColumns() noexcept
         "userAccount",
         "userPassword",
         "email",
-        "iphone",
+        "phone",
         "avatarUrl",
         "gender",
         "userStatus",
@@ -1474,9 +1418,9 @@ void User::outputArgs(drogon::orm::internal::SqlBinder &binder) const
     }
     if(dirtyFlag_[5])
     {
-        if(getIphone())
+        if(getPhone())
         {
-            binder << getValueOfIphone();
+            binder << getValueOfPhone();
         }
         else
         {
@@ -1709,9 +1653,9 @@ void User::updateArgs(drogon::orm::internal::SqlBinder &binder) const
     }
     if(dirtyFlag_[5])
     {
-        if(getIphone())
+        if(getPhone())
         {
-            binder << getValueOfIphone();
+            binder << getValueOfPhone();
         }
         else
         {
@@ -1872,13 +1816,13 @@ Json::Value User::toJson() const
     {
         ret["email"]=Json::Value();
     }
-    if(getIphone())
+    if(getPhone())
     {
-        ret["iphone"]=getValueOfIphone();
+        ret["phone"]=getValueOfPhone();
     }
     else
     {
-        ret["iphone"]=Json::Value();
+        ret["phone"]=Json::Value();
     }
     if(getAvatarurl())
     {
@@ -2026,9 +1970,9 @@ Json::Value User::toMasqueradedJson(
         }
         if(!pMasqueradingVector[5].empty())
         {
-            if(getIphone())
+            if(getPhone())
             {
-                ret[pMasqueradingVector[5]]=getValueOfIphone();
+                ret[pMasqueradingVector[5]]=getValueOfPhone();
             }
             else
             {
@@ -2188,13 +2132,13 @@ Json::Value User::toMasqueradedJson(
     {
         ret["email"]=Json::Value();
     }
-    if(getIphone())
+    if(getPhone())
     {
-        ret["iphone"]=getValueOfIphone();
+        ret["phone"]=getValueOfPhone();
     }
     else
     {
-        ret["iphone"]=Json::Value();
+        ret["phone"]=Json::Value();
     }
     if(getAvatarurl())
     {
@@ -2321,9 +2265,9 @@ bool User::validateJsonForCreation(const Json::Value &pJson, std::string &err)
         err="The email column cannot be null";
         return false;
     }
-    if(pJson.isMember("iphone"))
+    if(pJson.isMember("phone"))
     {
-        if(!validJsonOfField(5, "iphone", pJson["iphone"], err, true))
+        if(!validJsonOfField(5, "phone", pJson["phone"], err, true))
             return false;
     }
     if(pJson.isMember("avatarUrl"))
@@ -2532,7 +2476,7 @@ bool User::validateMasqueradedJsonForCreation(const Json::Value &pJson,
           }
       }
     }
-    catch(const Json::LogicError &e) 
+    catch(const Json::LogicError &e)
     {
       err = e.what();
       return false;
@@ -2571,9 +2515,9 @@ bool User::validateJsonForUpdate(const Json::Value &pJson, std::string &err)
         if(!validJsonOfField(4, "email", pJson["email"], err, false))
             return false;
     }
-    if(pJson.isMember("iphone"))
+    if(pJson.isMember("phone"))
     {
-        if(!validJsonOfField(5, "iphone", pJson["iphone"], err, false))
+        if(!validJsonOfField(5, "phone", pJson["phone"], err, false))
             return false;
     }
     if(pJson.isMember("avatarUrl"))
@@ -2724,7 +2668,7 @@ bool User::validateMasqueradedJsonForUpdate(const Json::Value &pJson,
               return false;
       }
     }
-    catch(const Json::LogicError &e) 
+    catch(const Json::LogicError &e)
     {
       err = e.what();
       return false;
@@ -2733,8 +2677,8 @@ bool User::validateMasqueradedJsonForUpdate(const Json::Value &pJson,
 }
 bool User::validJsonOfField(size_t index,
                             const std::string &fieldName,
-                            const Json::Value &pJson, 
-                            std::string &err, 
+                            const Json::Value &pJson,
+                            std::string &err,
                             bool isForCreation)
 {
     switch(index)
@@ -2749,7 +2693,7 @@ bool User::validJsonOfField(size_t index,
             {
                 err="The automatic primary key cannot be set";
                 return false;
-            }        
+            }
             if(!pJson.isInt64())
             {
                 err="Type error in the "+fieldName+" field";
@@ -2764,7 +2708,7 @@ bool User::validJsonOfField(size_t index,
             if(!pJson.isString())
             {
                 err="Type error in the "+fieldName+" field";
-                return false;                
+                return false;
             }
             // asString().length() creates a string object, is there any better way to validate the length?
             if(pJson.isString() && pJson.asString().length() > 256)
@@ -2772,7 +2716,7 @@ bool User::validJsonOfField(size_t index,
                 err="String length exceeds limit for the " +
                     fieldName +
                     " field (the maximum value is 256)";
-                return false;               
+                return false;
             }
 
             break;
@@ -2785,7 +2729,7 @@ bool User::validJsonOfField(size_t index,
             if(!pJson.isString())
             {
                 err="Type error in the "+fieldName+" field";
-                return false;                
+                return false;
             }
             // asString().length() creates a string object, is there any better way to validate the length?
             if(pJson.isString() && pJson.asString().length() > 256)
@@ -2793,7 +2737,7 @@ bool User::validJsonOfField(size_t index,
                 err="String length exceeds limit for the " +
                     fieldName +
                     " field (the maximum value is 256)";
-                return false;               
+                return false;
             }
 
             break;
@@ -2806,7 +2750,7 @@ bool User::validJsonOfField(size_t index,
             if(!pJson.isString())
             {
                 err="Type error in the "+fieldName+" field";
-                return false;                
+                return false;
             }
             // asString().length() creates a string object, is there any better way to validate the length?
             if(pJson.isString() && pJson.asString().length() > 512)
@@ -2814,7 +2758,7 @@ bool User::validJsonOfField(size_t index,
                 err="String length exceeds limit for the " +
                     fieldName +
                     " field (the maximum value is 512)";
-                return false;               
+                return false;
             }
 
             break;
@@ -2827,7 +2771,7 @@ bool User::validJsonOfField(size_t index,
             if(!pJson.isString())
             {
                 err="Type error in the "+fieldName+" field";
-                return false;                
+                return false;
             }
             // asString().length() creates a string object, is there any better way to validate the length?
             if(pJson.isString() && pJson.asString().length() > 512)
@@ -2835,7 +2779,7 @@ bool User::validJsonOfField(size_t index,
                 err="String length exceeds limit for the " +
                     fieldName +
                     " field (the maximum value is 512)";
-                return false;               
+                return false;
             }
 
             break;
@@ -2847,7 +2791,7 @@ bool User::validJsonOfField(size_t index,
             if(!pJson.isString())
             {
                 err="Type error in the "+fieldName+" field";
-                return false;                
+                return false;
             }
             // asString().length() creates a string object, is there any better way to validate the length?
             if(pJson.isString() && pJson.asString().length() > 128)
@@ -2855,7 +2799,7 @@ bool User::validJsonOfField(size_t index,
                 err="String length exceeds limit for the " +
                     fieldName +
                     " field (the maximum value is 128)";
-                return false;               
+                return false;
             }
 
             break;
@@ -2867,7 +2811,7 @@ bool User::validJsonOfField(size_t index,
             if(!pJson.isString())
             {
                 err="Type error in the "+fieldName+" field";
-                return false;                
+                return false;
             }
             // asString().length() creates a string object, is there any better way to validate the length?
             if(pJson.isString() && pJson.asString().length() > 1024)
@@ -2875,7 +2819,7 @@ bool User::validJsonOfField(size_t index,
                 err="String length exceeds limit for the " +
                     fieldName +
                     " field (the maximum value is 1024)";
-                return false;               
+                return false;
             }
 
             break;
@@ -2909,7 +2853,7 @@ bool User::validJsonOfField(size_t index,
             if(!pJson.isString())
             {
                 err="Type error in the "+fieldName+" field";
-                return false;                
+                return false;
             }
             break;
         case 10:
@@ -2920,7 +2864,7 @@ bool User::validJsonOfField(size_t index,
             if(!pJson.isString())
             {
                 err="Type error in the "+fieldName+" field";
-                return false;                
+                return false;
             }
             break;
         case 11:
@@ -2955,7 +2899,7 @@ bool User::validJsonOfField(size_t index,
             if(!pJson.isString())
             {
                 err="Type error in the "+fieldName+" field";
-                return false;                
+                return false;
             }
             // asString().length() creates a string object, is there any better way to validate the length?
             if(pJson.isString() && pJson.asString().length() > 512)
@@ -2963,7 +2907,7 @@ bool User::validJsonOfField(size_t index,
                 err="String length exceeds limit for the " +
                     fieldName +
                     " field (the maximum value is 512)";
-                return false;               
+                return false;
             }
 
             break;
@@ -2975,7 +2919,7 @@ bool User::validJsonOfField(size_t index,
             if(!pJson.isString())
             {
                 err="Type error in the "+fieldName+" field";
-                return false;                
+                return false;
             }
             // asString().length() creates a string object, is there any better way to validate the length?
             if(pJson.isString() && pJson.asString().length() > 1024)
@@ -2983,7 +2927,7 @@ bool User::validJsonOfField(size_t index,
                 err="String length exceeds limit for the " +
                     fieldName +
                     " field (the maximum value is 1024)";
-                return false;               
+                return false;
             }
 
             break;
@@ -2995,7 +2939,7 @@ bool User::validJsonOfField(size_t index,
             if(!pJson.isString())
             {
                 err="Type error in the "+fieldName+" field";
-                return false;                
+                return false;
             }
             // asString().length() creates a string object, is there any better way to validate the length?
             if(pJson.isString() && pJson.asString().length() > 1024)
@@ -3003,15 +2947,13 @@ bool User::validJsonOfField(size_t index,
                 err="String length exceeds limit for the " +
                     fieldName +
                     " field (the maximum value is 1024)";
-                return false;               
+                return false;
             }
 
             break;
-     
         default:
             err="Internal error in the server";
             return false;
-            break;
     }
     return true;
 }

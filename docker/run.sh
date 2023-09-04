@@ -6,7 +6,6 @@ function runMyprj()
     logDebug "runMyprj begin"
 
     cd $work_path/deploy
-
     ./stibel-init &
 
     logDebug "runMyprj end"
@@ -17,7 +16,6 @@ function runSwd() {
     logDebug "runSwd begin"
 
     cd $work_path/docker
-
     ./swd.sh &
 
     logDebug "runSwd end"
@@ -26,10 +24,8 @@ function runSwd() {
 function MAIN() 
 {
     logDebug "run.sh MAIN begin"
-
     runMyprj
     runSwd
-
     logDebug "run.sh MAIN end"
 }
 
