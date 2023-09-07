@@ -1,10 +1,7 @@
 #include "impl/UserServiceImpl.h"
 #include "UserConstant.h"
-#include "ErrorCode.h"
 #include "UserDescription.h"
 #include "BusinessException.h"
-#include <trantor/utils/Utilities.h>
-#include <regex>
 
 using namespace drogon;
 using namespace drogon::internal;

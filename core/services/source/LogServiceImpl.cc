@@ -1,5 +1,4 @@
 #include "impl/LogServiceImpl.h"
-#include "ErrorCode.h"
 #include "BusinessException.h"
 
 using namespace stibel_init;

@@ -1,10 +1,6 @@
 #include "UserController.h"
 #include "UserConstant.h"
-#include "Description.h"
 #include "HttpResponseUtils.h"
-#include "ErrorCode.h"
-#include <string>
-#include <json/json.h>
 
 using namespace stibel_init::common;
 using namespace stibel_init::exception;

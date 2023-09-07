@@ -1,7 +1,6 @@
 #include "inner/impl/CacheServiceImpl.h"
 #include "BusinessException.h"
 #include "InterfaceDescription.h"
-#include <json/json.h>
 
 using namespace drogon;
 using namespace stibel_init::exception;

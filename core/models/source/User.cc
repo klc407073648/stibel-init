@@ -6,8 +6,6 @@
  */
 
 #include "User.h"
-#include <drogon/utils/Utilities.h>
-#include <string>
 
 using namespace drogon;
 using namespace drogon::orm;

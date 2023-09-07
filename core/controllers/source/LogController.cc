@@ -1,7 +1,5 @@
 #include "LogController.h"
 #include "HttpResponseUtils.h"
-#include <string>
-#include <json/json.h>
 
 using namespace stibel_init::common;
 using namespace stibel_init::exception;

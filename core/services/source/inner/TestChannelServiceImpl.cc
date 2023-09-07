@@ -1,6 +1,5 @@
 #include "inner/impl/TestChannelServiceImpl.h"
 #include "BusinessException.h"
-#include <json/json.h>
 
 using namespace drogon;
 using namespace stibel_init::exception;
