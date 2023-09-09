@@ -1,8 +1,6 @@
 #ifndef __INTERFACE_SERVICE_H__
 #define __INTERFACE_SERVICE_H__
 
-#include <string>
-#include <memory>
 #include <drogon/drogon.h>
 
 using namespace drogon;

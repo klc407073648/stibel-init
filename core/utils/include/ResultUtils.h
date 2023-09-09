@@ -10,8 +10,6 @@
 #define __STIBEL_RESULT_UTILS_H__
 
 #include "BaseResponse.h"
-#include <string>
-#include <vector>
 
 namespace stibel_init {
 namespace utils {

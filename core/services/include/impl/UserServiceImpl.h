@@ -1,9 +1,7 @@
 #ifndef __USER_SERVICE_IMPL_H__
 #define __USER_SERVICE_IMPL_H__
 
-#include "User.h"
 #include "UserService.h"
-#include <drogon/drogon.h>
 
 namespace stibel_init {
 namespace service {

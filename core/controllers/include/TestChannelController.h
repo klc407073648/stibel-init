@@ -2,7 +2,6 @@
 #define __TestChannel_CONTROLLER_H__
 
 #include "inner/impl/TestChannelServiceImpl.h"
-#include <drogon/drogon.h>
 
 using namespace drogon;
 using stibel_init::service::TestChannelServicePtr;

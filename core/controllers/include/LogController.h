@@ -1,7 +1,6 @@
 #ifndef __LOG_CONTROLLER_H__
 #define __LOG_CONTROLLER_H__
 
-#include <drogon/drogon.h>
 #include "impl/LogServiceImpl.h"
 
 namespace stibel_init {

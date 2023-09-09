@@ -2,9 +2,7 @@
 #define __Cache_SERVICE_IMPL_H__
 
 #include "inner/CacheService.h"
-#include "Interface.h"
 #include <drogon/drogon.h>
-#include <map>
 
 namespace stibel_init {
 namespace service {

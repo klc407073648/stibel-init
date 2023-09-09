@@ -2,9 +2,7 @@
 #define __USER_CONTROLLER_H__
 
 #include "impl/UserServiceImpl.h"
-#include "User.h"
 #include "UserDescription.h"
-#include <drogon/drogon.h>
 
 namespace stibel_init {
 namespace controller {

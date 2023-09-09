@@ -1,9 +1,6 @@
 #ifndef __CACHE_SERVICE_H__
 #define __CACHE_SERVICE_H__
 
-#include <string>
-#include <memory>
-#include <drogon/drogon.h>
 #include "Interface.h"
 
 using namespace drogon;

@@ -9,7 +9,6 @@
 #ifndef __STIBEL_DESCRIPTION_H__
 #define __STIBEL_DESCRIPTION_H__
 
-#include <string>
 
 namespace stibel_init {
 namespace common {

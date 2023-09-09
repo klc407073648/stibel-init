@@ -10,8 +10,6 @@
 #define __STIBEL_BUSINESS_EXCEPTION_H__
 
 #include "ErrorCode.h"
-#include <exception>
-#include <functional>
 
 namespace stibel_init {
 namespace exception {

@@ -9,10 +9,6 @@
 #ifndef __STIBEL_RESPONSE_2_JSON_H__
 #define __STIBEL_RESPONSE_2_JSON_H__
 
-#include "BaseResponse.h"
-#include <string>
-#include <vector>
-#include <json/json.h>
 
 namespace stibel_init {
 namespace common {

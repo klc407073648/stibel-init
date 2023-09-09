@@ -1,7 +1,6 @@
 #ifndef __INTERFACE_CONTROLLER_H__
 #define __INTERFACE_CONTROLLER_H__
 
-#include <drogon/drogon.h>
 #include "impl/InterfaceServiceImpl.h"
 
 namespace stibel_init {

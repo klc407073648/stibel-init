@@ -10,7 +10,6 @@
 #define __STIBEL_LOGIN_FILTER_H__
 
 #include "impl/UserServiceImpl.h"
-#include <drogon/HttpFilter.h>
 
 using namespace drogon;
 using namespace stibel_init;

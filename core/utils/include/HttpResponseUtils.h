@@ -9,13 +9,9 @@
 #ifndef __STIBEL_HTTPRESPONSE_UTILS_H__
 #define __STIBEL_HTTPRESPONSE_UTILS_H__
 
-#include <drogon/HttpResponse.h>
 #include "ResultUtils.h"
 #include "Response2json.h"
 #include "BusinessException.h"
-#include <iostream>
-#include <string>
-#include <unordered_map>
 
 namespace stibel_init {
 namespace utils {

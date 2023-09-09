@@ -1,9 +1,6 @@
 #ifndef __USER_SERVICE_H__
 #define __USER_SERVICE_H__
 
-#include <memory>
-#include <string>
-#include <vector>
 #include <drogon/drogon.h>
 #include "User.h"
 

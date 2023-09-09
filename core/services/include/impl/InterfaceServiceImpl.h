@@ -1,11 +1,8 @@
 #ifndef __INTERFACE_SERVICE_IMPL_H__
 #define __INTERFACE_SERVICE_IMPL_H__
 
-#include "Interface.h"
 #include "InterfaceService.h"
 #include "inner/impl/CacheServiceImpl.h"
-#include <drogon/drogon.h>
-#include <map>
 
 namespace stibel_init {
 namespace service {

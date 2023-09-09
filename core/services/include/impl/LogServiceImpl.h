@@ -4,7 +4,6 @@
 #include "Log.h"
 #include "LogService.h"
 #include <drogon/drogon.h>
-#include <map>
 
 namespace stibel_init {
 namespace service {

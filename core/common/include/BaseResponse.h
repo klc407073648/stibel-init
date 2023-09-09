@@ -10,7 +10,6 @@
 #define __STIBEL_BASERESPONSE_H__
 
 #include "ErrorCode.h"
-#include <string>
 
 namespace stibel_init {
 namespace common {
