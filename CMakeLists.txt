@@ -6,6 +6,15 @@ set(CMAKE_PREFIX_PATH   "${PROJECT_SOURCE_DIR}/lib/3partlib/lib64/cmake")
 include(${PROJECT_SOURCE_DIR}/cmake/SpecialDeal.cmake)
 # drogon的find_package特殊处理
 
+# 是否使用函数统计
+option(USE_FUN_STAT "Use function statistics" ON)
+if(USE_FUN_STAT)
+    message("USE_FUN_STAT:" ${USE_FUN_STAT})
+    add_definitions(-DUSE_FUN_STAT)
+    include(${PROJECT_SOURCE_DIR}/cmake/FunStat.cmake)
+endif()
+# 是否使用函数统计
+
 # 依赖StiBel库的内容
 ## 选项
 include(${PROJECT_SOURCE_DIR}/cmake/options.cmake)

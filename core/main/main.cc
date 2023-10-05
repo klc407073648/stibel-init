@@ -1,5 +1,5 @@
 #include <drogon/drogon.h>
-
+#include "FunStat.h"
 using namespace drogon;
 
 void setFileOutput()
@@ -32,6 +32,7 @@ void supportCrossOrigin()
 
 int main()
 {
+    stibel_init::common::FunStat::getInstance()->init();
     // 设置文件输出
     // setFileOutput();
 
