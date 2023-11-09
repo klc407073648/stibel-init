@@ -32,7 +32,10 @@ namespace common {
     g_fun_stat_map[#array_name]={0}; 
 
 #define MAKE_FUN_STAT(index) \
-    FunStat::getInstance()->increaseCount(FUN_NAME,index);
+{\
+    if(USE_FUN_STAT) \
+    FunStat::getInstance()->increaseCount(FUN_NAME,index); \
+}
 
 class FunStat
 {

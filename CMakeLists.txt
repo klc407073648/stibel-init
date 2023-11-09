@@ -64,7 +64,11 @@ ${PROJECT_SOURCE_DIR}/core/filters/include
 ${PROJECT_SOURCE_DIR}/core/models/include
 ${PROJECT_SOURCE_DIR}/core/plugins/include 
 ${PROJECT_SOURCE_DIR}/core/services/include
-${PROJECT_SOURCE_DIR}/core/utils/include )
+${PROJECT_SOURCE_DIR}/core/utils/include
+${STIBEL_COMMON_CONFIG_INCLUDE}
+${STIBEL_DATA_REDIS_INCLUDE}
+${3PART_INCLUDE_PATH}
+${COMM_INCLUDE_PATH} )
 
 #代码列表
 FILE (GLOB PROJECT_DROGON_FILES 
@@ -86,7 +90,9 @@ add_executable(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/core/main/main.cc ${PROJECT
 
 # 链接drogon库
 find_package(Drogon CONFIG REQUIRED)
-target_link_libraries(${PROJECT_NAME} PRIVATE Drogon::Drogon)
+#target_link_libraries(${PROJECT_NAME} Drogon::Drogon ${3PART_LIB_LIST} ${COMM_LIB_LIST})
+#target_link_libraries(${PROJECT_NAME} Drogon::Drogon ${LIB_STIBEL_COMMON_FOUNDATION} ${LIB_STIBEL_DATA_REDIS} ${LIB_YAMLCPP})
+target_link_libraries(${PROJECT_NAME} Drogon::Drogon ${LIB_STIBEL_COMMON_FOUNDATION} ${LIB_STIBEL_DATA_REDIS} ${LIB_STIBEL_COMMON_CONFIG} ${LIB_STIBEL_UTIL} ${LIB_HIREDIS} ${LIB_YAMLCPP} ${LIB_JSONCPP} ${LIB_TINYXML})
 
 # boost 和 C++ 版本
 if (CMAKE_CXX_STANDARD LESS 17)

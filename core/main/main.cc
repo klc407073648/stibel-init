@@ -1,5 +1,7 @@
 #include <drogon/drogon.h>
 #include "FunStat.h"
+#include "RedisDbManager.h"
+
 using namespace drogon;
 
 void setFileOutput()
@@ -32,7 +34,13 @@ void supportCrossOrigin()
 
 int main()
 {
-    stibel_init::common::FunStat::getInstance()->init();
+    //函数统计
+    if(USE_FUN_STAT)
+    {
+        stibel_init::common::FunStat::getInstance()->init();
+    }
+
+    stibel_init::common::RedisDbManager::getInstance()->load("../conf/redis.yml");
     // 设置文件输出
     // setFileOutput();
 

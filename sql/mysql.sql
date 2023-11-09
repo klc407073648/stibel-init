@@ -1,4 +1,7 @@
 -- auto-generated definition
+create database stibel_init
+
+-- auto-generated definition
 create table if not exists stibel_init.`user`
 (
     id           bigint auto_increment comment 'id' primary key,
