@@ -42,14 +42,15 @@ void RedisDbManager::load(const std::string& fileName)
 	m_map["name"]=fileName;
     m_map["pool"]=value["pool"].as<std::string>();
     m_configMap[fileName]=m_map;
-    //std::shared_ptr<RedisManager> ptr(new RedisManager(m_configMap));
-    //redisMgr_[fileName] = ptr;
     redisMgr_.emplace(fileName,new RedisManager(m_configMap));
 
-    redisMgr_[fileName]->get(fileName)->cmd("SET %s %s", "name", "Jason");
-    redisMgr_[fileName]->get(fileName)->cmd("SET %s %s", "num", "123456");
-    redisMgr_[fileName]->get(fileName)->cmd("SET %s %s", "address", "NJ");
+    //for test
+    // redisMgr_[fileName]->get(fileName)->cmd("SET %s %s", "name", "Jason");
+    // redisMgr_[fileName]->get(fileName)->cmd("SET %s %s", "num", "123456");
+    // redisMgr_[fileName]->get(fileName)->cmd("SET %s %s", "address", "NJ");
 }
+
+
 
 std::shared_ptr<RedisManager> RedisDbManager::get(const std::string& fileName)
 {

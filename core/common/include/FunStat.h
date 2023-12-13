@@ -31,10 +31,13 @@ namespace common {
 #define MAKE_FUN_STAT_ARRAY(array_name, length) \
     g_fun_stat_map[#array_name]={0}; 
 
+//不使用函数统计时，需要给空实现
 #define MAKE_FUN_STAT(index) \
 {\
     if(USE_FUN_STAT) \
-    FunStat::getInstance()->increaseCount(FUN_NAME,index); \
+        FunStat::getInstance()->increaseCount(FUN_NAME,index); \
+    else
+        do{}while(0) \
 }
 
 class FunStat
