@@ -21,7 +21,7 @@
 - [ ] 需求分析
 - [ ] 方案设计  逻辑框图
 - [ ] 编码实现
-- [ ] 研究公司代码的函数统计
+- [X] 研究公司代码的函数统计
 - [ ] 参考infra分不同路径，明确代码用途
 - [ ] 多线程处理thread local
 - [ ] 全局异常处理
@@ -30,3 +30,8 @@
 - [X] 国际化代码和用例校验
 - [ ] Debug和Release区别生不生成测试程序和testcase ———— BUILD_TESTS 来区分不生成程序程序
 - [X] 命令空间整改stibel_init service controller utils common                drogon_model::stibel_init::  
+- [ ] swd.sh 无法正常拉起来进程 
+- [ ] 补充其他函数打印，打印需要收到控制，需要接管drogon的打印
+- [ ] 定时器的库，实现MySQL接口数据库内容会有定时刷新数据的更新，避免数据不一致
+- [ ] 考虑接管drogon库的日志打印，采用log4cpp
+- [ ] 考虑多线程处理

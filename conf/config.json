@@ -1,28 +1,32 @@
 {
+	/*
 	"ssl": {
 		"cert": "../../trantor/trantor/tests/server.pem",
 		"key": "../../trantor/trantor/tests/server.pem",
-		"conf": [
-		]
+		"conf": []
 	},
-	"listeners": [{
+	*/
+	"listeners": [
+		{
 			"address": "0.0.0.0",
-			"port": 8005,
+			"port": 8083, /*需要修正*/
 			"https": false
 		}
 	],
-		"db_clients": [{
-		"rdbms": "mysql",
-		"host": "127.0.0.1",
-		"port": 3308,
-		"dbname": "cmdterminal",
-		"schema": "public",
-		"user": "root",
-		"password": "123456",
-		"is_fast": false,
-		"number_of_connections": 1,
-		"timeout": -1.0
-	}],
+	"db_clients": [
+		{
+			"rdbms": "mysql",
+			"host": "127.0.0.1",/*需要修正*/
+			"port": 3308,
+			"dbname": "stibel_init",
+			"schema": "public",
+			"user": "root",
+			"password": "123456", /*需要修正*/
+			"is_fast": false,
+			"number_of_connections": 1,
+			"timeout": -1.0
+		}
+	],
 	/*
 	"redis_clients": [{
 		"host": "127.0.0.1",
@@ -44,7 +48,7 @@
 		"home_page": "index.html",
 		"use_implicit_page": true,
 		"implicit_page": "index.html",
-		"upload_path": "uploads",
+		//"upload_path": "uploads",
 		"file_types": [
 			"gif",
 			"png",
@@ -59,16 +63,17 @@
 			"cur",
 			"xml"
 		],
-		"mime": {
-		},
-		"locations": [{
-			"default_content_type": "text/plain",
-			"alias": "",
-			"is_case_sensitive": false,
-			"allow_all": true,
-			"is_recursive": true,
-			"filters": []
-		}],
+		"mime": {},
+		"locations": [
+			{
+				"default_content_type": "text/plain",
+				"alias": "",
+				"is_case_sensitive": false,
+				"allow_all": true,
+				"is_recursive": true,
+				"filters": []
+			}
+		],
 		"max_connections": 100000,
 		"max_connections_per_ip": 0,
 		"load_dynamic_views": false,
@@ -76,7 +81,7 @@
 			"./views"
 		],
 		"dynamic_views_output_path": "",
-		"enable_unicode_escaping_in_json": true,
+		"enable_unicode_escaping_in_json": false,
 		"float_precision_in_json": {
 			"precision": 0,
 			"precision_type": "significant"
@@ -93,14 +98,16 @@
 		"use_gzip": true,
 		"use_brotli": false,
 		"static_files_cache_time": 5,
-		"simple_controllers_map": [{
-			"path": "/path/name",
-			"controller": "controllerClassName",
-			"http_methods": [
-				"get",
-				"post"
-			]
-		}],
+		"simple_controllers_map": [
+			{
+				"path": "/path/name",
+				"controller": "controllerClassName",
+				"http_methods": [
+					"get",
+					"post"
+				]
+			}
+		],
 		"idle_connection_timeout": 60,
 		"server_header_field": "",
 		"enable_server_header": true,
@@ -114,14 +121,16 @@
 		"client_max_websocket_message_size": "128K",
 		"reuse_port": false
 	},
-	"plugins": [{
-		"dependencies": [],
-		"config": {
-			"ssl_redirect_exempt": [
-				".*\\.jpg"
-			],
-			"secure_ssl_host": "localhost:8849"
+	"plugins": [
+		{
+			"dependencies": [],
+			"config": {
+				"ssl_redirect_exempt": [
+					".*\\.jpg"
+				],
+				"secure_ssl_host": "localhost:8849"
+			}
 		}
-	}],
+	],
 	"custom_config": {}
 }

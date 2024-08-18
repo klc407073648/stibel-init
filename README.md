@@ -15,6 +15,13 @@ docker run -it -d --rm=false --privileged --restart="always" --name build_lib_te
     -w /home/stibel/build_lib docker.io/klc407073648/centos_build_lib:v3.0 /bin/bash
 ```
 
+调试：
+docker run -it -d --rm=false --privileged --restart="always" --name stibel_init_backend  -e.utf8 \
+    -v /home:/home \
+    -v /var/run/docker.sock:/var/run/docker.sock -v $(which docker):/usr/bin/docker    \
+    -v $(which gdb):/usr/bin/gdb    \
+    -w /home/klc/auto_job/stibel-init/download docker.io/klc407073648/centos_build_lib:v3.0 /bin/bash
+
 ### 容器内编译
 
 #### 脚本方式
@@ -72,7 +79,11 @@ b HttpTest.cpp:31
 ### 其他测试
 
 ```
+curl -XPOST 81.68.132.31:8083/api/testchannel -H 'content-type:  application/json' -d '{"userAccount":"111","userPassword":"222","checkPassword":"333","planetCode":"4444"}'
+
 curl -XPOST 81.68.132.31:8083/api/user/register -H 'content-type:  application/json' -d '{"userAccount":"111","userPassword":"222","checkPassword":"333","planetCode":"4444"}'
+
+/api/testchannel
 ```
 
 ## 其他
